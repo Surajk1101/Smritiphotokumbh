@@ -26,6 +26,16 @@ export const InstagramProfileBanner: React.FC<InstagramProfileBannerProps> = ({
       aspect: 'aspect-[3/4]',
     },
     {
+      id: 'post-couple-story',
+      image: '/images/instagram_post_ddoe7ip.jpg',
+      url: 'https://www.instagram.com/p/DdOE7ipAetG/',
+      tag: 'Bride Sister',
+      title: 'Two Sides One Story — Bride & Sister Portrait',
+      caption: '#twosidesonestory #standingwithyou #brideandsister #sistergoals #samriddhiphoto',
+      badge: 'Bride & Sister',
+      aspect: 'aspect-[3/2]',
+    },
+    {
       id: 'post-mehndi',
       image: '/images/instagram_post_mehndi.jpg',
       url: 'https://www.instagram.com/p/Dc8c4VZgWBv/',
@@ -144,7 +154,7 @@ export const InstagramProfileBanner: React.FC<InstagramProfileBannerProps> = ({
         </div>
 
         {/* Real Posts Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
           
           {realPosts.map((post) => (
             <div
