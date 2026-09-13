@@ -20,8 +20,8 @@ export const PrintEstimator: React.FC<PrintEstimatorProps> = ({
   const samplePhotos = [
     { src: '/images/wedding_jaimala_gaze.jpg', label: 'Sacred Varmala Gaze' },
     { src: '/images/wedding_varmala_closeup.jpg', label: 'Varmala Close-up' },
-    { src: '/images/wedding_stage_descent.jpg', label: 'Stage Descent' },
-    { src: '/images/wedding_couple.jpg', label: 'Varmala Union' },
+    { src: '/images/instagram_heritage_couple.jpg', label: 'Royal Couple' },
+    { src: '/images/instagram_featured_post.jpg', label: 'Royal Ceremony' },
   ];
 
   const cleanWhatsapp = shopInfo.whatsapp.replace(/[^0-9]/g, '');

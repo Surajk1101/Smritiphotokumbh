@@ -24,7 +24,7 @@ export const StudioAbout: React.FC<StudioAboutProps> = ({
               <div className="rounded-3xl overflow-hidden shadow-2xl border-4 border-white aspect-[3/4] bg-neutral-900 relative group">
                 <img
                   src="/images/instagram_heritage_couple.jpg"
-                  alt="Smriti Photo Kumbh - Sacred Marriage Ceremony Photography"
+                  alt="Smriti Photo Kumbh - Official Instagram Post (@samriddhi.photo)"
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                   referrerPolicy="no-referrer"
                 />

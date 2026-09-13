@@ -70,7 +70,7 @@ export const StudioGallery: React.FC<StudioGalleryProps> = ({
                 alt={item.title}
                 loading="lazy"
                 referrerPolicy="no-referrer"
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 filter brightness-95"
+                className={`w-full h-full object-cover ${item.objectPosition || 'object-center'} group-hover:scale-105 transition-transform duration-700 filter brightness-95`}
               />
 
               {/* Gradient Overlay */}
