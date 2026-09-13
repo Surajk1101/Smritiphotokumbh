@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { GalleryItem } from '../../types/studio';
 import { GalleryLightbox } from './GalleryLightbox';
-import { ZoomIn, MapPin, Tag } from 'lucide-react';
+import { ZoomIn, MapPin, Tag, Instagram } from 'lucide-react';
 
 interface StudioGalleryProps {
   items: GalleryItem[];
@@ -78,9 +78,17 @@ export const StudioGallery: React.FC<StudioGalleryProps> = ({
 
               {/* Top Tag & Zoom icon */}
               <div className="absolute top-3 inset-x-3 flex items-center justify-between pointer-events-none">
-                <span className="px-2.5 py-1 rounded-md text-[10px] font-bold bg-neutral-900/80 text-amber-300 border border-amber-400/30 backdrop-blur-xs">
-                  {item.category}
-                </span>
+                <div className="flex items-center gap-1.5">
+                  <span className="px-2.5 py-1 rounded-md text-[10px] font-bold bg-neutral-900/80 text-amber-300 border border-amber-400/30 backdrop-blur-xs">
+                    {item.category}
+                  </span>
+                  {item.instagramUrl && (
+                    <span className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-bold bg-gradient-to-r from-pink-600/90 to-rose-600/90 text-white border border-pink-400/40 shadow-xs backdrop-blur-xs">
+                      <Instagram className="w-3 h-3" />
+                      <span>Post</span>
+                    </span>
+                  )}
+                </div>
                 <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white group-hover:scale-110 group-hover:bg-amber-500 group-hover:text-neutral-950 transition-all">
                   <ZoomIn className="w-4 h-4" />
                 </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { GalleryItem } from '../../types/studio';
-import { X, MapPin, Tag, Share2, Camera } from 'lucide-react';
+import { X, MapPin, Tag, Share2, Camera, Instagram, ExternalLink } from 'lucide-react';
 
 interface GalleryLightboxProps {
   item: GalleryItem | null;
@@ -64,7 +64,19 @@ export const GalleryLightbox: React.FC<GalleryLightboxProps> = ({
             </p>
           </div>
 
-          <div className="flex items-center gap-3 shrink-0">
+          <div className="flex flex-wrap items-center gap-3 shrink-0">
+            {item.instagramUrl && (
+              <a
+                href={item.instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2.5 rounded-xl font-bold text-xs text-white bg-gradient-to-r from-pink-600 via-rose-600 to-amber-600 hover:opacity-90 flex items-center gap-2 transition-all shadow-sm"
+              >
+                <Instagram className="w-4 h-4" />
+                <span>View on Instagram</span>
+                <ExternalLink className="w-3.5 h-3.5 opacity-80" />
+              </a>
+            )}
             <button
               onClick={() => onInquire(item)}
               className="px-4 py-2.5 rounded-xl font-bold text-xs text-neutral-950 bg-amber-400 hover:bg-amber-300 flex items-center gap-2 transition-all cursor-pointer"

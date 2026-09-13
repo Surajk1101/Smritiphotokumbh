@@ -16,16 +16,6 @@ export const InstagramProfileBanner: React.FC<InstagramProfileBannerProps> = ({
 
   const realPosts = [
     {
-      id: 'post-marriage',
-      image: '/images/instagram_featured_post.jpg',
-      url: 'https://www.instagram.com/p/DWFFe1sE_3F/',
-      tag: 'Wedding Photography',
-      title: 'Royal Marriage Ceremony & Couple Session',
-      caption: '#marriagephotography #photographer #function #photosession #samriddhiphoto',
-      badge: 'Ceremony Feature',
-      aspect: 'aspect-[3/4]',
-    },
-    {
       id: 'post-couple-story',
       image: '/images/instagram_post_ddoe7ip.jpg',
       url: 'https://www.instagram.com/p/DdOE7ipAetG/',
@@ -44,6 +34,16 @@ export const InstagramProfileBanner: React.FC<InstagramProfileBannerProps> = ({
       caption: '#mehndidesign #mehndiartist #hennaart #mehndilove #trendingmehndi #mehndiphotoshoot',
       badge: 'Bridal Henna',
       aspect: 'aspect-square',
+    },
+    {
+      id: 'post-haldi-dance',
+      image: '/images/indian_haldi_ceremony.jpg',
+      url: 'https://www.instagram.com/p/DdOHbORAanZ/',
+      tag: 'Wedding Dance',
+      title: 'Joyful Haldi Dance & Celebration',
+      caption: '#weddingdance #weddingphotographers #indainwedding #pahadiwedding❤️ #mehndiphotoshoot',
+      badge: 'Haldi Dance',
+      aspect: 'aspect-[3/2]',
     },
   ];
 
@@ -154,7 +154,7 @@ export const InstagramProfileBanner: React.FC<InstagramProfileBannerProps> = ({
         </div>
 
         {/* Real Posts Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
           
           {realPosts.map((post) => (
             <div

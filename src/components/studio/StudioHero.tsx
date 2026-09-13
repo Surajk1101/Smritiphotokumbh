@@ -68,6 +68,16 @@ export const StudioHero: React.FC<StudioHeroProps> = ({
       aspectClass: 'aspect-square',
     },
     {
+      src: '/images/indian_haldi_ceremony.jpg',
+      label: 'Haldi Dance Celebration',
+      shortLabel: 'Haldi Dance',
+      title: 'Joyful Haldi Dance & Wedding Celebration',
+      desc: 'Authentic candid celebration from our Instagram post (@samriddhi.photo) — smiling bride in yellow saree with floral jewelry dancing with family.',
+      postUrl: 'https://www.instagram.com/p/DdOHbORAanZ/',
+      isInstagramBest: true,
+      aspectClass: 'aspect-[3/2]',
+    },
+    {
       src: '/images/wedding_stage_descent.jpg',
       label: 'Royal Stage Descent',
       shortLabel: 'Stage Descent',

@@ -141,12 +141,13 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     id: 'g-haldi-ceremony',
-    title: 'Joyful Haldi & Marigold Petal Shower',
+    title: 'Joyful Haldi Dance & Celebration',
     category: 'Haldi & Mehendi',
     imageUrl: '/images/indian_haldi_ceremony.jpg',
     location: 'Smriti Wedding Studio, Ghaziabad',
-    description: 'Vibrant and exuberant candid capture of the smiling bride and groom drenched in warm auspicious turmeric paste with golden marigold flower petals showering around them.',
+    description: 'Vibrant and exuberant candid capture of the smiling bride in auspicious yellow saree and floral jewelry, dancing joyfully alongside family and loved ones during the Haldi ceremony celebrations.',
     featured: true,
+    instagramUrl: 'https://www.instagram.com/p/DdOHbORAanZ/',
   },
   {
     id: 'g-mehendi-bride',

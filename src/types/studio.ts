@@ -35,6 +35,7 @@ export interface GalleryItem {
   location: string;
   description: string;
   featured?: boolean;
+  instagramUrl?: string;
 }
 
 export interface StudioService {
