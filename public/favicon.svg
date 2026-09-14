@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Background Gradient: Warm Golden Saffron to Rich Studio Orange -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b" />
+      <stop offset="50%" stop-color="#ea580c" />
+      <stop offset="100%" stop-color="#991b1b" />
+    </linearGradient>
+
+    <!-- Metallic Gold Highlight Ring -->
+    <linearGradient id="goldRim" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" stop-opacity="0.9" />
+      <stop offset="40%" stop-color="#fbbf24" stop-opacity="0.5" />
+      <stop offset="100%" stop-color="#d97706" stop-opacity="0.8" />
+    </linearGradient>
+
+    <!-- Deep Lens Optical Glass Gradient -->
+    <radialGradient id="lensGlass" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="55%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#020617" />
+    </radialGradient>
+
+    <!-- Golden Aperture Gradient -->
+    <linearGradient id="apertureGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="50%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#d97706" />
+    </linearGradient>
+
+    <!-- Drop Shadow Filter for 3D Studio Depth -->
+    <filter id="dropShadow" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="14" stdDeviation="14" flood-color="#451a03" flood-opacity="0.42" />
+    </filter>
+
+    <filter id="lensBezelShadow" x="-25%" y="-25%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#000000" flood-opacity="0.35" />
+    </filter>
+  </defs>
+
+  <!-- Squircle Base Canvas -->
+  <rect x="16" y="16" width="480" height="480" rx="116" ry="116" fill="url(#bgGrad)" />
+  <rect x="16" y="16" width="480" height="480" rx="116" ry="116" fill="none" stroke="url(#goldRim)" stroke-width="7" />
+
+  <!-- Top Glass Sheen -->
+  <path d="M 42,140 C 42,70 95,30 165,22 C 305,10 405,60 470,140 C 415,70 315,32 165,32 C 95,32 42,75 42,140 Z" fill="#ffffff" opacity="0.2" />
+
+  <!-- Camera Emblem Group -->
+  <g filter="url(#dropShadow)">
+    
+    <!-- Top Viewfinder / Pentaprism Arch -->
+    <path d="M 206,168 L 222,138 C 228,127 238,120 250,120 L 262,120 C 274,120 284,127 290,138 L 306,168 Z" fill="#ffffff" />
+    <!-- Viewfinder Gem / Sensor -->
+    <circle cx="256" cy="142" r="8" fill="url(#apertureGold)" />
+
+    <!-- Shutter Release Button (Right) -->
+    <rect x="344" y="146" width="34" height="16" rx="6" fill="#fef3c7" />
+
+    <!-- Top Left Sensor / Flash Bar -->
+    <rect x="134" y="150" width="36" height="14" rx="6" fill="#fef08a" opacity="0.95" />
+
+    <!-- Main Camera Body (Crisp Pure White with Rounded Shoulders) -->
+    <rect x="88" y="165" width="336" height="230" rx="46" ry="46" fill="#ffffff" />
+
+    <!-- Elegant Left Grip Panel -->
+    <rect x="102" y="190" width="28" height="180" rx="14" fill="#f8fafc" />
+    <circle cx="116" cy="225" r="3.5" fill="#cbd5e1" />
+    <circle cx="116" cy="255" r="3.5" fill="#cbd5e1" />
+    <circle cx="116" cy="285" r="3.5" fill="#cbd5e1" />
+    <circle cx="116" cy="315" r="3.5" fill="#cbd5e1" />
+    <circle cx="116" cy="345" r="3.5" fill="#cbd5e1" />
+
+    <!-- Right Side Red Recording / Focus Dot -->
+    <circle cx="388" cy="205" r="7" fill="#ef4444" />
+    <circle cx="388" cy="205" r="3" fill="#ffffff" opacity="0.8" />
+
+    <!-- Lens Group: Perfectly Centered on X=256 -->
+    <g filter="url(#lensBezelShadow)">
+      <!-- Outer Ring 1: Chrome Bezel -->
+      <circle cx="256" cy="280" r="94" fill="#f1f5f9" />
+      <!-- Outer Ring 2: Royal Gold Ring -->
+      <circle cx="256" cy="280" r="88" fill="url(#apertureGold)" />
+      <!-- Outer Ring 3: White Step -->
+      <circle cx="256" cy="280" r="80" fill="#ffffff" />
+      <!-- Outer Ring 4: Deep Obsidian Barrel -->
+      <circle cx="256" cy="280" r="74" fill="#0f172a" />
+      
+      <!-- Multi-Coated Camera Glass -->
+      <circle cx="256" cy="280" r="68" fill="url(#lensGlass)" />
+      
+      <!-- Optical Cyan & Gold Reflection Arcs -->
+      <path d="M 200,256 A 60 60 0 0 1 298,228" stroke="#38bdf8" stroke-width="6" stroke-linecap="round" fill="none" opacity="0.75" />
+      <path d="M 214,270 A 48 48 0 0 1 288,244" stroke="#ffffff" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.85" />
+      
+      <!-- Inner Aperture Ring -->
+      <circle cx="256" cy="280" r="36" fill="#020617" stroke="url(#apertureGold)" stroke-width="3.5" stroke-dasharray="12 5" />
+      
+      <!-- Core Shutter Sensor / Golden Crystal -->
+      <circle cx="256" cy="280" r="18" fill="url(#apertureGold)" />
+      <circle cx="256" cy="280" r="10" fill="#ffffff" />
+      <circle cx="260" cy="276" r="4" fill="#ffffff" />
+    </g>
+
+    <!-- Top Right Brilliant Sparkle (Creative Flash & Sacred Kumbh Radiance) -->
+    <path d="M 370,180 Q 370,196 378,196 Q 370,196 370,212 Q 370,196 362,196 Q 370,196 370,180 Z" fill="url(#apertureGold)" />
+    <circle cx="370" cy="196" r="3" fill="#ffffff" />
+  </g>
+</svg>

@@ -103,9 +103,11 @@ export const StudioNavbar: React.FC<StudioNavbarProps> = ({
           
           {/* Logo Branding */}
           <a href="#home" id="studio-brand-logo" className="flex items-center gap-3 group shrink-0 select-none py-1">
-            <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br from-amber-500 via-orange-600 to-amber-700 flex items-center justify-center text-white shadow-md shadow-orange-500/20 group-hover:scale-105 transition-transform shrink-0">
-              <Camera className="w-5 h-5 sm:w-6 sm:h-6" />
-            </div>
+            <img
+              src="/logo.svg"
+              alt={`${shopInfo.name} Logo`}
+              className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl shadow-md shadow-orange-500/20 group-hover:scale-105 transition-transform shrink-0 object-cover"
+            />
             <div className="flex flex-col justify-center">
               <div className="flex items-center gap-2">
                 <span className="text-lg sm:text-xl xl:text-2xl font-black tracking-tight text-neutral-950 font-['Outfit'] whitespace-nowrap leading-none">

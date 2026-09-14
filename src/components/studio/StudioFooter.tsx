@@ -28,9 +28,11 @@ export const StudioFooter: React.FC<StudioFooterProps> = ({
           {/* Col 1: Brand & Tagline */}
           <div className="space-y-4 text-left">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-white shadow-md">
-                <Camera className="w-5 h-5" />
-              </div>
+              <img
+                src="/logo.svg"
+                alt={`${shopInfo.name} Logo`}
+                className="w-10 h-10 rounded-xl shadow-md shadow-orange-500/20 shrink-0 object-cover"
+              />
               <div>
                 <span className="text-lg font-bold text-white font-['Outfit'] block">
                   {shopInfo.name}
