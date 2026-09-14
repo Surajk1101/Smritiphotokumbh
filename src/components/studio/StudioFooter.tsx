@@ -29,9 +29,9 @@ export const StudioFooter: React.FC<StudioFooterProps> = ({
           <div className="space-y-4 text-left">
             <div className="flex items-center gap-3">
               <img
-                src="/logo.svg"
+                src="/logo.png"
                 alt={`${shopInfo.name} Logo`}
-                className="w-10 h-10 rounded-xl shadow-md shadow-orange-500/20 shrink-0 object-cover"
+                className="w-11 h-11 rounded-xl shadow-md border border-neutral-700 bg-white p-0.5 shrink-0 object-contain"
               />
               <div>
                 <span className="text-lg font-bold text-white font-['Outfit'] block">

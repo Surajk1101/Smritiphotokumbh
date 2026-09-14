@@ -123,20 +123,31 @@ export const StudioContact: React.FC<StudioContactProps> = ({
                 </div>
               </div>
 
-              {/* Phone */}
+              {/* Phone Numbers */}
               <div className="flex items-start gap-4">
                 <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center shrink-0">
                   <Phone className="w-5 h-5" />
                 </div>
                 <div>
                   <div className="text-xs font-bold text-neutral-400">Call Directly:</div>
-                  <a
-                    href={`tel:${cleanPhone}`}
-                    className="text-base font-bold text-white hover:text-amber-400 transition-colors block mt-0.5"
-                  >
-                    {shopInfo.phone}
-                  </a>
-                  <span className="text-[11px] text-neutral-400">Direct studio line & booking desk</span>
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-0.5">
+                    <a
+                      href="tel:+919718282455"
+                      className="text-sm sm:text-base font-bold text-white hover:text-amber-400 transition-colors"
+                    >
+                      +91 97182 82455
+                    </a>
+                    <span className="text-neutral-500">•</span>
+                    <a
+                      href="tel:+919718382455"
+                      className="text-sm sm:text-base font-bold text-white hover:text-amber-400 transition-colors"
+                    >
+                      97183 82455
+                    </a>
+                  </div>
+                  <div className="text-[11px] text-amber-400/90 mt-0.5 font-medium">
+                    Office Desk: <a href="tel:+919718482455" className="underline hover:text-white">9718482455</a>
+                  </div>
                 </div>
               </div>
 

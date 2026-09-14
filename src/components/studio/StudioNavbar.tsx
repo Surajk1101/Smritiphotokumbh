@@ -104,9 +104,9 @@ export const StudioNavbar: React.FC<StudioNavbarProps> = ({
           {/* Logo Branding */}
           <a href="#home" id="studio-brand-logo" className="flex items-center gap-3 group shrink-0 select-none py-1">
             <img
-              src="/logo.svg"
+              src="/logo.png"
               alt={`${shopInfo.name} Logo`}
-              className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl shadow-md shadow-orange-500/20 group-hover:scale-105 transition-transform shrink-0 object-cover"
+              className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl shadow-sm border border-neutral-200/80 bg-white p-0.5 group-hover:scale-105 transition-transform shrink-0 object-contain"
             />
             <div className="flex flex-col justify-center">
               <div className="flex items-center gap-2">
@@ -121,7 +121,7 @@ export const StudioNavbar: React.FC<StudioNavbarProps> = ({
               </div>
               <p className="text-[11px] sm:text-xs text-neutral-600 font-semibold tracking-tight whitespace-nowrap mt-1 flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-orange-600 shrink-0" />
-                <span>Professional Photography &amp; 4K Cinematography</span>
+                <span>Photography &amp; Lamination • All Type Of Photography</span>
               </p>
             </div>
           </a>
