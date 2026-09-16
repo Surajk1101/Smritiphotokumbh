@@ -21,7 +21,7 @@ export const StudioFooter: React.FC<StudioFooterProps> = ({
   };
 
   return (
-    <footer className="bg-neutral-950 text-neutral-400 border-t border-neutral-800 text-xs">
+    <footer className="bg-[#0B0C0E] text-[#C5CAD6] border-t border-[#262A36] text-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           
@@ -31,20 +31,20 @@ export const StudioFooter: React.FC<StudioFooterProps> = ({
               <img
                 src="/logo.png"
                 alt={`${shopInfo.name} Logo`}
-                className="w-11 h-11 rounded-xl shadow-md border border-neutral-700 bg-white p-0.5 shrink-0 object-contain"
+                className="w-11 h-11 rounded-xl shadow-md border border-[#262A36] bg-[#161922] p-0.5 shrink-0 object-contain"
               />
               <div>
                 <span className="text-lg font-bold text-white font-['Outfit'] block">
                   {shopInfo.name}
                 </span>
-                <span className="text-[11px] text-amber-400 font-semibold">
-                  {shopInfo.hindiName}
+                <span className="text-[11px] text-[#E5A93C] font-semibold tracking-wide">
+                  Fine-Art Photography &amp; Cinematography
                 </span>
               </div>
             </div>
 
-            <p className="text-xs text-neutral-400 leading-relaxed">
-              {shopInfo.tagline}. Dedicated to capturing the sacred essence of Kumbh Mela, eternal wedding celebrations, and crafting museum-grade photo frames.
+            <p className="text-xs text-[#8E95A5] leading-relaxed">
+              {shopInfo.tagline}. Dedicated to crafting timeless wedding films, heirloom portraits, and museum-grade framing across Ghaziabad, Noida, and Delhi NCR.
             </p>
 
             <div className="flex items-center gap-3 pt-2">
@@ -52,7 +52,7 @@ export const StudioFooter: React.FC<StudioFooterProps> = ({
                 href={insta.url}
                 target="_blank"
                 rel="noreferrer"
-                className="w-8 h-8 rounded-lg bg-neutral-900 border border-neutral-800 hover:border-pink-500 hover:text-pink-400 flex items-center justify-center transition-colors"
+                className="w-8 h-8 rounded-lg bg-[#161922] border border-[#262A36] hover:border-pink-500 hover:text-pink-400 flex items-center justify-center transition-colors text-[#C5CAD6]"
                 title={`Instagram: ${insta.handle}`}
               >
                 <Instagram className="w-4 h-4" />
@@ -62,7 +62,7 @@ export const StudioFooter: React.FC<StudioFooterProps> = ({
                 href={shopInfo.youtubeUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="w-8 h-8 rounded-lg bg-neutral-900 border border-neutral-800 hover:border-red-500 hover:text-red-400 flex items-center justify-center transition-colors"
+                className="w-8 h-8 rounded-lg bg-[#161922] border border-[#262A36] hover:border-red-500 hover:text-red-400 flex items-center justify-center transition-colors text-[#C5CAD6]"
                 title="Smriti Photo Kumbh YouTube"
               >
                 <Youtube className="w-4 h-4" />
@@ -72,7 +72,7 @@ export const StudioFooter: React.FC<StudioFooterProps> = ({
                 href={`https://wa.me/${cleanWhatsapp}`}
                 target="_blank"
                 rel="noreferrer"
-                className="w-8 h-8 rounded-lg bg-neutral-900 border border-neutral-800 hover:border-emerald-500 hover:text-emerald-400 flex items-center justify-center transition-colors"
+                className="w-8 h-8 rounded-lg bg-[#161922] border border-[#262A36] hover:border-emerald-500 hover:text-emerald-400 flex items-center justify-center transition-colors text-[#C5CAD6]"
                 title="WhatsApp Us"
               >
                 <MessageCircle className="w-4 h-4" />
@@ -80,7 +80,7 @@ export const StudioFooter: React.FC<StudioFooterProps> = ({
 
               <a
                 href={`tel:${cleanPhone}`}
-                className="w-8 h-8 rounded-lg bg-neutral-900 border border-neutral-800 hover:border-amber-500 hover:text-amber-400 flex items-center justify-center transition-colors"
+                className="w-8 h-8 rounded-lg bg-[#161922] border border-[#262A36] hover:border-[#E5A93C] hover:text-[#E5A93C] flex items-center justify-center transition-colors text-[#C5CAD6]"
                 title="Call Studio"
               >
                 <Phone className="w-4 h-4" />
@@ -93,13 +93,13 @@ export const StudioFooter: React.FC<StudioFooterProps> = ({
             <h4 className="text-sm font-bold text-white uppercase tracking-wider font-['Outfit']">
               Studio Specialties
             </h4>
-            <ul className="space-y-2 text-neutral-400">
-              <li><a href="#services" className="hover:text-amber-400 transition-colors">Traditional Studio & Family Portraits</a></li>
-              <li><a href="#services" className="hover:text-amber-400 transition-colors">Ganga Maha Aarti & Cultural Photography</a></li>
-              <li><a href="#services" className="hover:text-amber-400 transition-colors">4K Cinematic Wedding Films</a></li>
-              <li><a href="#services" className="hover:text-amber-400 transition-colors">Licensed Drone Videography</a></li>
-              <li><a href="#framing" className="hover:text-amber-400 transition-colors">Antique Gold & Teak Framing</a></li>
-              <li><a href="#framing" className="hover:text-amber-400 transition-colors">Ancestral Photo Restoration</a></li>
+            <ul className="space-y-2 text-[#8E95A5]">
+              <li><a href="#services" className="hover:text-[#E5A93C] transition-colors">Traditional Studio &amp; Family Portraits</a></li>
+              <li><a href="#services" className="hover:text-[#E5A93C] transition-colors">Ganga Maha Aarti &amp; Cultural Photography</a></li>
+              <li><a href="#services" className="hover:text-[#E5A93C] transition-colors">4K Cinematic Wedding Films</a></li>
+              <li><a href="#services" className="hover:text-[#E5A93C] transition-colors">Licensed Drone Videography</a></li>
+              <li><a href="#framing" className="hover:text-[#E5A93C] transition-colors">Antique Gold &amp; Teak Framing</a></li>
+              <li><a href="#framing" className="hover:text-[#E5A93C] transition-colors">Ancestral Photo Restoration</a></li>
             </ul>
           </div>
 
@@ -108,13 +108,13 @@ export const StudioFooter: React.FC<StudioFooterProps> = ({
             <h4 className="text-sm font-bold text-white uppercase tracking-wider font-['Outfit']">
               Quick Navigation
             </h4>
-            <ul className="space-y-2 text-neutral-400">
-              <li><a href="#home" className="hover:text-amber-400 transition-colors">Home Showcase</a></li>
-              <li><a href="#youtube-showcase" className="hover:text-amber-400 transition-colors">Featured YouTube Video</a></li>
-              <li><a href="#gallery" className="hover:text-amber-400 transition-colors">Photo Portfolio Gallery</a></li>
-              <li><a href="#packages" className="hover:text-amber-400 transition-colors">Shoot Packages</a></li>
-              <li><a href="#about" className="hover:text-amber-400 transition-colors">About Our Studio</a></li>
-              <li><a href="#contact" className="hover:text-amber-400 transition-colors">Book Photographer</a></li>
+            <ul className="space-y-2 text-[#8E95A5]">
+              <li><a href="#home" className="hover:text-[#E5A93C] transition-colors">Home Showcase</a></li>
+              <li><a href="#youtube-showcase" className="hover:text-[#E5A93C] transition-colors">Featured YouTube Video</a></li>
+              <li><a href="#gallery" className="hover:text-[#E5A93C] transition-colors">Photo Portfolio Gallery</a></li>
+              <li><a href="#packages" className="hover:text-[#E5A93C] transition-colors">Shoot Packages</a></li>
+              <li><a href="#about" className="hover:text-[#E5A93C] transition-colors">About Our Studio</a></li>
+              <li><a href="#contact" className="hover:text-[#E5A93C] transition-colors">Book Photographer</a></li>
             </ul>
           </div>
 
@@ -123,28 +123,28 @@ export const StudioFooter: React.FC<StudioFooterProps> = ({
             <h4 className="text-sm font-bold text-white uppercase tracking-wider font-['Outfit']">
               Visit Our Shop
             </h4>
-            <div className="space-y-2.5 text-neutral-400 text-xs">
+            <div className="space-y-2.5 text-[#C5CAD6] text-xs">
               <p className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                <MapPin className="w-4 h-4 text-[#E5A93C] shrink-0 mt-0.5" />
                 <a
                   href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
                     `${shopInfo.address}, ${shopInfo.city}, ${shopInfo.state}`
                   )}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="hover:text-amber-300 transition-colors"
+                  className="hover:text-[#E5A93C] transition-colors"
                   title="Open in Google Maps"
                 >
                   {shopInfo.address}, {shopInfo.city}, {shopInfo.state}
                 </a>
               </p>
               <p className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-amber-400 shrink-0" />
+                <Phone className="w-4 h-4 text-[#E5A93C] shrink-0" />
                 <a href={`tel:${cleanPhone}`} className="hover:text-white">{shopInfo.phone}</a>
               </p>
               <p className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-amber-400 shrink-0" />
-                <a href={`mailto:${shopInfo.email}`} className="hover:text-amber-300 transition-colors break-all">
+                <Mail className="w-4 h-4 text-[#E5A93C] shrink-0" />
+                <a href={`mailto:${shopInfo.email}`} className="hover:text-[#E5A93C] transition-colors break-all">
                   {shopInfo.email}
                 </a>
               </p>
@@ -154,7 +154,7 @@ export const StudioFooter: React.FC<StudioFooterProps> = ({
                   href={insta.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="hover:text-pink-400 text-neutral-300 font-semibold transition-colors"
+                  className="hover:text-pink-400 text-white font-semibold transition-colors"
                 >
                   {insta.handle}
                 </a>
@@ -164,9 +164,9 @@ export const StudioFooter: React.FC<StudioFooterProps> = ({
             <div className="pt-2">
               <button
                 onClick={onOpenSettings}
-                className="text-[11px] text-neutral-500 hover:text-amber-400 underline cursor-pointer"
+                className="text-[11px] text-[#8E95A5] hover:text-[#E5A93C] underline cursor-pointer"
               >
-                Customize Studio Info & Numbers
+                Customize Studio Info &amp; Numbers
               </button>
             </div>
           </div>
@@ -174,18 +174,18 @@ export const StudioFooter: React.FC<StudioFooterProps> = ({
         </div>
 
         {/* Bottom copyright */}
-        <div className="mt-12 pt-6 border-t border-neutral-900 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-neutral-500">
-            © {new Date().getFullYear()} {shopInfo.name} ({shopInfo.hindiName}). All rights reserved.
+        <div className="mt-12 pt-6 border-t border-[#262A36] flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-[#8E95A5]">
+            © {new Date().getFullYear()} {shopInfo.name}. All rights reserved.
           </p>
 
           <div className="flex items-center gap-4">
-            <span className="text-neutral-500 flex items-center gap-1">
+            <span className="text-[#8E95A5] flex items-center gap-1">
               Crafted with <Heart className="w-3.5 h-3.5 text-rose-500 fill-current" /> for sacred memories
             </span>
             <button
               onClick={scrollToTop}
-              className="p-2 rounded-lg bg-neutral-900 hover:bg-neutral-800 text-neutral-300 hover:text-white transition-colors"
+              className="p-2 rounded-lg bg-[#161922] hover:bg-[#262A36] text-[#C5CAD6] hover:text-white border border-[#262A36] transition-colors cursor-pointer"
               title="Back to Top"
             >
               <ArrowUp className="w-4 h-4" />

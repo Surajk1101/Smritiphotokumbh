@@ -90,52 +90,64 @@ export const StudioHero: React.FC<StudioHeroProps> = ({
   ];
 
   return (
-    <section id="home" className="relative overflow-hidden bg-neutral-950 text-white">
+    <section id="home" className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50 text-slate-900 border-b border-slate-200">
       {/* Background Graphic & Atmosphere featuring the Best Instagram Photo */}
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none opacity-10">
         <img
           src="/images/wedding_jaimala_gaze.jpg"
           alt="Smriti Photo Kumbh - Best Photography of Instagram @samriddhi.photo"
-          className="w-full h-full object-cover object-center opacity-25 mix-blend-luminosity scale-105 filter blur-[1.5px]"
+          className="w-full h-full object-cover object-center scale-105 filter blur-[3px]"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/85 to-neutral-950/70" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-600/25 via-rose-950/15 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-24 pb-20 sm:pb-28">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 sm:pt-20 pb-18 sm:pb-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* Left Column: Headline & Value Proposition */}
           <div className="lg:col-span-7 space-y-7 text-left">
             
-            {/* Spiritual & Studio Badge */}
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-amber-500/15 border border-amber-400/30 text-amber-300 text-xs font-semibold backdrop-blur-md">
-              <Sparkles className="w-4 h-4 text-amber-400" />
-              <span>{shopInfo.hindiName} • Official Photography & Videography Studio</span>
+            {/* Studio Badge */}
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-amber-50 border border-amber-200 text-amber-900 text-xs font-bold shadow-xs">
+              <Sparkles className="w-4 h-4 text-amber-600" />
+              <span>Professional Photography &amp; Video Studio in {shopInfo.city}</span>
             </div>
 
             {/* Main Headline */}
-            <div className="space-y-3">
-              <h1 className="text-4xl sm:text-5xl xl:text-6xl font-black tracking-tight leading-[1.1] font-['Outfit']">
-                Capturing Sacred Moments,{' '}
-                <span className="bg-gradient-to-r from-amber-400 via-orange-300 to-amber-200 bg-clip-text text-transparent">
-                  Preserving Eternal Memories
+            <div className="space-y-4">
+              <h1 className="text-4xl sm:text-5xl xl:text-6xl font-black tracking-tight leading-[1.15] font-['Outfit'] text-slate-900">
+                Capturing Life&apos;s Special Moments into{' '}
+                <span className="text-amber-600 inline-block font-black">
+                  Beautiful Photos &amp; Films
                 </span>
               </h1>
-              <p className="text-base sm:text-lg text-neutral-300 max-w-2xl font-normal leading-relaxed">
-                Welcome to <strong className="text-white font-semibold">{shopInfo.name}</strong>. From grand cinematic weddings and sacred ceremonies to royal studio portraits, 4K drone videography, and master handcrafted framing.
-              </p>
+              <div className="space-y-3 max-w-2xl">
+                <p className="text-xl sm:text-2xl text-slate-700 font-semibold tracking-tight font-['Outfit'] leading-snug">
+                  Wedding Photography • Family Portraits • 4K Drone Video • Custom Photo Framing
+                </p>
+                <div className="flex flex-wrap items-center gap-x-2.5 gap-y-2 text-xs sm:text-sm font-medium text-slate-600 leading-relaxed">
+                  <span className="text-amber-800 px-2.5 py-1 rounded-md bg-amber-50 border border-amber-200 font-bold">Weddings &amp; Pre-Weddings</span>
+                  <span className="text-amber-500">•</span>
+                  <span>Haldi &amp; Mehndi</span>
+                  <span className="text-amber-500">•</span>
+                  <span>Studio Portraits</span>
+                  <span className="text-amber-500">•</span>
+                  <span>4K Drone Video</span>
+                  <span className="text-amber-500">•</span>
+                  <span className="text-amber-800 px-2.5 py-1 rounded-md bg-amber-50 border border-amber-200 font-bold">Custom Photo Framing</span>
+                </div>
+              </div>
             </div>
 
             {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-4 pt-2">
+            <div className="flex flex-wrap items-center gap-3.5 pt-2">
               <button
                 onClick={onBookClick}
                 id="hero-btn-book-session"
-                className="px-6 py-3.5 rounded-xl font-bold text-sm text-neutral-950 bg-gradient-to-r from-amber-400 via-orange-400 to-amber-300 hover:from-amber-300 hover:to-orange-300 shadow-lg shadow-amber-500/20 hover:scale-[1.02] transition-all cursor-pointer flex items-center gap-2"
+                className="px-6 py-3.5 rounded-xl font-bold text-sm text-slate-950 bg-amber-500 hover:bg-amber-400 shadow-xs hover:scale-[1.02] transition-all cursor-pointer flex items-center gap-2"
               >
-                <Camera className="w-4 h-4 text-neutral-950" />
-                <span>Book a Photo Session</span>
+                <Camera className="w-4 h-4 text-slate-950" />
+                <span>Book a Shoot</span>
               </button>
 
               <a
@@ -143,12 +155,12 @@ export const StudioHero: React.FC<StudioHeroProps> = ({
                 id="hero-btn-watch-film"
                 target="_blank"
                 rel="noreferrer"
-                className="px-4 py-3.5 rounded-xl font-semibold text-xs sm:text-sm text-white bg-white/10 hover:bg-white/15 border border-white/20 backdrop-blur-md hover:scale-[1.02] transition-all flex items-center gap-2"
+                className="px-4 py-3.5 rounded-xl font-bold text-xs sm:text-sm text-slate-800 bg-white hover:bg-slate-50 border border-slate-300 hover:scale-[1.02] transition-all flex items-center gap-2 shadow-xs"
               >
                 <div className="w-5 h-5 rounded-full bg-red-600 flex items-center justify-center text-white shrink-0 shadow-xs">
                   <Play className="w-2.5 h-2.5 fill-current ml-0.5" />
                 </div>
-                <span>YouTube Film</span>
+                <span>Watch Video</span>
               </a>
 
               <a
@@ -156,55 +168,55 @@ export const StudioHero: React.FC<StudioHeroProps> = ({
                 id="hero-btn-instagram"
                 target="_blank"
                 rel="noreferrer"
-                className="px-4 py-3.5 rounded-xl font-semibold text-xs sm:text-sm text-pink-200 bg-gradient-to-r from-pink-950/40 via-rose-950/40 to-purple-950/40 hover:from-pink-900/60 hover:to-purple-900/60 border border-pink-500/30 backdrop-blur-md hover:scale-[1.02] transition-all flex items-center gap-2 group"
+                className="px-4 py-3.5 rounded-xl font-bold text-xs sm:text-sm text-pink-700 bg-pink-50 hover:bg-pink-100 border border-pink-200 hover:scale-[1.02] transition-all flex items-center gap-2 group shadow-xs"
                 title={`Follow ${insta.handle} on Instagram`}
               >
                 <div className="w-5 h-5 rounded-full bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 flex items-center justify-center text-white shrink-0 shadow-xs group-hover:scale-105 transition-transform">
                   <Instagram className="w-3 h-3" />
                 </div>
-                <span className="font-bold text-white">{insta.handle}</span>
+                <span className="font-bold text-pink-800">{insta.handle}</span>
               </a>
 
               <button
                 onClick={onExploreGallery}
                 id="hero-btn-view-gallery"
-                className="px-4 py-3.5 rounded-xl font-medium text-xs sm:text-sm text-neutral-300 hover:text-white hover:bg-neutral-900 border border-neutral-800 transition-colors flex items-center gap-2"
+                className="px-4 py-3.5 rounded-xl font-semibold text-xs sm:text-sm text-slate-700 hover:text-slate-900 hover:bg-slate-100 bg-white border border-slate-300 transition-colors flex items-center gap-2 shadow-xs"
               >
-                <ImageIcon className="w-4 h-4 text-amber-400" />
-                <span>Gallery</span>
+                <ImageIcon className="w-4 h-4 text-amber-600" />
+                <span>Sample Photos</span>
               </button>
             </div>
 
             {/* Trust Indicators */}
-            <div className="pt-6 border-t border-neutral-800/80 flex flex-wrap items-center gap-6 sm:gap-8 text-xs text-neutral-400">
+            <div className="pt-6 border-t border-slate-200 flex flex-wrap items-center gap-6 sm:gap-8 text-xs text-slate-600">
               <div className="flex items-center gap-2">
-                <div className="flex text-amber-400">
+                <div className="flex text-amber-500">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} className="w-3.5 h-3.5 fill-current" />
                   ))}
                 </div>
-                <span className="font-semibold text-white">4.9 / 5 Rating</span>
-                <span>(500+ Reviews)</span>
+                <span className="font-bold text-slate-900">4.9 / 5 Rating</span>
+                <span>(500+ Happy Customers)</span>
               </div>
 
               <a
                 href={insta.url}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-1.5 text-pink-300 hover:text-pink-200 transition-colors"
+                className="flex items-center gap-1.5 text-pink-700 hover:text-pink-800 font-medium transition-colors"
               >
-                <Instagram className="w-4 h-4 text-pink-400" />
-                <span>{insta.handle} (Reels & Teasers)</span>
+                <Instagram className="w-4 h-4 text-pink-600" />
+                <span>{insta.handle} (Instagram Photos &amp; Reels)</span>
               </a>
 
               <div className="flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                <span>Same-Day Photo Transfer</span>
+                <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                <span className="text-slate-700">Edited Photos &amp; Quick Previews</span>
               </div>
 
               <div className="flex items-center gap-2">
-                <Camera className="w-4 h-4 text-amber-400" />
-                <span>4K Drone & Cinema Cameras</span>
+                <Camera className="w-4 h-4 text-amber-600" />
+                <span className="text-slate-700">4K Cameras &amp; Flying Drone</span>
               </div>
             </div>
 
@@ -212,29 +224,29 @@ export const StudioHero: React.FC<StudioHeroProps> = ({
 
           {/* Right Column: Interactive Featured Card & Direct Preview */}
           <div className="lg:col-span-5">
-            <div className="relative rounded-3xl p-2.5 bg-gradient-to-b from-amber-500/20 via-orange-500/10 to-transparent border border-amber-500/30 shadow-2xl backdrop-blur-xl">
-              <div className="relative rounded-2xl overflow-hidden bg-neutral-950 border border-neutral-800/80 flex flex-col group shadow-inner">
+            <div className="relative rounded-3xl p-2.5 bg-white border border-slate-200 shadow-xl">
+              <div className="relative rounded-2xl overflow-hidden bg-slate-900 border border-slate-200 flex flex-col group shadow-inner">
                 
                 {/* Top Bar: Distinction between real Instagram post vs Studio Portfolio */}
-                <div className="p-3 bg-neutral-900/90 border-b border-neutral-800/80 flex items-center justify-between gap-2 z-10">
+                <div className="p-3 bg-white border-b border-slate-200 flex items-center justify-between gap-2 z-10">
                   {showcasePhotos[activePhotoIdx].isInstagramBest ? (
                     <a
                       href={showcasePhotos[activePhotoIdx].postUrl || insta.url}
                       target="_blank"
                       rel="noreferrer"
-                      className="bg-pink-950/50 hover:bg-pink-900/60 px-3 py-1 rounded-full border border-pink-500/40 text-xs font-semibold text-pink-200 flex items-center gap-1.5 transition-colors shadow-xs"
+                      className="bg-pink-50 hover:bg-pink-100 px-3 py-1 rounded-full border border-pink-200 text-xs font-semibold text-pink-700 flex items-center gap-1.5 transition-colors shadow-xs"
                     >
-                      <Instagram className="w-3.5 h-3.5 text-pink-400" />
+                      <Instagram className="w-3.5 h-3.5 text-pink-600" />
                       <span>{insta.handle}</span>
-                      <span className="text-pink-400/50">•</span>
-                      <span className="text-pink-300 text-[11px]">Instagram Post</span>
+                      <span className="text-pink-300">•</span>
+                      <span className="text-pink-600 text-[11px]">Instagram Post</span>
                     </a>
                   ) : (
-                    <div className="bg-neutral-800/80 px-3 py-1 rounded-full border border-neutral-700/60 text-xs font-medium text-neutral-300 flex items-center gap-1.5 shadow-xs">
-                      <Camera className="w-3.5 h-3.5 text-amber-400" />
+                    <div className="bg-slate-100 px-3 py-1 rounded-full border border-slate-200 text-xs font-medium text-slate-700 flex items-center gap-1.5 shadow-xs">
+                      <Camera className="w-3.5 h-3.5 text-amber-600" />
                       <span>Studio Gallery</span>
-                      <span className="text-neutral-500">•</span>
-                      <span className="text-neutral-400 text-[11px]">{showcasePhotos[activePhotoIdx].shortLabel || showcasePhotos[activePhotoIdx].label}</span>
+                      <span className="text-slate-400">•</span>
+                      <span className="text-slate-500 text-[11px]">{showcasePhotos[activePhotoIdx].shortLabel || showcasePhotos[activePhotoIdx].label}</span>
                     </div>
                   )}
 
@@ -244,7 +256,7 @@ export const StudioHero: React.FC<StudioHeroProps> = ({
                       type="button"
                       onClick={() => setActivePhotoIdx((prev) => (prev === 0 ? showcasePhotos.length - 1 : prev - 1))}
                       aria-label="Previous photo"
-                      className="w-7 h-7 rounded-full bg-neutral-800 hover:bg-amber-400 text-white hover:text-neutral-950 border border-white/10 flex items-center justify-center transition-colors cursor-pointer"
+                      className="w-7 h-7 rounded-full bg-slate-100 hover:bg-amber-500 text-slate-700 hover:text-slate-950 border border-slate-300 flex items-center justify-center transition-colors cursor-pointer"
                     >
                       <ChevronLeft className="w-3.5 h-3.5" />
                     </button>
@@ -252,7 +264,7 @@ export const StudioHero: React.FC<StudioHeroProps> = ({
                       type="button"
                       onClick={() => setActivePhotoIdx((prev) => (prev === showcasePhotos.length - 1 ? 0 : prev + 1))}
                       aria-label="Next photo"
-                      className="w-7 h-7 rounded-full bg-neutral-800 hover:bg-amber-400 text-white hover:text-neutral-950 border border-white/10 flex items-center justify-center transition-colors cursor-pointer"
+                      className="w-7 h-7 rounded-full bg-slate-100 hover:bg-amber-500 text-slate-700 hover:text-slate-950 border border-slate-300 flex items-center justify-center transition-colors cursor-pointer"
                     >
                       <ChevronRight className="w-3.5 h-3.5" />
                     </button>
@@ -260,13 +272,13 @@ export const StudioHero: React.FC<StudioHeroProps> = ({
                 </div>
 
                 {/* Photo Display Stage (Cleanly fits photo in full frame without cropping heads or faces) */}
-                <div className={`relative w-full ${showcasePhotos[activePhotoIdx].aspectClass || 'aspect-square'} max-h-[580px] bg-neutral-950 overflow-hidden flex items-center justify-center transition-[aspect-ratio] duration-300`}>
+                <div className={`relative w-full ${showcasePhotos[activePhotoIdx].aspectClass || 'aspect-square'} max-h-[580px] bg-slate-950 overflow-hidden flex items-center justify-center transition-[aspect-ratio] duration-300`}>
                   {/* Subtle blurred ambient backdrop */}
                   <img
                     src={showcasePhotos[activePhotoIdx].src}
                     alt=""
                     aria-hidden="true"
-                    className="absolute inset-0 w-full h-full object-cover filter blur-xl opacity-30 scale-110 pointer-events-none"
+                    className="absolute inset-0 w-full h-full object-cover filter blur-xl opacity-20 scale-110 pointer-events-none"
                   />
                   {/* Foreground crisp photo fitted 100% properly */}
                   <img
@@ -279,7 +291,7 @@ export const StudioHero: React.FC<StudioHeroProps> = ({
                 </div>
 
                 {/* Card Details Section Below Photo (No overlap on the picture) */}
-                <div className="p-4 sm:p-5 bg-neutral-900/95 border-t border-neutral-800/80 text-left space-y-3">
+                <div className="p-4 sm:p-5 bg-white border-t border-slate-200 text-left space-y-3">
                   {/* Thumbnail switcher pills */}
                   <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1">
                     {showcasePhotos.map((photo, idx) => (
@@ -289,8 +301,8 @@ export const StudioHero: React.FC<StudioHeroProps> = ({
                         onClick={() => setActivePhotoIdx(idx)}
                         className={`px-2.5 py-1 rounded-md text-[11px] font-semibold whitespace-nowrap transition-all shrink-0 cursor-pointer ${
                           activePhotoIdx === idx
-                            ? 'bg-amber-400 text-neutral-950 shadow-md font-bold'
-                            : 'bg-neutral-800 hover:bg-neutral-700 text-neutral-300 border border-neutral-700/60'
+                            ? 'bg-amber-500 text-slate-950 shadow-xs font-bold'
+                            : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200'
                         }`}
                       >
                         {photo.shortLabel || photo.label}
@@ -300,51 +312,51 @@ export const StudioHero: React.FC<StudioHeroProps> = ({
 
                   <div className="space-y-1">
                     <div className="flex items-center gap-2">
-                      <span className="text-amber-400 text-xs font-bold uppercase tracking-wider">
+                      <span className="text-amber-700 text-xs font-bold uppercase tracking-wider">
                         {shopInfo.city} • Professional Studio
                       </span>
                       {showcasePhotos[activePhotoIdx].isInstagramBest && (
-                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold bg-pink-500/20 text-pink-300 border border-pink-400/30">
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold bg-pink-50 text-pink-700 border border-pink-200">
                           <Instagram className="w-2.5 h-2.5" />
                           <span>Instagram Post</span>
                         </span>
                       )}
                     </div>
-                    <h3 className="text-base sm:text-lg font-bold text-white leading-snug font-['Outfit']">
+                    <h3 className="text-base sm:text-lg font-bold text-slate-900 leading-snug font-['Outfit']">
                       {showcasePhotos[activePhotoIdx].title}
                     </h3>
-                    <p className="text-xs text-neutral-300 line-clamp-2">
+                    <p className="text-xs text-slate-600 line-clamp-2">
                       {showcasePhotos[activePhotoIdx].desc}
                     </p>
                   </div>
                   
-                  <div className="pt-1.5 flex items-center justify-between gap-2 border-t border-neutral-800/80">
+                  <div className="pt-1.5 flex items-center justify-between gap-2 border-t border-slate-200">
                     {showcasePhotos[activePhotoIdx].isInstagramBest ? (
                       <a
                         href={showcasePhotos[activePhotoIdx].postUrl || insta.url}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs font-bold text-pink-300 hover:text-pink-200 transition-colors bg-pink-950/50 hover:bg-pink-900/60 px-3 py-1.5 rounded-lg border border-pink-500/30 shadow-xs"
+                        className="inline-flex items-center gap-1.5 text-xs font-bold text-pink-700 hover:text-pink-800 transition-colors bg-pink-50 hover:bg-pink-100 px-3 py-1.5 rounded-lg border border-pink-200 shadow-xs"
                         title="View official post on Instagram"
                       >
-                        <Instagram className="w-3.5 h-3.5 text-pink-400" />
-                        <span>View Post on Instagram</span>
+                        <Instagram className="w-3.5 h-3.5 text-pink-600" />
+                        <span>View on Instagram</span>
                       </a>
                     ) : (
                       <a
                         href={insta.url}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs font-medium text-neutral-300 hover:text-white transition-colors bg-neutral-800 hover:bg-neutral-700 px-3 py-1.5 rounded-lg border border-neutral-700 shadow-xs"
+                        className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-700 hover:text-slate-900 transition-colors bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-lg border border-slate-200 shadow-xs"
                         title="Visit @samriddhi.photo on Instagram"
                       >
-                        <Instagram className="w-3.5 h-3.5 text-pink-400" />
+                        <Instagram className="w-3.5 h-3.5 text-pink-600" />
                         <span>Visit {insta.handle}</span>
                       </a>
                     )}
                     <a
                       href={`tel:${cleanPhone}`}
-                      className="inline-flex items-center gap-1.5 text-xs font-bold text-neutral-950 bg-amber-400 hover:bg-amber-300 px-3.5 py-1.5 rounded-lg transition-colors shadow-md shrink-0"
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-950 bg-amber-500 hover:bg-amber-400 px-3.5 py-1.5 rounded-lg transition-colors shadow-xs shrink-0"
                     >
                       <Phone className="w-3.5 h-3.5" />
                       <span>Call Studio</span>
@@ -356,17 +368,17 @@ export const StudioHero: React.FC<StudioHeroProps> = ({
 
               {/* Mini Feature Highlights Below Card */}
               <div className="grid grid-cols-3 gap-2 mt-2 pt-1 text-center">
-                <div className="p-2.5 rounded-xl bg-neutral-900/60 border border-neutral-800">
-                  <div className="text-base font-black text-amber-400">15+</div>
-                  <div className="text-[10px] text-neutral-400 font-medium">Years Serving</div>
+                <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                  <div className="text-base font-black text-amber-700">15+</div>
+                  <div className="text-[10px] text-slate-600 font-medium">Years in Business</div>
                 </div>
-                <div className="p-2.5 rounded-xl bg-neutral-900/60 border border-neutral-800">
-                  <div className="text-base font-black text-orange-400">10k+</div>
-                  <div className="text-[10px] text-neutral-400 font-medium">Happy Clients</div>
+                <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                  <div className="text-base font-black text-amber-700">10k+</div>
+                  <div className="text-[10px] text-slate-600 font-medium">Happy Families</div>
                 </div>
-                <div className="p-2.5 rounded-xl bg-neutral-900/60 border border-neutral-800">
-                  <div className="text-base font-black text-amber-300">4K</div>
-                  <div className="text-[10px] text-neutral-400 font-medium">Cinematography</div>
+                <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                  <div className="text-base font-black text-amber-700">4K</div>
+                  <div className="text-[10px] text-slate-600 font-medium">Video &amp; Drone</div>
                 </div>
               </div>
 
@@ -380,9 +392,9 @@ export const StudioHero: React.FC<StudioHeroProps> = ({
       <div className="text-center pb-6">
         <a
           href="#youtube-showcase"
-          className="inline-flex items-center gap-2 text-xs text-neutral-400 hover:text-amber-400 transition-colors animate-bounce"
+          className="inline-flex items-center gap-2 text-xs text-slate-500 hover:text-amber-700 transition-colors"
         >
-          <span>See our YouTube Video & Work</span>
+          <span>See our YouTube Video &amp; Work</span>
           <ArrowDown className="w-3.5 h-3.5" />
         </a>
       </div>

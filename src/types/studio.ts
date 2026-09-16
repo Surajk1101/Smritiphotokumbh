@@ -1,6 +1,6 @@
 export interface ShopInfo {
   name: string;
-  hindiName: string;
+  hindiName?: string;
   tagline: string;
   description: string;
   phone: string;
@@ -13,7 +13,11 @@ export interface ShopInfo {
   youtubeUrl: string;
   youtubeVideoId: string;
   instagram: string;
+  instagramAccessToken?: string;
+  instagramUserId?: string;
+  instagramSyncEnabled?: boolean;
   establishedYear: string;
+  fontPair?: string;
 }
 
 export interface YouTubeVideoItem {

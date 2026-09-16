@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ShopInfo } from './types/studio';
+import { FontPairId } from './types/typography';
 import {
   defaultShopInfo,
   studioServices,
@@ -20,10 +21,36 @@ import { StudioFooter } from './components/studio/StudioFooter';
 import { ShopSettingsModal } from './components/studio/ShopSettingsModal';
 
 export default function App() {
+  // Brand typography font pairing (Default: Cormorant Garamond + Montserrat)
+  const [fontPair, setFontPair] = useState<FontPairId>(() => {
+    try {
+      const saved = localStorage.getItem('smriti_font_pair') as FontPairId;
+      if (
+        saved &&
+        ['cormorant-montserrat', 'playfair-inter', 'cinzel-lato', 'outfit-jakarta'].includes(saved)
+      ) {
+        return saved;
+      }
+      return 'cormorant-montserrat';
+    } catch {
+      return 'cormorant-montserrat';
+    }
+  });
+
+  // Apply font attribute immediately to root element
+  useEffect(() => {
+    document.documentElement.setAttribute('data-font', fontPair);
+    try {
+      localStorage.setItem('smriti_font_pair', fontPair);
+    } catch (e) {
+      console.warn('Failed to save font pair', e);
+    }
+  }, [fontPair]);
+
   // Load shop info from localStorage or use defaults
   const [shopInfo, setShopInfo] = useState<ShopInfo>(() => {
     try {
-      const saved = localStorage.getItem('smriti_shop_info_v3') || localStorage.getItem('smriti_shop_info_v2') || localStorage.getItem('smriti_shop_info');
+      const saved = localStorage.getItem('smriti_shop_info_v4') || localStorage.getItem('smriti_shop_info_v3') || localStorage.getItem('smriti_shop_info_v2') || localStorage.getItem('smriti_shop_info');
       if (saved) {
         const parsed = JSON.parse(saved);
         // If it was the old placeholder number or address, upgrade to user's real location & phone
@@ -37,8 +64,10 @@ export default function App() {
             state: defaultShopInfo.state,
             email: defaultShopInfo.email,
             instagram: defaultShopInfo.instagram,
+            tagline: defaultShopInfo.tagline,
           };
         }
+        parsed.tagline = defaultShopInfo.tagline;
         if (!parsed.email || parsed.email.includes('surajk220299')) {
           parsed.email = defaultShopInfo.email;
         }
@@ -63,6 +92,7 @@ export default function App() {
   // Persist shop details changes
   useEffect(() => {
     try {
+      localStorage.setItem('smriti_shop_info_v4', JSON.stringify(shopInfo));
       localStorage.setItem('smriti_shop_info_v3', JSON.stringify(shopInfo));
       localStorage.setItem('smriti_shop_info_v2', JSON.stringify(shopInfo));
       localStorage.setItem('smriti_shop_info', JSON.stringify(shopInfo));
@@ -86,12 +116,14 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-neutral-900 selection:bg-amber-400 selection:text-neutral-950 font-['Plus_Jakarta_Sans',sans-serif]">
+    <div className="min-h-screen flex flex-col bg-[#0B0C0E] text-[#C5CAD6] selection:bg-[#E5A93C] selection:text-[#0B0C0E] transition-colors">
       {/* 1. Studio Header & Navigation */}
       <StudioNavbar
         shopInfo={shopInfo}
         onOpenSettings={() => setSettingsOpen(true)}
         onBookClick={() => handleBookClick()}
+        fontPair={fontPair}
+        onSelectFontPair={setFontPair}
       />
 
       {/* 2. Main Content Sections */}
@@ -113,6 +145,7 @@ export default function App() {
         <InstagramProfileBanner
           shopInfo={shopInfo}
           onBookClick={() => handleBookClick('Instagram Style Photography Inquiry')}
+          onOpenSettings={() => setSettingsOpen(true)}
         />
 
         {/* Studio Services & Capabilities */}
@@ -165,6 +198,9 @@ export default function App() {
         onClose={() => setSettingsOpen(false)}
         shopInfo={shopInfo}
         onSave={(updated) => setShopInfo(updated)}
+        onRefreshInstagram={() => setShopInfo({ ...shopInfo })}
+        fontPair={fontPair}
+        onSelectFontPair={setFontPair}
       />
     </div>
   );

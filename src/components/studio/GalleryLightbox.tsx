@@ -17,25 +17,25 @@ export const GalleryLightbox: React.FC<GalleryLightboxProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-neutral-950/90 backdrop-blur-md animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-slate-900/80 backdrop-blur-md animate-in fade-in duration-200"
       onClick={onClose}
     >
       <div
-        className="relative max-w-4xl w-full bg-neutral-900 rounded-3xl overflow-hidden border border-neutral-800 shadow-2xl"
+        className="relative max-w-4xl w-full bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
           onClick={onClose}
           id="btn-close-lightbox"
-          className="absolute top-4 right-4 z-20 p-2 rounded-full bg-neutral-950/80 hover:bg-neutral-800 text-white border border-neutral-700 transition-colors"
+          className="absolute top-4 right-4 z-20 p-2 rounded-full bg-black/60 hover:bg-black/80 text-white transition-colors cursor-pointer"
           aria-label="Close image preview"
         >
           <X className="w-5 h-5" />
         </button>
 
         {/* Image Preview Container */}
-        <div className="relative max-h-[70vh] bg-black flex items-center justify-center overflow-hidden">
+        <div className="relative max-h-[70vh] bg-slate-950 flex items-center justify-center overflow-hidden">
           <img
             src={item.imageUrl}
             alt={item.title}
@@ -45,21 +45,21 @@ export const GalleryLightbox: React.FC<GalleryLightboxProps> = ({
         </div>
 
         {/* Metadata and Caption Bar */}
-        <div className="p-6 bg-neutral-900 border-t border-neutral-800 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="p-6 bg-white border-t border-slate-200 text-slate-900 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="space-y-1.5 max-w-xl text-left">
             <div className="flex flex-wrap items-center gap-2 text-xs">
-              <span className="inline-flex items-center gap-1 text-amber-400 font-semibold">
+              <span className="inline-flex items-center gap-1 text-amber-700 font-bold bg-amber-50 px-2 py-0.5 rounded-md border border-amber-200">
                 <Tag className="w-3.5 h-3.5" />
                 <span>{item.category}</span>
               </span>
-              <span className="text-neutral-500">•</span>
-              <span className="inline-flex items-center gap-1 text-neutral-400">
-                <MapPin className="w-3.5 h-3.5 text-orange-400" />
+              <span className="text-slate-400">•</span>
+              <span className="inline-flex items-center gap-1 text-slate-600 font-medium">
+                <MapPin className="w-3.5 h-3.5 text-amber-600" />
                 <span>{item.location}</span>
               </span>
             </div>
-            <h3 className="text-xl font-bold font-['Outfit']">{item.title}</h3>
-            <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed">
+            <h3 className="text-xl font-bold font-['Outfit'] text-slate-900">{item.title}</h3>
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
               {item.description}
             </p>
           </div>
@@ -70,7 +70,7 @@ export const GalleryLightbox: React.FC<GalleryLightboxProps> = ({
                 href={item.instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2.5 rounded-xl font-bold text-xs text-white bg-gradient-to-r from-pink-600 via-rose-600 to-amber-600 hover:opacity-90 flex items-center gap-2 transition-all shadow-sm"
+                className="px-4 py-2.5 rounded-xl font-bold text-xs text-white bg-pink-600 hover:bg-pink-700 flex items-center gap-2 transition-all shadow-xs"
               >
                 <Instagram className="w-4 h-4" />
                 <span>View on Instagram</span>
@@ -79,10 +79,10 @@ export const GalleryLightbox: React.FC<GalleryLightboxProps> = ({
             )}
             <button
               onClick={() => onInquire(item)}
-              className="px-4 py-2.5 rounded-xl font-bold text-xs text-neutral-950 bg-amber-400 hover:bg-amber-300 flex items-center gap-2 transition-all cursor-pointer"
+              className="px-4 py-2.5 rounded-xl font-bold text-xs text-slate-950 bg-amber-500 hover:bg-amber-400 flex items-center gap-2 transition-all cursor-pointer shadow-xs"
             >
-              <Camera className="w-4 h-4" />
-              <span>Book Shoot / Get Framed</span>
+              <Camera className="w-4 h-4 text-slate-950" />
+              <span>Book Shoot / Order Frame</span>
             </button>
           </div>
         </div>
