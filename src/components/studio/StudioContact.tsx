@@ -69,19 +69,19 @@ export const StudioContact: React.FC<StudioContactProps> = ({
   };
 
   return (
-    <section id="contact" className="py-20 bg-[#0B0C0E] text-white relative">
+    <section id="contact" className="py-20 bg-slate-50 text-slate-900 relative border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-3.5">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#E5A93C]/15 border border-[#E5A93C]/35 text-[#E5A93C] text-xs font-black uppercase tracking-wider shadow-xs">
-            <span>Inquiries &amp; Commissions</span>
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-amber-50 border border-amber-200 text-amber-800 text-xs font-bold uppercase tracking-wider shadow-xs">
+            <span>Bookings &amp; Inquiries</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black font-['Outfit'] text-white tracking-tight">
-            Begin Your Story With {shopInfo.name}
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black font-['Outfit'] text-slate-900 tracking-tight">
+            Get In Touch With {shopInfo.name}
           </h2>
-          <p className="text-base sm:text-lg font-semibold text-[#C5CAD6] max-w-2xl mx-auto leading-relaxed">
-            Whether preparing for a grand wedding celebration, reserving an in-studio portrait session, or commissioning bespoke archival frames, our team is at your service.
+          <p className="text-base sm:text-lg font-medium text-slate-600 max-w-2xl mx-auto leading-relaxed">
+            Planning a wedding, need studio portraits, or want custom photo frames? Contact us directly or fill out the quick form below.
           </p>
         </div>
 
@@ -90,22 +90,22 @@ export const StudioContact: React.FC<StudioContactProps> = ({
           
           {/* Left Column: Contact Cards & Studio Map */}
           <div className="lg:col-span-5 space-y-6 text-left">
-            <div className="p-7 rounded-3xl bg-[#161922] border border-[#262A36] space-y-6 shadow-xl">
-              <h3 className="text-lg font-bold text-white font-['Outfit'] border-b border-[#262A36] pb-3">
+            <div className="p-7 rounded-3xl bg-white border border-slate-200 space-y-6 shadow-sm">
+              <h3 className="text-lg font-bold text-slate-900 font-['Outfit'] border-b border-slate-200 pb-3">
                 Studio Contact Details
               </h3>
 
               {/* Address */}
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-xl bg-[#E5A93C]/10 text-[#E5A93C] flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center shrink-0 border border-amber-200">
                   <MapPin className="w-5 h-5" />
                 </div>
                 <div className="flex-1">
-                  <div className="text-xs font-bold text-[#8E95A5]">Shop Location:</div>
-                  <div className="text-sm font-semibold text-white mt-0.5">
+                  <div className="text-xs font-bold text-slate-500">Shop Location:</div>
+                  <div className="text-sm font-semibold text-slate-900 mt-0.5">
                     {shopInfo.address}
                   </div>
-                  <div className="text-xs text-[#E5A93C] mt-0.5 font-medium">
+                  <div className="text-xs text-amber-700 mt-0.5 font-medium">
                     {shopInfo.city}, {shopInfo.state}
                   </div>
                   <a
@@ -114,7 +114,7 @@ export const StudioContact: React.FC<StudioContactProps> = ({
                     )}`}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 mt-2.5 px-3 py-1.5 rounded-lg bg-[#12141A] border border-[#E5A93C]/40 text-[#E5A93C] hover:bg-[#E5A93C] hover:text-[#0B0C0E] transition-all font-semibold text-xs cursor-pointer"
+                    className="inline-flex items-center gap-1.5 mt-2.5 px-3 py-1.5 rounded-lg bg-amber-50 border border-amber-300 text-amber-800 hover:bg-amber-100 transition-all font-semibold text-xs cursor-pointer"
                   >
                     <Navigation className="w-3.5 h-3.5" />
                     <span>Get Directions on Google Maps</span>
@@ -125,70 +125,70 @@ export const StudioContact: React.FC<StudioContactProps> = ({
 
               {/* Phone Numbers */}
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-xl bg-[#E5A93C]/10 text-[#E5A93C] flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center shrink-0 border border-amber-200">
                   <Phone className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="text-xs font-bold text-[#8E95A5]">Call Directly:</div>
+                  <div className="text-xs font-bold text-slate-500">Call Directly:</div>
                   <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-0.5">
                     <a
                       href="tel:+919718282455"
-                      className="text-sm sm:text-base font-bold text-white hover:text-[#E5A93C] transition-colors"
+                      className="text-sm sm:text-base font-bold text-slate-900 hover:text-amber-700 transition-colors"
                     >
                       +91 97182 82455
                     </a>
-                    <span className="text-[#8E95A5]">•</span>
+                    <span className="text-slate-300">•</span>
                     <a
                       href="tel:+919718382455"
-                      className="text-sm sm:text-base font-bold text-white hover:text-[#E5A93C] transition-colors"
+                      className="text-sm sm:text-base font-bold text-slate-900 hover:text-amber-700 transition-colors"
                     >
                       97183 82455
                     </a>
                   </div>
-                  <div className="text-[11px] text-[#E5A93C] mt-0.5 font-medium">
-                    Office Desk: <a href="tel:+919718482455" className="underline hover:text-white">9718482455</a>
+                  <div className="text-[11px] text-slate-500 mt-0.5 font-medium">
+                    Office Desk: <a href="tel:+919718482455" className="underline hover:text-slate-900">9718482455</a>
                   </div>
                 </div>
               </div>
 
               {/* WhatsApp */}
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0 border border-emerald-200">
                   <MessageCircle className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="text-xs font-bold text-[#8E95A5]">WhatsApp Instant Connect:</div>
+                  <div className="text-xs font-bold text-slate-500">WhatsApp Instant Connect:</div>
                   <a
                     href={`https://wa.me/${cleanWhatsapp}?text=${encodeURIComponent(
                       'Hello Smriti Photo Kumbh! I would like to inquire about photography and framing.'
                     )}`}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-sm font-bold text-emerald-400 hover:text-emerald-300 transition-colors block mt-0.5"
+                    className="text-sm font-bold text-emerald-700 hover:text-emerald-800 transition-colors block mt-0.5"
                   >
                     Chat on WhatsApp ({shopInfo.whatsapp})
                   </a>
-                  <span className="text-[11px] text-[#8E95A5]">Fast quotes, photo uploads &amp; sample designs</span>
+                  <span className="text-[11px] text-slate-500">Fast quotes, photo uploads &amp; sample designs</span>
                 </div>
               </div>
 
               {/* Instagram Official Handle */}
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-xl bg-[#12141A] text-pink-400 flex items-center justify-center shrink-0 border border-pink-500/30 shadow-xs">
+                <div className="w-10 h-10 rounded-xl bg-pink-50 text-pink-600 flex items-center justify-center shrink-0 border border-pink-200 shadow-xs">
                   <Instagram className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="text-xs font-bold text-[#8E95A5]">Instagram Official Handle:</div>
+                  <div className="text-xs font-bold text-slate-500">Instagram Official Handle:</div>
                   <a
                     href={insta.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-sm font-bold text-pink-400 hover:text-pink-300 transition-colors inline-flex items-center gap-1.5 mt-0.5"
+                    className="text-sm font-bold text-pink-700 hover:text-pink-800 transition-colors inline-flex items-center gap-1.5 mt-0.5"
                   >
                     <span>{insta.handle}</span>
                     <ExternalLink className="w-3.5 h-3.5" />
                   </a>
-                  <span className="block text-[11px] text-[#8E95A5]">
+                  <span className="block text-[11px] text-slate-500">
                     Latest wedding reels, pre-wedding teasers &amp; behind-the-scenes
                   </span>
                 </div>
@@ -196,29 +196,29 @@ export const StudioContact: React.FC<StudioContactProps> = ({
 
               {/* Email */}
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-xl bg-[#E5A93C]/10 text-[#E5A93C] flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center shrink-0 border border-amber-200">
                   <Mail className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="text-xs font-bold text-[#8E95A5]">Email Studio:</div>
+                  <div className="text-xs font-bold text-slate-500">Email Studio:</div>
                   <a
                     href={`mailto:${shopInfo.email}?subject=Photography%20or%20Framing%20Inquiry`}
-                    className="text-sm font-bold text-white hover:text-[#E5A93C] transition-colors block mt-0.5 break-all"
+                    className="text-sm font-bold text-slate-900 hover:text-amber-700 transition-colors block mt-0.5 break-all"
                   >
                     {shopInfo.email}
                   </a>
-                  <span className="text-[11px] text-[#8E95A5]">Inquiries, bulk framing orders &amp; wedding briefs</span>
+                  <span className="text-[11px] text-slate-500">Inquiries, bulk framing orders &amp; wedding briefs</span>
                 </div>
               </div>
 
               {/* Timings */}
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-xl bg-[#E5A93C]/10 text-[#E5A93C] flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center shrink-0 border border-amber-200">
                   <Clock className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="text-xs font-bold text-[#8E95A5]">Operating Hours:</div>
-                  <div className="text-xs text-[#C5CAD6] mt-0.5">
+                  <div className="text-xs font-bold text-slate-500">Operating Hours:</div>
+                  <div className="text-xs text-slate-700 mt-0.5 font-medium">
                     {shopInfo.hours}
                   </div>
                 </div>
@@ -226,14 +226,14 @@ export const StudioContact: React.FC<StudioContactProps> = ({
             </div>
 
             {/* Studio Visit & Outdoor Shoot Note */}
-            <div className="p-6 rounded-3xl bg-[#161922] border border-[#262A36] text-left space-y-2">
-              <span className="text-xs font-bold text-[#E5A93C] uppercase tracking-wider">
+            <div className="p-6 rounded-3xl bg-amber-50 border border-amber-200 text-left space-y-2">
+              <span className="text-xs font-bold text-amber-800 uppercase tracking-wider">
                 Studio Visit &amp; Outdoor Bookings
               </span>
-              <h4 className="text-sm font-bold text-white">
+              <h4 className="text-sm font-bold text-slate-900">
                 Visiting our Ghaziabad Studio or Booking On-Location?
               </h4>
-              <p className="text-xs text-[#C5CAD6] leading-relaxed">
+              <p className="text-xs text-slate-600 leading-relaxed">
                 Walk in to our studio in Khora Colony, Ghaziabad for studio portraits, passport prints, and handcrafted framing. For outdoor weddings, celebrations, and events, our photography crew travels directly to your venue with professional gear.
               </p>
             </div>
@@ -241,22 +241,22 @@ export const StudioContact: React.FC<StudioContactProps> = ({
 
           {/* Right Column: Direct Booking Form */}
           <div className="lg:col-span-7">
-            <div className="p-8 sm:p-10 rounded-3xl bg-[#161922] border border-[#262A36] shadow-2xl text-left">
+            <div className="p-8 sm:p-10 rounded-3xl bg-white border border-slate-200 shadow-lg text-left">
               
               {submitted ? (
                 <div className="py-12 text-center space-y-4">
-                  <div className="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto border border-emerald-500/30">
+                  <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto border border-emerald-300">
                     <CheckCircle2 className="w-8 h-8" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white font-['Outfit']">
+                  <h3 className="text-2xl font-bold text-slate-900 font-['Outfit']">
                     Thank You, {name}!
                   </h3>
-                  <p className="text-sm text-[#C5CAD6] max-w-md mx-auto leading-relaxed">
+                  <p className="text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
                     Your inquiry has been submitted and sent to our studio WhatsApp. Our team will review the slot and confirm your session shortly.
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}
-                    className="px-6 py-2.5 rounded-xl text-xs font-black text-[#0B0C0E] bg-gradient-to-r from-[#E5A93C] to-[#F3BA54] hover:brightness-110 transition-all cursor-pointer"
+                    className="px-6 py-2.5 rounded-xl text-xs font-bold text-slate-950 bg-amber-500 hover:bg-amber-400 transition-all cursor-pointer"
                   >
                     Submit Another Inquiry
                   </button>
@@ -264,10 +264,10 @@ export const StudioContact: React.FC<StudioContactProps> = ({
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div>
-                    <h3 className="text-2xl font-bold text-white font-['Outfit']">
+                    <h3 className="text-2xl font-bold text-slate-900 font-['Outfit']">
                       Book a Shoot or Request Custom Framing
                     </h3>
-                    <p className="text-xs text-[#8E95A5] mt-1">
+                    <p className="text-xs text-slate-500 mt-1">
                       Fill out the details below. We will immediately connect with you on phone/WhatsApp.
                     </p>
                   </div>
@@ -275,8 +275,8 @@ export const StudioContact: React.FC<StudioContactProps> = ({
                   {/* Name & Phone */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
-                      <label className="text-xs font-semibold text-[#C5CAD6] flex items-center gap-1.5">
-                        <User className="w-3.5 h-3.5 text-[#E5A93C]" />
+                      <label className="text-xs font-semibold text-slate-700 flex items-center gap-1.5">
+                        <User className="w-3.5 h-3.5 text-amber-600" />
                         <span>Your Full Name *</span>
                       </label>
                       <input
@@ -285,13 +285,13 @@ export const StudioContact: React.FC<StudioContactProps> = ({
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         placeholder="e.g. Rahul Sharma"
-                        className="w-full px-4 py-3 rounded-xl bg-[#12141A] border border-[#262A36] text-white placeholder-[#8E95A5] text-sm focus:border-[#E5A93C] focus:outline-hidden"
+                        className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 placeholder:text-slate-400 text-sm focus:border-amber-500 focus:bg-white focus:outline-hidden"
                       />
                     </div>
 
                     <div className="space-y-1.5">
-                      <label className="text-xs font-semibold text-[#C5CAD6] flex items-center gap-1.5">
-                        <Phone className="w-3.5 h-3.5 text-[#E5A93C]" />
+                      <label className="text-xs font-semibold text-slate-700 flex items-center gap-1.5">
+                        <Phone className="w-3.5 h-3.5 text-amber-600" />
                         <span>WhatsApp / Mobile Number *</span>
                       </label>
                       <input
@@ -300,7 +300,7 @@ export const StudioContact: React.FC<StudioContactProps> = ({
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                         placeholder="e.g. +91 98765 43210"
-                        className="w-full px-4 py-3 rounded-xl bg-[#12141A] border border-[#262A36] text-white placeholder-[#8E95A5] text-sm focus:border-[#E5A93C] focus:outline-hidden"
+                        className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 placeholder:text-slate-400 text-sm focus:border-amber-500 focus:bg-white focus:outline-hidden"
                       />
                     </div>
                   </div>
@@ -308,51 +308,51 @@ export const StudioContact: React.FC<StudioContactProps> = ({
                   {/* Service Selection & Date */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
-                      <label className="text-xs font-semibold text-[#C5CAD6] flex items-center gap-1.5">
-                        <FileText className="w-3.5 h-3.5 text-[#E5A93C]" />
+                      <label className="text-xs font-semibold text-slate-700 flex items-center gap-1.5">
+                        <FileText className="w-3.5 h-3.5 text-amber-600" />
                         <span>Service Required</span>
                       </label>
                       <select
                         value={service}
                         onChange={(e) => setService(e.target.value)}
-                        className="w-full px-4 py-3 rounded-xl bg-[#12141A] border border-[#262A36] text-white text-sm focus:border-[#E5A93C] focus:outline-hidden cursor-pointer"
+                        className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-sm focus:border-amber-500 focus:bg-white focus:outline-hidden cursor-pointer"
                       >
-                        <option value="Cinematic Wedding & Pre-Wedding Film">Cinematic Wedding &amp; Pre-Wedding Film</option>
-                        <option value="Traditional Studio & Family Portrait">Traditional Studio &amp; Family Portrait</option>
-                        <option value="4K Drone Aerial Videography">4K Drone Aerial Videography</option>
-                        <option value="Handcrafted Framing & Canvas Order">Handcrafted Framing &amp; Canvas Order</option>
-                        <option value="Old Ancestral Photo Restoration">Old Ancestral Photo Restoration</option>
-                        <option value="Maternity, Baby & Event Shoots">Maternity, Baby &amp; Event Shoots</option>
-                        <option value="Grand Event & Celebration Documentary Package">Grand Event &amp; Celebration Documentary Package</option>
-                        <option value="Royal Heritage Wedding Package">Royal Heritage Wedding Package</option>
+                        <option value="Cinematic Wedding & Pre-Wedding Film">Wedding &amp; Pre-Wedding Photography</option>
+                        <option value="Traditional Studio & Family Portrait">Family &amp; Studio Portraits</option>
+                        <option value="4K Drone Aerial Videography">4K Drone Aerial Video</option>
+                        <option value="Handcrafted Framing & Canvas Order">Handcrafted Photo Framing</option>
+                        <option value="Old Ancestral Photo Restoration">Old Photo Repair &amp; Restoration</option>
+                        <option value="Maternity, Baby & Event Shoots">Baby, Maternity &amp; Event Shoots</option>
+                        <option value="Grand Event & Celebration Documentary Package">Family Event &amp; Celebration Package</option>
+                        <option value="Royal Heritage Wedding Package">Complete Wedding Package</option>
                       </select>
                     </div>
 
                     <div className="space-y-1.5">
-                      <label className="text-xs font-semibold text-[#C5CAD6] flex items-center gap-1.5">
-                        <Calendar className="w-3.5 h-3.5 text-[#E5A93C]" />
+                      <label className="text-xs font-semibold text-slate-700 flex items-center gap-1.5">
+                        <Calendar className="w-3.5 h-3.5 text-amber-600" />
                         <span>Approximate Date</span>
                       </label>
                       <input
                         type="date"
                         value={date}
                         onChange={(e) => setDate(e.target.value)}
-                        className="w-full px-4 py-3 rounded-xl bg-[#12141A] border border-[#262A36] text-white text-sm focus:border-[#E5A93C] focus:outline-hidden"
+                        className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-sm focus:border-amber-500 focus:bg-white focus:outline-hidden"
                       />
                     </div>
                   </div>
 
                   {/* Message & Special Instructions */}
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-[#C5CAD6]">
+                    <label className="text-xs font-semibold text-slate-700">
                       Special Requirements / Event &amp; Venue details:
                     </label>
                     <textarea
                       rows={3}
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
-                      placeholder="e.g. Wedding celebration, need 2 photographers and 4K drone videographer, plus framed prints."
-                      className="w-full px-4 py-3 rounded-xl bg-[#12141A] border border-[#262A36] text-white placeholder-[#8E95A5] text-sm focus:border-[#E5A93C] focus:outline-hidden resize-none"
+                      placeholder="e.g. Wedding celebration, need 2 photographers and drone video, plus framed albums."
+                      className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 placeholder:text-slate-400 text-sm focus:border-amber-500 focus:bg-white focus:outline-hidden resize-none"
                     />
                   </div>
 
@@ -360,12 +360,12 @@ export const StudioContact: React.FC<StudioContactProps> = ({
                   <button
                     type="submit"
                     id="btn-submit-booking-form"
-                    className="w-full py-4 rounded-xl font-black text-sm text-[#0B0C0E] bg-gradient-to-r from-[#E5A93C] to-[#F3BA54] hover:brightness-110 shadow-lg shadow-[#E5A93C]/25 hover:scale-[1.01] transition-all cursor-pointer flex items-center justify-center gap-2"
+                    className="w-full py-4 rounded-xl font-black text-sm text-slate-950 bg-amber-500 hover:bg-amber-400 shadow-md shadow-amber-500/20 hover:scale-[1.005] transition-all cursor-pointer flex items-center justify-center gap-2"
                   >
-                    <MessageCircle className="w-4 h-4 text-[#0B0C0E]" />
-                    <span>Send Booking Request &amp; Connect on WhatsApp</span>
+                    <MessageCircle className="w-4 h-4 text-slate-950" />
+                    <span>Send Booking Request on WhatsApp</span>
                   </button>
-                  <p className="text-[11px] text-center text-[#8E95A5]">
+                  <p className="text-[11px] text-center text-slate-500">
                     We will reply within 15–30 minutes with slot confirmation and local directions.
                   </p>
                 </form>

@@ -19,6 +19,8 @@ export const PrintEstimator: React.FC<PrintEstimatorProps> = ({
 
   const samplePhotos = [
     { src: '/images/wedding_jaimala_gaze.jpg', label: 'Sacred Varmala Gaze' },
+    { src: '/images/instagram_post_mehndi.jpg', label: 'Bridal Mehndi' },
+    { src: '/images/indian_haldi_ceremony.jpg', label: 'Haldi Dance' },
     { src: '/images/wedding_varmala_closeup.jpg', label: 'Varmala Close-up' },
     { src: '/images/instagram_heritage_couple.jpg', label: 'Royal Couple' },
     { src: '/images/instagram_featured_post.jpg', label: 'Royal Ceremony' },

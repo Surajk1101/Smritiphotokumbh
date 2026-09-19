@@ -94,54 +94,6 @@ export const StudioNavbar: React.FC<StudioNavbarProps> = ({
               <span>YouTube Channel</span>
             </a>
 
-            {/* Typography Preset Selector Button */}
-            <div className="relative">
-              <button
-                onClick={() => setFontMenuOpen(!fontMenuOpen)}
-                id="btn-nav-typography-style"
-                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-100 hover:bg-amber-200 border border-amber-300 text-amber-900 text-[11px] font-bold transition-all cursor-pointer shadow-xs"
-                title="Change Brand Typography Style"
-              >
-                <Type className="w-3.5 h-3.5 text-amber-700" />
-                <span className="hidden md:inline">Font:</span>
-                <span className="max-w-[130px] truncate">{activePairInfo.name.split(' + ')[0]}</span>
-              </button>
-
-              {fontMenuOpen && (
-                <>
-                  <div
-                    className="fixed inset-0 z-40"
-                    onClick={() => setFontMenuOpen(false)}
-                  />
-                  <div className="absolute right-0 top-full mt-2 w-80 sm:w-96 bg-white border border-slate-200 rounded-2xl shadow-2xl p-4 z-50 animate-in fade-in zoom-in-95 text-slate-800">
-                    <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-200">
-                      <div>
-                        <span className="text-xs font-bold text-slate-900 flex items-center gap-1.5">
-                          <Type className="w-4 h-4 text-amber-600" />
-                          Brand Typography Style
-                        </span>
-                        <p className="text-[11px] text-slate-500 mt-0.5">Switch between 4 font pairings live</p>
-                      </div>
-                      <button
-                        onClick={() => setFontMenuOpen(false)}
-                        className="text-slate-400 hover:text-slate-700 p-1 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer"
-                      >
-                        <X className="w-4 h-4" />
-                      </button>
-                    </div>
-                    <TypographySelector
-                      compact
-                      currentPair={fontPair}
-                      onSelect={(pair) => {
-                        onSelectFontPair(pair);
-                        setFontMenuOpen(false);
-                      }}
-                    />
-                  </div>
-                </>
-              )}
-            </div>
-
             <button
               onClick={onOpenSettings}
               id="btn-edit-shop-details"
@@ -277,33 +229,6 @@ export const StudioNavbar: React.FC<StudioNavbarProps> = ({
               <Youtube className="w-4 h-4" />
               <span>Watch YouTube Videos</span>
             </a>
-
-            {/* Mobile Font Style Switcher */}
-            <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
-              <div className="flex items-center justify-between text-xs font-bold text-slate-900">
-                <span className="flex items-center gap-1.5 text-amber-700">
-                  <Type className="w-3.5 h-3.5" />
-                  Brand Typography Style
-                </span>
-                <span className="text-[10px] text-slate-500 uppercase font-semibold">4 Presets</span>
-              </div>
-              <div className="grid grid-cols-2 gap-1.5">
-                {FONT_PAIR_OPTIONS.map((opt) => (
-                  <button
-                    key={opt.id}
-                    onClick={() => onSelectFontPair(opt.id)}
-                    className={`px-2.5 py-2 rounded-xl text-left text-[11px] font-semibold transition-all border ${
-                      fontPair === opt.id
-                        ? 'bg-amber-100 border-amber-500 text-amber-950 font-bold'
-                        : 'bg-white border-slate-200 text-slate-700 hover:text-slate-900 hover:bg-slate-100'
-                    }`}
-                  >
-                    <span className="block truncate font-bold">{opt.name.split(' + ')[0]}</span>
-                    <span className="block text-[9px] text-slate-500 truncate">+ {opt.name.split(' + ')[1]}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
 
             <button
               onClick={() => {

@@ -15,22 +15,35 @@ export const YouTubeShowcase: React.FC<YouTubeShowcaseProps> = ({
   const [copied, setCopied] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
 
-  // Combine predefined videos with any custom shopInfo video
+  // Combine predefined videos with any custom shopInfo video without duplicates
   const playlist: YouTubeVideoItem[] = React.useMemo(() => {
-    const list = [...studioYouTubeVideos];
-    // If shopInfo has a custom video not in the list, prepend it
-    if (shopInfo.youtubeVideoId && !list.some((v) => v.videoId === shopInfo.youtubeVideoId)) {
-      list.unshift({
+    const list: YouTubeVideoItem[] = [];
+    const seenIds = new Set<string>();
+
+    const addIfUnique = (item: YouTubeVideoItem) => {
+      if (item.videoId && !seenIds.has(item.videoId)) {
+        seenIds.add(item.videoId);
+        list.push(item);
+      }
+    };
+
+    // Add predefined studio videos first
+    studioYouTubeVideos.forEach(addIfUnique);
+
+    // If shopInfo has a custom video not in the predefined list, add it as well
+    if (shopInfo.youtubeVideoId && !seenIds.has(shopInfo.youtubeVideoId)) {
+      addIfUnique({
         id: 'custom-shop-video',
         videoId: shopInfo.youtubeVideoId,
-        title: `${shopInfo.name} — Official Cinema Video`,
+        title: `${shopInfo.name} — Featured Video`,
         category: 'Official Production',
         duration: '4K Ultra HD',
         url: shopInfo.youtubeUrl,
-        description: 'Official cinematography and video production by Smriti Photo Kumbh.',
+        description: `Official cinematography production by ${shopInfo.name}.`,
         featured: true,
       });
     }
+
     return list;
   }, [shopInfo.youtubeVideoId, shopInfo.youtubeUrl, shopInfo.name]);
 
@@ -85,31 +98,33 @@ export const YouTubeShowcase: React.FC<YouTubeShowcaseProps> = ({
             Real weddings and events filmed in Ultra HD 4K by <strong className="text-amber-700 font-bold">{shopInfo.name}</strong>.
           </p>
 
-          {/* Interactive Video Switcher Tabs */}
-          <div className="pt-4 flex flex-wrap justify-center gap-2.5">
-            {playlist.map((video) => {
-              const isSelected = video.videoId === currentVideoId;
-              return (
-                <button
-                  key={video.id}
-                  onClick={() => handleSelectVideo(video.videoId)}
-                  className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-                    isSelected
-                      ? 'bg-red-600 text-white shadow-xs border border-red-600'
-                      : 'bg-white text-slate-700 hover:text-slate-900 hover:bg-slate-100 border border-slate-300'
-                  }`}
-                >
-                  <PlayCircle className={`w-4 h-4 ${isSelected ? 'text-white' : 'text-red-600'}`} />
-                  <span className="truncate max-w-[220px] sm:max-w-xs">{video.title}</span>
-                  <span className={`text-[10px] px-1.5 py-0.5 rounded-sm uppercase tracking-wider font-semibold ${
-                    isSelected ? 'bg-red-700 text-white' : 'bg-slate-100 text-slate-600'
-                  }`}>
-                    {video.duration || '4K'}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
+          {/* Interactive Video Switcher Tabs (Only if multiple distinct videos exist) */}
+          {playlist.length > 1 && (
+            <div className="pt-4 flex flex-wrap justify-center gap-2.5">
+              {playlist.map((video) => {
+                const isSelected = video.videoId === currentVideoId;
+                return (
+                  <button
+                    key={video.id}
+                    onClick={() => handleSelectVideo(video.videoId)}
+                    className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                      isSelected
+                        ? 'bg-red-600 text-white shadow-xs border border-red-600'
+                        : 'bg-white text-slate-700 hover:text-slate-900 hover:bg-slate-100 border border-slate-300'
+                    }`}
+                  >
+                    <PlayCircle className={`w-4 h-4 ${isSelected ? 'text-white' : 'text-red-600'}`} />
+                    <span className="truncate max-w-[220px] sm:max-w-xs">{video.title}</span>
+                    <span className={`text-[10px] px-1.5 py-0.5 rounded-sm uppercase tracking-wider font-semibold ${
+                      isSelected ? 'bg-red-700 text-white' : 'bg-slate-100 text-slate-600'
+                    }`}>
+                      {video.duration || '4K'}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          )}
         </div>
 
         {/* Video Cinema Stage */}
@@ -252,72 +267,74 @@ export const YouTubeShowcase: React.FC<YouTubeShowcaseProps> = ({
 
           </div>
 
-          {/* Playlist Gallery Cards */}
-          <div className="mt-8">
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-2 text-sm font-bold text-slate-900">
-                <Film className="w-4 h-4 text-amber-600" />
-                <span>Featured Videos Playlist ({playlist.length})</span>
+          {/* Playlist Gallery Cards (Only shown if multiple distinct videos exist) */}
+          {playlist.length > 1 && (
+            <div className="mt-8">
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-2 text-sm font-bold text-slate-900">
+                  <Film className="w-4 h-4 text-amber-600" />
+                  <span>Featured Videos Playlist ({playlist.length})</span>
+                </div>
+                <span className="text-xs text-slate-500">Click any video to play above</span>
               </div>
-              <span className="text-xs text-slate-500">Click any video to play above</span>
-            </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {playlist.map((video) => {
-                const isSelected = video.videoId === currentVideoId;
-                return (
-                  <div
-                    key={video.id}
-                    onClick={() => handleSelectVideo(video.videoId)}
-                    className={`p-3.5 rounded-2xl border transition-all cursor-pointer flex gap-3.5 items-center group ${
-                      isSelected
-                        ? 'bg-red-50/60 border-red-400 shadow-xs'
-                        : 'bg-white border-slate-200 hover:border-slate-300 hover:bg-slate-50'
-                    }`}
-                  >
-                    {/* Thumbnail preview */}
-                    <div className="relative w-28 h-20 rounded-xl overflow-hidden shrink-0 bg-slate-900">
-                      <img
-                        src={`https://img.youtube.com/vi/${video.videoId}/mqdefault.jpg`}
-                        alt={video.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                      />
-                      <div className="absolute inset-0 bg-black/25 flex items-center justify-center group-hover:bg-black/10 transition-colors">
-                        <div className={`w-8 h-8 rounded-full flex items-center justify-center text-white ${
-                          isSelected ? 'bg-red-600' : 'bg-black/70'
-                        }`}>
-                          <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {playlist.map((video) => {
+                  const isSelected = video.videoId === currentVideoId;
+                  return (
+                    <div
+                      key={video.id}
+                      onClick={() => handleSelectVideo(video.videoId)}
+                      className={`p-3.5 rounded-2xl border transition-all cursor-pointer flex gap-3.5 items-center group ${
+                        isSelected
+                          ? 'bg-red-50/60 border-red-400 shadow-xs'
+                          : 'bg-white border-slate-200 hover:border-slate-300 hover:bg-slate-50'
+                      }`}
+                    >
+                      {/* Thumbnail preview */}
+                      <div className="relative w-28 h-20 rounded-xl overflow-hidden shrink-0 bg-slate-900">
+                        <img
+                          src={`https://img.youtube.com/vi/${video.videoId}/mqdefault.jpg`}
+                          alt={video.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                        />
+                        <div className="absolute inset-0 bg-black/25 flex items-center justify-center group-hover:bg-black/10 transition-colors">
+                          <div className={`w-8 h-8 rounded-full flex items-center justify-center text-white ${
+                            isSelected ? 'bg-red-600' : 'bg-black/70'
+                          }`}>
+                            <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
+                          </div>
                         </div>
-                      </div>
-                      <span className="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-black/80 text-[9px] font-bold text-white">
-                        4K
-                      </span>
-                    </div>
-
-                    {/* Meta info */}
-                    <div className="flex-1 min-w-0 space-y-1">
-                      <div className="flex items-center gap-1.5">
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-amber-800 bg-amber-50 px-2 py-0.5 rounded-md border border-amber-200">
-                          {video.category}
+                        <span className="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-black/80 text-[9px] font-bold text-white">
+                          4K
                         </span>
-                        {isSelected && (
-                          <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200">
-                            Now Playing
-                          </span>
-                        )}
                       </div>
-                      <h5 className="text-xs sm:text-sm font-bold text-slate-900 truncate group-hover:text-red-700 transition-colors">
-                        {video.title}
-                      </h5>
-                      <p className="text-[11px] text-slate-600 line-clamp-2 leading-tight">
-                        {video.description}
-                      </p>
+
+                      {/* Meta info */}
+                      <div className="flex-1 min-w-0 space-y-1">
+                        <div className="flex items-center gap-1.5">
+                          <span className="text-[10px] font-bold uppercase tracking-wider text-amber-800 bg-amber-50 px-2 py-0.5 rounded-md border border-amber-200">
+                            {video.category}
+                          </span>
+                          {isSelected && (
+                            <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200">
+                              Now Playing
+                            </span>
+                          )}
+                        </div>
+                        <h5 className="text-xs sm:text-sm font-bold text-slate-900 truncate group-hover:text-red-700 transition-colors">
+                          {video.title}
+                        </h5>
+                        <p className="text-[11px] text-slate-600 line-clamp-2 leading-tight">
+                          {video.description}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Technical and Video Highlights Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">

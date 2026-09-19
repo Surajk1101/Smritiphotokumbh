@@ -21,19 +21,19 @@ import { StudioFooter } from './components/studio/StudioFooter';
 import { ShopSettingsModal } from './components/studio/ShopSettingsModal';
 
 export default function App() {
-  // Brand typography font pairing (Default: Cormorant Garamond + Montserrat)
+  // Brand typography font pairing (Default: Playfair Display + Inter per user request)
   const [fontPair, setFontPair] = useState<FontPairId>(() => {
     try {
       const saved = localStorage.getItem('smriti_font_pair') as FontPairId;
       if (
         saved &&
-        ['cormorant-montserrat', 'playfair-inter', 'cinzel-lato', 'outfit-jakarta'].includes(saved)
+        ['playfair-inter', 'cinzel-lato', 'outfit-jakarta'].includes(saved)
       ) {
         return saved;
       }
-      return 'cormorant-montserrat';
+      return 'playfair-inter';
     } catch {
-      return 'cormorant-montserrat';
+      return 'playfair-inter';
     }
   });
 
@@ -50,7 +50,7 @@ export default function App() {
   // Load shop info from localStorage or use defaults
   const [shopInfo, setShopInfo] = useState<ShopInfo>(() => {
     try {
-      const saved = localStorage.getItem('smriti_shop_info_v4') || localStorage.getItem('smriti_shop_info_v3') || localStorage.getItem('smriti_shop_info_v2') || localStorage.getItem('smriti_shop_info');
+      const saved = localStorage.getItem('smriti_shop_info_v5') || localStorage.getItem('smriti_shop_info_v4') || localStorage.getItem('smriti_shop_info_v3') || localStorage.getItem('smriti_shop_info_v2') || localStorage.getItem('smriti_shop_info');
       if (saved) {
         const parsed = JSON.parse(saved);
         // If it was the old placeholder number or address, upgrade to user's real location & phone
@@ -65,6 +65,8 @@ export default function App() {
             email: defaultShopInfo.email,
             instagram: defaultShopInfo.instagram,
             tagline: defaultShopInfo.tagline,
+            youtubeVideoId: defaultShopInfo.youtubeVideoId,
+            youtubeUrl: defaultShopInfo.youtubeUrl,
           };
         }
         parsed.tagline = defaultShopInfo.tagline;
@@ -92,6 +94,7 @@ export default function App() {
   // Persist shop details changes
   useEffect(() => {
     try {
+      localStorage.setItem('smriti_shop_info_v5', JSON.stringify(shopInfo));
       localStorage.setItem('smriti_shop_info_v4', JSON.stringify(shopInfo));
       localStorage.setItem('smriti_shop_info_v3', JSON.stringify(shopInfo));
       localStorage.setItem('smriti_shop_info_v2', JSON.stringify(shopInfo));
