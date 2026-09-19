@@ -98,13 +98,14 @@ export const studioServices: StudioService[] = [
 
 export const galleryItems: GalleryItem[] = [
   {
-    id: 'g-wedding-jaimala-gaze',
-    title: 'Sacred Varmala: The Royal Gaze',
+    id: 'g-candid-bridal-portrait',
+    title: 'Radiant Bridal Candid & Makeup Portrait',
     category: 'Weddings & Celebrations',
-    imageUrl: '/images/wedding_jaimala_gaze.jpg',
-    location: 'Smriti Wedding Photography, Ghaziabad',
-    description: 'An intimate, authentic Hindu wedding ceremony capture as the groom and bride exchange affectionate smiles holding their fragrant varmala garlands against a glowing floral wall.',
+    imageUrl: '/images/instagram_post_candid_bride.webp',
+    location: 'Noida Sector 18 • Smriti Photography',
+    description: 'Authentic candid bridal portrait from our official Instagram (@samriddhi.photo) — capturing natural unposed expressions, bridal glow, and delicate jewelry artistry.',
     featured: true,
+    instagramUrl: 'https://www.instagram.com/p/Ddd-pyoBiH5/',
   },
   {
     id: 'g-wedding-varmala-closeup',
@@ -174,6 +175,17 @@ export const galleryItems: GalleryItem[] = [
     location: 'Smriti In-House Framing Workshop',
     description: 'Museum-grade royal gold antique filigree carved frame with archival canvas print of an Indian royal wedding couple, handcrafted for living room centerpiece elegance.',
     featured: true,
+  },
+  {
+    id: 'g-candid-bride-smile',
+    title: 'Joyful Candid Bride & Radiant Smile',
+    category: 'Weddings & Celebrations',
+    imageUrl: '/images/instagram_candid_bride_smile.jpg',
+    location: 'Wedding Vibes • Smriti Photography',
+    description: 'Authentic candid bride portrait from our official Instagram (@samriddhi.photo) — capturing timeless raw emotions, joyful bridal smile, and fine-art wedding storytelling.',
+    featured: true,
+    instagramUrl: 'https://www.instagram.com/p/Ddd_90CAStm/',
+    objectPosition: 'object-top',
   },
 ];
 

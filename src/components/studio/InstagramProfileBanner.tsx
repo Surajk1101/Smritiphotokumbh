@@ -20,6 +20,28 @@ export const InstagramProfileBanner: React.FC<InstagramProfileBannerProps> = ({
   // Default verified posts from user's actual Instagram account (@samriddhi.photo)
   const defaultPosts = [
     {
+      id: 'post-candid-bride-smile',
+      image: '/images/instagram_candid_bride_smile.jpg',
+      url: 'https://www.instagram.com/p/Ddd_90CAStm/',
+      tag: 'Candid Smile',
+      title: 'Joyful Candid Bride & Radiant Smile',
+      caption: '#candidbride #bridecandid #candidweddingphotography #bridemoments #indianbride #bridalportrait',
+      badge: 'Candid Bride',
+      aspect: 'aspect-square',
+      date: 'Latest Post',
+    },
+    {
+      id: 'post-candid-bride',
+      image: '/images/instagram_post_candid_bride.webp',
+      url: 'https://www.instagram.com/p/Ddd-pyoBiH5/',
+      tag: 'Candid Bridal',
+      title: 'Radiant Bridal Candid & Makeup Portrait',
+      caption: '#marriage #bridalmakeup #weddingphoto #weddingphotography #photoofday',
+      badge: 'Candid Portrait',
+      aspect: 'aspect-square',
+      date: 'Latest Post',
+    },
+    {
       id: 'post-couple-story',
       image: '/images/instagram_post_ddoe7ip.jpg',
       url: 'https://www.instagram.com/p/DdOE7ipAetG/',

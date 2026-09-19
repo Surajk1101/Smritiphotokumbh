@@ -112,6 +112,23 @@ export const StudioGallery: React.FC<StudioGalleryProps> = ({
           ))}
         </div>
 
+        {/* Hidden SEO Metadata for Google Search Engine Crawling (Hidden from customers) */}
+        <div className="sr-only" aria-hidden="true">
+          <p>
+            Smriti Photo Kumbh provides professional candid wedding photography, candid bride portraits,
+            bridal glow shots, pre-wedding photoshoots, haldi and bridal mehendi photography.
+            Serving Delhi NCR, Noida Sector 18, Greater Noida, Ghaziabad, Indirapuram,
+            and destination wedding locations across Uttarakhand including Rishikesh, Jim Corbett,
+            Mussoorie, and Triyuginarayan Temple.
+          </p>
+          <span>
+            Search Keywords: candid bride, bride candid, candid wedding photography, bridal moments, indian bride,
+            bridal portrait, wedding candid, cinematic wedding, delhi wedding photographer, noida wedding,
+            ghaziabad weddings, indirapuram weddings, destination wedding uttarakhand, rishikesh wedding,
+            jim corbett wedding, mussoorie wedding, triyuginarayan wedding
+          </span>
+        </div>
+
       </div>
 
       {/* Lightbox Modal */}
