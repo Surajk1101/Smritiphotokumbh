@@ -117,6 +117,9 @@ export const StudioGallery: React.FC<StudioGalleryProps> = ({
           <p>
             Smriti Photo Kumbh provides professional candid wedding photography, candid bride portraits,
             bridal glow shots, pre-wedding photoshoots, haldi and bridal mehendi photography.
+            We also specialize in maternity photography, maternity shoot ideas, baby shower and Godh Bharai ceremony coverage,
+            newborn baby portraits, cute baby concept photography, Naamkaran naming ceremony, Annaprashan first rice eating ceremony,
+            1st birthday party and cake smash sessions, as well as 25th Silver Jubilee and 50th Golden Jubilee milestone wedding anniversary photography.
             Serving Delhi NCR, Noida Sector 18, Greater Noida, Ghaziabad, Indirapuram,
             and destination wedding locations across Uttarakhand including Rishikesh, Jim Corbett,
             Mussoorie, and Triyuginarayan Temple.
@@ -125,7 +128,16 @@ export const StudioGallery: React.FC<StudioGalleryProps> = ({
             Search Keywords: candid bride, bride candid, candid wedding photography, bridal moments, indian bride,
             bridal portrait, wedding candid, cinematic wedding, delhi wedding photographer, noida wedding,
             ghaziabad weddings, indirapuram weddings, destination wedding uttarakhand, rishikesh wedding,
-            jim corbett wedding, mussoorie wedding, triyuginarayan wedding
+            jim corbett wedding, mussoorie wedding, triyuginarayan wedding,
+            maternity photography, maternity shoot, baby shower, godh bharai, mom to be, bump to baby, expecting parents,
+            motherhood unplugged, godh bharai ceremony, maternity shoot ideas, newborn photography, newborn baby,
+            baby shoot, newborn session, cute baby pictures, baby concept photography, little miracle, fresh 48,
+            newborn posing, naamkaran ceremony, annaprashan, naming ceremony, first rice eating ceremony,
+            baby naming ceremony, annaprashan shoot, indian traditions, baby milestones, cultural ceremony,
+            1st birthday, first birthday party, birthday cake smash, 1st birthday shoot, one year old, turning one,
+            cake smash session, first birthday theme, baby turns one, 25th anniversary, 50th anniversary,
+            silver jubilee, golden jubilee, anniversary photography, vow renewal, couples goals,
+            25 years of togetherness, 50 years of love, grand anniversary, milestone photography
           </span>
         </div>
 
