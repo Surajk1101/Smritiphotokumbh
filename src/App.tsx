@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { ShopInfo } from './types/studio';
 import { FontPairId } from './types/typography';
 import {
@@ -205,6 +206,9 @@ export default function App() {
         fontPair={fontPair}
         onSelectFontPair={setFontPair}
       />
+
+      {/* Vercel Web Analytics */}
+      <Analytics />
     </div>
   );
 }
