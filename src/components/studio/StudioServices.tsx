@@ -10,7 +10,7 @@ interface StudioServicesProps {
 
 export const StudioServices: React.FC<StudioServicesProps> = ({
   services,
-  shopInfo,
+  shopInfo: _shopInfo,
   onSelectService,
 }) => {
   const getIcon = (name: string) => {

@@ -77,6 +77,9 @@ export default function App() {
         if (!parsed.instagram) {
           parsed.instagram = defaultShopInfo.instagram;
         }
+        if (!parsed.instagramFilms) {
+          parsed.instagramFilms = defaultShopInfo.instagramFilms;
+        }
         if (!parsed.youtubeVideoId || parsed.youtubeVideoId === '3J2LdMhqS5U') {
           parsed.youtubeVideoId = defaultShopInfo.youtubeVideoId;
           parsed.youtubeUrl = defaultShopInfo.youtubeUrl;

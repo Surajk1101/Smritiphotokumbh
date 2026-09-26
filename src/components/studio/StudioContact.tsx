@@ -20,6 +20,7 @@ export const StudioContact: React.FC<StudioContactProps> = ({
   const [submitted, setSubmitted] = useState(false);
 
   const insta = parseInstagram(shopInfo.instagram);
+  const filmsInsta = parseInstagram(shopInfo.instagramFilms || 'https://www.instagram.com/molshreefilms');
 
   // Update service if prop changes
   React.useEffect(() => {
@@ -172,24 +173,40 @@ export const StudioContact: React.FC<StudioContactProps> = ({
                 </div>
               </div>
 
-              {/* Instagram Official Handle */}
+              {/* Instagram Official Handles */}
               <div className="flex items-start gap-4">
                 <div className="w-10 h-10 rounded-xl bg-pink-50 text-pink-600 flex items-center justify-center shrink-0 border border-pink-200 shadow-xs">
                   <Instagram className="w-5 h-5" />
                 </div>
-                <div>
-                  <div className="text-xs font-bold text-slate-500">Instagram Official Handle:</div>
-                  <a
-                    href={insta.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-sm font-bold text-pink-700 hover:text-pink-800 transition-colors inline-flex items-center gap-1.5 mt-0.5"
-                  >
-                    <span>{insta.handle}</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </a>
+                <div className="space-y-1">
+                  <div className="text-xs font-bold text-slate-500">Instagram Official Handles:</div>
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                    <a
+                      href={insta.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-sm font-bold text-pink-700 hover:text-pink-800 transition-colors inline-flex items-center gap-1"
+                      title="Follow Photography Account"
+                    >
+                      <span>{insta.handle}</span>
+                      <span className="text-[10px] text-pink-500 font-medium">(Photos)</span>
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                    <span className="text-slate-300">•</span>
+                    <a
+                      href={filmsInsta.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-sm font-bold text-rose-700 hover:text-rose-800 transition-colors inline-flex items-center gap-1"
+                      title="Follow Cinema & Films Account"
+                    >
+                      <span>{filmsInsta.handle}</span>
+                      <span className="text-[10px] text-rose-500 font-medium">(Films)</span>
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </div>
                   <span className="block text-[11px] text-slate-500">
-                    Latest wedding reels, pre-wedding teasers &amp; behind-the-scenes
+                    Latest wedding reels, bridal teasers, pre-wedding films &amp; BTS
                   </span>
                 </div>
               </div>

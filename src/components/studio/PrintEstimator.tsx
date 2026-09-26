@@ -15,21 +15,37 @@ export const PrintEstimator: React.FC<PrintEstimatorProps> = ({
   const [selectedSize, setSelectedSize] = useState(printSizeOptions[1]); // Default 12x18
   const [selectedFrame, setSelectedFrame] = useState(frameTypeOptions[1]); // Default Royal Carved Gold
   const [finish, setFinish] = useState<'Matte Silk' | 'High Gloss' | 'Sparkle Velvet'>('Matte Silk');
-  const [previewPhoto, setPreviewPhoto] = useState('/images/wedding_jaimala_gaze.jpg');
+  const [previewPhoto, setPreviewPhoto] = useState('/images/instagram_post_bride_groom.jpg');
+  const [fitMode, setFitMode] = useState<'contain' | 'cover'>('contain');
+  const [frameOrientation, setFrameOrientation] = useState<'square' | 'landscape' | 'portrait'>('square');
+  const [matStyle, setMatStyle] = useState<'museum-cream' | 'archival-white' | 'dark-velvet' | 'none'>('archival-white');
 
   const samplePhotos = [
-    { src: '/images/instagram_candid_bride_smile.jpg', label: 'Candid Smile' },
-    { src: '/images/instagram_post_candid_bride.webp', label: 'Candid Bridal' },
-    { src: '/images/wedding_jaimala_gaze.jpg', label: 'Sacred Varmala Gaze' },
-    { src: '/images/instagram_post_mehndi.jpg', label: 'Bridal Mehndi' },
-    { src: '/images/indian_haldi_ceremony.jpg', label: 'Haldi Dance' },
-    { src: '/images/wedding_varmala_closeup.jpg', label: 'Varmala Close-up' },
-    { src: '/images/instagram_heritage_couple.jpg', label: 'Royal Couple' },
-    { src: '/images/instagram_featured_post.jpg', label: 'Royal Ceremony' },
+    { src: '/images/instagram_post_bride_groom.jpg', label: 'Bride & Groom', defaultAspect: 'square' as const },
+    { src: '/images/instagram_candid_bride_smile.jpg', label: 'Candid Smile', defaultAspect: 'portrait' as const },
+    { src: '/images/instagram_post_candid_bride.webp', label: 'Candid Bridal', defaultAspect: 'square' as const },
+    { src: '/images/instagram_post_mehndi.jpg', label: 'Bridal Mehndi', defaultAspect: 'square' as const },
+    { src: '/images/instagram_post_ddoe7ip.jpg', label: 'Bride & Sister', defaultAspect: 'landscape' as const },
+    { src: '/images/instagram_heritage_couple.jpg', label: 'Royal Couple', defaultAspect: 'portrait' as const },
+    { src: '/images/instagram_featured_post.jpg', label: 'Royal Ceremony', defaultAspect: 'portrait' as const },
   ];
 
+  const handleSelectSample = (photo: typeof samplePhotos[0]) => {
+    setPreviewPhoto(photo.src);
+    setFrameOrientation(photo.defaultAspect);
+    setFitMode('contain');
+  };
+
+  const handleCustomUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const url = URL.createObjectURL(file);
+      setPreviewPhoto(url);
+    }
+  };
+
   const cleanWhatsapp = shopInfo.whatsapp.replace(/[^0-9]/g, '');
-  const orderSummaryText = `Custom Frame Inquiry: Size ${selectedSize.dimensions}, Style ${selectedFrame.name}, Finish ${finish}`;
+  const orderSummaryText = `Custom Frame Inquiry: Size ${selectedSize.dimensions}, Style ${selectedFrame.name}, Finish ${finish}, Frame Fit: ${fitMode === 'contain' ? 'Full Photo with Museum Mat' : 'Edge-to-Edge'}`;
 
   return (
     <section id="framing" className="py-20 bg-white border-b border-slate-200">
@@ -157,10 +173,79 @@ export const PrintEstimator: React.FC<PrintEstimatorProps> = ({
               </div>
 
               {/* Visual Simulated Frame Box */}
-              <div className="space-y-3">
-                <div className="relative p-5 rounded-2xl bg-slate-100 border border-slate-200 flex items-center justify-center min-h-[220px]">
+              <div className="space-y-4">
+                {/* Frame Orientation & Fit Controls */}
+                <div className="flex flex-wrap items-center justify-between gap-2 text-xs pb-1">
+                  <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-xl border border-slate-200">
+                    <button
+                      type="button"
+                      onClick={() => setFrameOrientation('square')}
+                      className={`px-2.5 py-1 rounded-lg text-[11px] font-bold transition-all cursor-pointer ${
+                        frameOrientation === 'square'
+                          ? 'bg-amber-500 text-slate-950 shadow-xs'
+                          : 'text-slate-600 hover:text-slate-900'
+                      }`}
+                      title="Square 1:1 Frame (Best for Instagram bridal portraits)"
+                    >
+                      Square (1:1)
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setFrameOrientation('landscape')}
+                      className={`px-2.5 py-1 rounded-lg text-[11px] font-bold transition-all cursor-pointer ${
+                        frameOrientation === 'landscape'
+                          ? 'bg-amber-500 text-slate-950 shadow-xs'
+                          : 'text-slate-600 hover:text-slate-900'
+                      }`}
+                      title="Landscape Frame"
+                    >
+                      Landscape
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setFrameOrientation('portrait')}
+                      className={`px-2.5 py-1 rounded-lg text-[11px] font-bold transition-all cursor-pointer ${
+                        frameOrientation === 'portrait'
+                          ? 'bg-amber-500 text-slate-950 shadow-xs'
+                          : 'text-slate-600 hover:text-slate-900'
+                      }`}
+                      title="Portrait Frame"
+                    >
+                      Portrait
+                    </button>
+                  </div>
+
+                  <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-xl border border-slate-200">
+                    <button
+                      type="button"
+                      onClick={() => setFitMode('contain')}
+                      className={`px-2.5 py-1 rounded-lg text-[11px] font-bold transition-all cursor-pointer ${
+                        fitMode === 'contain'
+                          ? 'bg-amber-500 text-slate-950 shadow-xs'
+                          : 'text-slate-600 hover:text-slate-900'
+                      }`}
+                      title="Fit entire photo without any cropping"
+                    >
+                      Fit Full Photo
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setFitMode('cover')}
+                      className={`px-2.5 py-1 rounded-lg text-[11px] font-bold transition-all cursor-pointer ${
+                        fitMode === 'cover'
+                          ? 'bg-amber-500 text-slate-950 shadow-xs'
+                          : 'text-slate-600 hover:text-slate-900'
+                      }`}
+                      title="Fill entire frame border-to-border"
+                    >
+                      Fill Frame
+                    </button>
+                  </div>
+                </div>
+
+                <div className="relative p-6 rounded-2xl bg-gradient-to-b from-slate-100 to-slate-200/80 border border-slate-200 flex items-center justify-center min-h-[300px]">
                   <div
-                    className={`relative p-3 rounded-md transition-all duration-300 shadow-xl flex items-center justify-center ${
+                    className={`relative p-3.5 rounded-lg transition-all duration-300 shadow-2xl flex items-center justify-center ${
                       selectedFrame.type === 'carved-gold'
                         ? 'bg-gradient-to-tr from-amber-700 via-yellow-500 to-amber-600 border-4 border-amber-300'
                         : selectedFrame.type === 'teak-wood'
@@ -171,19 +256,45 @@ export const PrintEstimator: React.FC<PrintEstimatorProps> = ({
                         ? 'bg-stone-300 border-0 shadow-inner'
                         : 'bg-neutral-900 border-4 border-neutral-800'
                     }`}
-                    style={{ width: '82%', aspectRatio: '16/11' }}
+                    style={{
+                      width: frameOrientation === 'portrait' ? '68%' : '88%',
+                      maxWidth: '360px',
+                      aspectRatio:
+                        frameOrientation === 'square'
+                          ? '1 / 1'
+                          : frameOrientation === 'portrait'
+                          ? '11 / 16'
+                          : '16 / 11',
+                    }}
                   >
-                    <div className="w-full h-full bg-neutral-800 rounded-xs overflow-hidden relative">
-                      <img
-                        key={previewPhoto}
-                        src={previewPhoto}
-                        alt="Handcrafted Frame Preview - Wedding Portrait"
-                        className="w-full h-full object-cover filter brightness-95"
-                        referrerPolicy="no-referrer"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-2">
-                        <span className="text-[10px] text-white font-medium">
+                    {/* Archival Mat Board / Passe-Partout */}
+                    <div
+                      className={`w-full h-full rounded-xs overflow-hidden relative flex items-center justify-center ${
+                        fitMode === 'contain'
+                          ? 'bg-[#F9F6F0] p-3 shadow-inner'
+                          : 'bg-neutral-900'
+                      }`}
+                    >
+                      <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
+                        <img
+                          key={previewPhoto}
+                          src={previewPhoto}
+                          alt="Handcrafted Frame Preview - Wedding Portrait"
+                          className={`w-full h-full ${
+                            fitMode === 'contain'
+                              ? 'object-contain drop-shadow-md'
+                              : 'object-cover filter brightness-95'
+                          } transition-all duration-300`}
+                          referrerPolicy="no-referrer"
+                        />
+                      </div>
+                      
+                      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex items-end justify-between p-2 pointer-events-none">
+                        <span className="text-[10px] text-white font-medium drop-shadow-sm">
                           {selectedSize.dimensions} • {selectedFrame.name}
+                        </span>
+                        <span className="text-[9px] text-amber-300 font-bold bg-black/40 px-1.5 py-0.5 rounded">
+                          {fitMode === 'contain' ? '100% Full Fit' : 'Edge Fill'}
                         </span>
                       </div>
                     </div>
@@ -191,17 +302,28 @@ export const PrintEstimator: React.FC<PrintEstimatorProps> = ({
                 </div>
 
                 {/* Switch sample photo for preview */}
-                <div className="flex items-center justify-between text-xs px-1">
-                  <span className="text-[11px] text-slate-500 font-medium">Sample photo:</span>
-                  <div className="flex gap-1.5">
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-xs px-1">
+                    <span className="text-[11px] text-slate-600 font-bold">Try Sample Photos in Frame:</span>
+                    <label className="text-[11px] font-bold text-amber-700 hover:text-amber-800 cursor-pointer underline flex items-center gap-1">
+                      <span>Upload My Photo</span>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleCustomUpload}
+                        className="hidden"
+                      />
+                    </label>
+                  </div>
+                  <div className="flex flex-wrap gap-1.5">
                     {samplePhotos.map((photo) => (
                       <button
                         key={photo.src}
                         type="button"
-                        onClick={() => setPreviewPhoto(photo.src)}
-                        className={`px-2 py-0.5 rounded text-[10px] font-semibold transition-colors cursor-pointer ${
+                        onClick={() => handleSelectSample(photo)}
+                        className={`px-2 py-1 rounded-md text-[10px] font-semibold transition-all cursor-pointer ${
                           previewPhoto === photo.src
-                            ? 'bg-amber-500 text-slate-950 font-bold'
+                            ? 'bg-amber-500 text-slate-950 font-bold shadow-xs scale-105'
                             : 'bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200'
                         }`}
                       >

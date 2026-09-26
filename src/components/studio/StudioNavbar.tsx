@@ -28,6 +28,7 @@ export const StudioNavbar: React.FC<StudioNavbarProps> = ({
   const cleanPhone = shopInfo.phone.replace(/[^0-9+]/g, '');
   const cleanWhatsapp = shopInfo.whatsapp.replace(/[^0-9]/g, '');
   const insta = parseInstagram(shopInfo.instagram);
+  const filmsInsta = parseInstagram(shopInfo.instagramFilms || 'https://www.instagram.com/molshreefilms');
 
   const navLinks = [
     { label: 'Home', href: '#home' },
@@ -82,6 +83,18 @@ export const StudioNavbar: React.FC<StudioNavbarProps> = ({
             >
               <Instagram className="w-3.5 h-3.5 text-pink-600" />
               <span>{insta.handle}</span>
+            </a>
+
+            <a
+              href={filmsInsta.url}
+              target="_blank"
+              rel="noreferrer"
+              id="btn-nav-top-instagram-films"
+              className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-rose-50 text-rose-700 hover:text-rose-900 hover:bg-rose-100 border border-rose-200 transition-all font-semibold text-[11px]"
+              title={`Films Instagram: ${filmsInsta.handle}`}
+            >
+              <Instagram className="w-3.5 h-3.5 text-rose-600" />
+              <span>{filmsInsta.handle} (Films)</span>
             </a>
 
             <a
@@ -217,7 +230,17 @@ export const StudioNavbar: React.FC<StudioNavbarProps> = ({
               className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-purple-600 via-pink-600 to-rose-500 hover:opacity-95 shadow-xs"
             >
               <Instagram className="w-4 h-4" />
-              <span>Follow {insta.handle} on Instagram</span>
+              <span>Follow {insta.handle} (Photography)</span>
+            </a>
+
+            <a
+              href={filmsInsta.url}
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-rose-600 via-pink-600 to-amber-500 hover:opacity-95 shadow-xs"
+            >
+              <Instagram className="w-4 h-4" />
+              <span>Follow {filmsInsta.handle} (Films &amp; Cinema)</span>
             </a>
 
             <a

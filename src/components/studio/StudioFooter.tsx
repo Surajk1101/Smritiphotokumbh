@@ -15,6 +15,7 @@ export const StudioFooter: React.FC<StudioFooterProps> = ({
   const cleanPhone = shopInfo.phone.replace(/[^0-9+]/g, '');
   const cleanWhatsapp = shopInfo.whatsapp.replace(/[^0-9]/g, '');
   const insta = parseInstagram(shopInfo.instagram);
+  const filmsInsta = parseInstagram(shopInfo.instagramFilms || 'https://www.instagram.com/molshreefilms');
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -47,13 +48,23 @@ export const StudioFooter: React.FC<StudioFooterProps> = ({
               {shopInfo.tagline}. Dedicated to capturing joyful wedding moments, family portraits, and handcrafted photo framing across Ghaziabad, Noida, and Delhi NCR.
             </p>
 
-            <div className="flex items-center gap-3 pt-2">
+            <div className="flex items-center gap-2.5 pt-2">
               <a
                 href={insta.url}
                 target="_blank"
                 rel="noreferrer"
                 className="w-8 h-8 rounded-lg bg-slate-100 border border-slate-200 hover:border-pink-500 hover:text-pink-600 flex items-center justify-center transition-colors text-slate-700"
-                title={`Instagram: ${insta.handle}`}
+                title={`Photography: ${insta.handle}`}
+              >
+                <Instagram className="w-4 h-4" />
+              </a>
+
+              <a
+                href={filmsInsta.url}
+                target="_blank"
+                rel="noreferrer"
+                className="w-8 h-8 rounded-lg bg-rose-50 border border-rose-200 hover:border-rose-500 hover:text-rose-600 flex items-center justify-center transition-colors text-rose-700"
+                title={`Films & Cinema: ${filmsInsta.handle}`}
               >
                 <Instagram className="w-4 h-4" />
               </a>

@@ -13,6 +13,7 @@ export interface ShopInfo {
   youtubeUrl: string;
   youtubeVideoId: string;
   instagram: string;
+  instagramFilms?: string;
   instagramAccessToken?: string;
   instagramUserId?: string;
   instagramSyncEnabled?: boolean;
@@ -34,13 +35,15 @@ export interface YouTubeVideoItem {
 export interface GalleryItem {
   id: string;
   title: string;
-  category: 'Kumbh & Spiritual' | 'Weddings & Celebrations' | 'Studio Portraits' | 'Frames & Canvas' | 'Haldi & Mehendi' | string;
+  category: 'Kumbh & Spiritual' | 'Weddings & Celebrations' | 'Studio Portraits' | 'Frames & Canvas' | 'Haldi & Mehendi' | 'Baby & Birthday' | string;
   imageUrl: string;
   location: string;
   description: string;
   featured?: boolean;
   instagramUrl?: string;
   objectPosition?: string;
+  aspectRatio?: string;
+  account?: 'samriddhi' | 'molshree';
 }
 
 export interface StudioService {

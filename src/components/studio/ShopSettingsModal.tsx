@@ -251,7 +251,7 @@ export const ShopSettingsModal: React.FC<ShopSettingsModalProps> = ({
                 <div className="flex items-center justify-between">
                   <label className="font-bold text-pink-400 flex items-center gap-1.5">
                     <Instagram className="w-4 h-4" />
-                    <span>Instagram Profile Handle or URL</span>
+                    <span>Photography Instagram Profile (@samriddhi.photo)</span>
                   </label>
                   <span className="text-[10px] text-[#8E95A5]">
                     Display: <span className="text-pink-300 font-bold">{parseInstagram(formData.instagram).handle}</span>
@@ -265,7 +265,29 @@ export const ShopSettingsModal: React.FC<ShopSettingsModalProps> = ({
                   className="w-full px-3 py-2 rounded-lg bg-[#161922] border border-[#262A36] text-white text-xs focus:border-pink-500 focus:outline-hidden"
                 />
                 <p className="text-[10px] text-[#8E95A5]">
-                  Enter your handle like <code className="text-pink-300">@samriddhi.photo</code> or full URL like <code className="text-[#E5A93C]">https://www.instagram.com/samriddhi.photo/</code>.
+                  Main studio photography handle or URL.
+                </p>
+              </div>
+
+              <div className="space-y-1 p-3.5 rounded-2xl bg-[#0B0C0E] border border-rose-900/40">
+                <div className="flex items-center justify-between">
+                  <label className="font-bold text-rose-400 flex items-center gap-1.5">
+                    <Instagram className="w-4 h-4" />
+                    <span>Films &amp; Cinema Instagram Profile (@molshreefilms)</span>
+                  </label>
+                  <span className="text-[10px] text-[#8E95A5]">
+                    Display: <span className="text-rose-300 font-bold">{parseInstagram(formData.instagramFilms || 'https://www.instagram.com/molshreefilms').handle}</span>
+                  </span>
+                </div>
+                <input
+                  type="text"
+                  value={formData.instagramFilms || ''}
+                  onChange={(e) => setFormData({ ...formData, instagramFilms: e.target.value })}
+                  placeholder="@molshreefilms or https://www.instagram.com/molshreefilms"
+                  className="w-full px-3 py-2 rounded-lg bg-[#161922] border border-[#262A36] text-white text-xs focus:border-rose-500 focus:outline-hidden"
+                />
+                <p className="text-[10px] text-[#8E95A5]">
+                  Official films &amp; cinematography account: <code className="text-rose-300">@molshreefilms</code>
                 </p>
               </div>
 

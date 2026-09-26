@@ -16,6 +16,7 @@ export const StudioHero: React.FC<StudioHeroProps> = ({
 }) => {
   const cleanPhone = shopInfo.phone.replace(/[^0-9+]/g, '');
   const insta = parseInstagram(shopInfo.instagram);
+  const filmsInsta = parseInstagram(shopInfo.instagramFilms || 'https://www.instagram.com/molshreefilms');
   const [activePhotoIdx, setActivePhotoIdx] = useState(0);
 
   const showcasePhotos = [
@@ -27,25 +28,41 @@ export const StudioHero: React.FC<StudioHeroProps> = ({
       desc: 'Featured photograph from our official Instagram post (@samriddhi.photo) — authentic wedding celebration, candid couple emotions, and traditional ceremony.',
       postUrl: 'https://www.instagram.com/p/DWFFe1sE_3F/',
       isInstagramBest: true,
+      account: 'samriddhi' as const,
       aspectClass: 'aspect-[3/4]',
     },
     {
-      src: '/images/wedding_jaimala_gaze.jpg',
-      label: 'Sacred Varmala Gaze',
-      shortLabel: 'Varmala Gaze',
-      title: 'Sacred Varmala & Romantic Wedding Gaze',
-      desc: 'Candid capture of newlyweds exchanging radiant smiles and sacred garlands against an illuminated floral mandap.',
-      isInstagramBest: false,
-      aspectClass: 'aspect-[4/3] sm:aspect-[3/2]',
+      src: '/images/instagram_post_bride_groom.jpg',
+      label: 'Bride & Groom Story',
+      shortLabel: 'Bride & Groom',
+      title: 'Two Sides One Story — Bride & Groom Couple Session',
+      desc: 'Authentic wedding photoshoot from our Instagram post (@samriddhi.photo) — bride and groom portrait, wedding inspirations, and timeless couple goals.',
+      postUrl: 'https://www.instagram.com/p/Dc6Lvk4gcKU/',
+      isInstagramBest: true,
+      account: 'samriddhi' as const,
+      aspectClass: 'aspect-square',
     },
     {
-      src: '/images/wedding_varmala_closeup.jpg',
-      label: 'Loving Varmala Smile',
-      shortLabel: 'Varmala Smile',
-      title: 'Sacred Varmala & Tender Candid Moments',
-      desc: 'Intimate bride and groom candid smiles, royal zardozi attire, and vibrant flower wall stages captured in high-resolution.',
-      isInstagramBest: false,
-      aspectClass: 'aspect-[4/3] sm:aspect-[3/2]',
+      src: '/images/instagram_post_ashmit_bride.jpg',
+      label: 'Bridal Moments Session',
+      shortLabel: 'Ashmit Bride',
+      title: 'Ashmit the Bride — Graceful Bridal Moments',
+      desc: 'Authentic bridal shoot from Molshree Films (@molshreefilms) — "Ashmit the bride: Sometimes it\'s just not an image!!", capturing radiant bridal beauty, candid emotion, and fine-art framing.',
+      postUrl: 'https://www.instagram.com/p/Ddjvn01zU0r/',
+      isInstagramBest: true,
+      account: 'molshree' as const,
+      aspectClass: 'aspect-square',
+    },
+    {
+      src: '/images/instagram_post_baby_birthday.jpg',
+      label: 'Baby Birthday Shoot',
+      shortLabel: 'Baby Birthday',
+      title: 'Baby Birthday & Milestone Shoot — Molshree Films',
+      desc: 'Authentic baby birthday & milestone photoshoot from Molshree Films (@molshreefilms) — "Birthday shoot ❤️ #birthdayvibes #photography #babyshoot #prebirthdayshoot", capturing angelic milestone smiles.',
+      postUrl: 'https://www.instagram.com/p/Ddejb4hzHx3/',
+      isInstagramBest: true,
+      account: 'molshree' as const,
+      aspectClass: 'aspect-square',
     },
     {
       src: '/images/instagram_post_ddoe7ip.jpg',
@@ -55,6 +72,7 @@ export const StudioHero: React.FC<StudioHeroProps> = ({
       desc: 'Authentic wedding photoshoot from our Instagram post (@samriddhi.photo) — bride and sister candid portrait, wedding inspirations, and timeless moments.',
       postUrl: 'https://www.instagram.com/p/DdOE7ipAetG/',
       isInstagramBest: true,
+      account: 'samriddhi' as const,
       aspectClass: 'aspect-[3/2]',
     },
     {
@@ -65,17 +83,19 @@ export const StudioHero: React.FC<StudioHeroProps> = ({
       desc: 'Authentic mehndi photoshoot from our Instagram post (@samriddhi.photo) — intricate bridal henna art, floral jewelry, and festive celebration.',
       postUrl: 'https://www.instagram.com/p/Dc8c4VZgWBv/',
       isInstagramBest: true,
+      account: 'samriddhi' as const,
       aspectClass: 'aspect-square',
     },
     {
-      src: '/images/indian_haldi_ceremony.jpg',
-      label: 'Haldi Dance Celebration',
-      shortLabel: 'Haldi Dance',
-      title: 'Joyful Haldi Dance & Wedding Celebration',
-      desc: 'Authentic candid celebration from our Instagram post (@samriddhi.photo) — smiling bride in yellow saree with floral jewelry dancing with family.',
-      postUrl: 'https://www.instagram.com/p/DdOHbORAanZ/',
+      src: '/images/instagram_candid_bride_smile.jpg',
+      label: 'Candid Bridal Smile',
+      shortLabel: 'Candid Smile',
+      title: 'Joyful Candid Bride & Radiant Smile',
+      desc: 'Authentic candid bridal portrait from our official Instagram (@samriddhi.photo) — capturing timeless raw emotions, joyful bridal smile, and fine-art wedding storytelling.',
+      postUrl: 'https://www.instagram.com/p/Ddd_90CAStm/',
       isInstagramBest: true,
-      aspectClass: 'aspect-[3/2]',
+      account: 'samriddhi' as const,
+      aspectClass: 'aspect-[3/4]',
     },
     {
       src: '/images/instagram_heritage_couple.jpg',
@@ -85,6 +105,7 @@ export const StudioHero: React.FC<StudioHeroProps> = ({
       desc: 'Authentic royal couple photoshoot from our official Instagram post (@samriddhi.photo) — exquisite bridal lehenga, royal groom sherwani, and heritage wedding memories.',
       postUrl: 'https://www.instagram.com/p/DWFHOuQk-_A/',
       isInstagramBest: true,
+      account: 'samriddhi' as const,
       aspectClass: 'aspect-[3/4]',
     },
   ];
@@ -94,7 +115,7 @@ export const StudioHero: React.FC<StudioHeroProps> = ({
       {/* Background Graphic & Atmosphere featuring the Best Instagram Photo */}
       <div className="absolute inset-0 pointer-events-none opacity-10">
         <img
-          src="/images/wedding_jaimala_gaze.jpg"
+          src="/images/instagram_post_bride_groom.jpg"
           alt="Smriti Photo Kumbh - Best Photography of Instagram @samriddhi.photo"
           className="w-full h-full object-cover object-center scale-105 filter blur-[3px]"
         />
@@ -168,13 +189,27 @@ export const StudioHero: React.FC<StudioHeroProps> = ({
                 id="hero-btn-instagram"
                 target="_blank"
                 rel="noreferrer"
-                className="px-4 py-3.5 rounded-xl font-bold text-xs sm:text-sm text-pink-700 bg-pink-50 hover:bg-pink-100 border border-pink-200 hover:scale-[1.02] transition-all flex items-center gap-2 group shadow-xs"
+                className="px-3.5 py-3.5 rounded-xl font-bold text-xs sm:text-sm text-pink-700 bg-pink-50 hover:bg-pink-100 border border-pink-200 hover:scale-[1.02] transition-all flex items-center gap-2 group shadow-xs"
                 title={`Follow ${insta.handle} on Instagram`}
               >
                 <div className="w-5 h-5 rounded-full bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 flex items-center justify-center text-white shrink-0 shadow-xs group-hover:scale-105 transition-transform">
                   <Instagram className="w-3 h-3" />
                 </div>
                 <span className="font-bold text-pink-800">{insta.handle}</span>
+              </a>
+
+              <a
+                href={filmsInsta.url}
+                id="hero-btn-instagram-films"
+                target="_blank"
+                rel="noreferrer"
+                className="px-3.5 py-3.5 rounded-xl font-bold text-xs sm:text-sm text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-200 hover:scale-[1.02] transition-all flex items-center gap-2 group shadow-xs"
+                title={`Follow ${filmsInsta.handle} on Instagram (Films & Cinema)`}
+              >
+                <div className="w-5 h-5 rounded-full bg-gradient-to-tr from-purple-600 via-pink-600 to-amber-500 flex items-center justify-center text-white shrink-0 shadow-xs group-hover:scale-105 transition-transform">
+                  <Instagram className="w-3 h-3" />
+                </div>
+                <span className="font-bold text-rose-800">{filmsInsta.handle}</span>
               </a>
 
               <button
@@ -206,7 +241,7 @@ export const StudioHero: React.FC<StudioHeroProps> = ({
                 className="flex items-center gap-1.5 text-pink-700 hover:text-pink-800 font-medium transition-colors"
               >
                 <Instagram className="w-4 h-4 text-pink-600" />
-                <span>{insta.handle} (Instagram Photos &amp; Reels)</span>
+                <span>{insta.handle} &amp; {filmsInsta.handle}</span>
               </a>
 
               <div className="flex items-center gap-2">
@@ -234,12 +269,16 @@ export const StudioHero: React.FC<StudioHeroProps> = ({
                       href={showcasePhotos[activePhotoIdx].postUrl || insta.url}
                       target="_blank"
                       rel="noreferrer"
-                      className="bg-pink-50 hover:bg-pink-100 px-3 py-1 rounded-full border border-pink-200 text-xs font-semibold text-pink-700 flex items-center gap-1.5 transition-colors shadow-xs"
+                      className={`px-3 py-1 rounded-full border text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-xs ${
+                        showcasePhotos[activePhotoIdx].account === 'molshree' || showcasePhotos[activePhotoIdx].postUrl?.includes('molshreefilms')
+                          ? 'bg-rose-50 hover:bg-rose-100 border-rose-200 text-rose-700'
+                          : 'bg-pink-50 hover:bg-pink-100 border-pink-200 text-pink-700'
+                      }`}
                     >
-                      <Instagram className="w-3.5 h-3.5 text-pink-600" />
-                      <span>{insta.handle}</span>
-                      <span className="text-pink-300">•</span>
-                      <span className="text-pink-600 text-[11px]">Instagram Post</span>
+                      <Instagram className={`w-3.5 h-3.5 ${showcasePhotos[activePhotoIdx].account === 'molshree' || showcasePhotos[activePhotoIdx].postUrl?.includes('molshreefilms') ? 'text-rose-600' : 'text-pink-600'}`} />
+                      <span>{showcasePhotos[activePhotoIdx].account === 'molshree' || showcasePhotos[activePhotoIdx].postUrl?.includes('molshreefilms') ? filmsInsta.handle : insta.handle}</span>
+                      <span className="opacity-40">•</span>
+                      <span className="text-[11px] font-medium">{showcasePhotos[activePhotoIdx].account === 'molshree' || showcasePhotos[activePhotoIdx].postUrl?.includes('molshreefilms') ? 'Molshree Films' : 'Instagram Post'}</span>
                     </a>
                   ) : (
                     <div className="bg-slate-100 px-3 py-1 rounded-full border border-slate-200 text-xs font-medium text-slate-700 flex items-center gap-1.5 shadow-xs">

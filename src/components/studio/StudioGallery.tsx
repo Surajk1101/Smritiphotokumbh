@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { GalleryItem } from '../../types/studio';
 import { GalleryLightbox } from './GalleryLightbox';
-import { ZoomIn, MapPin, Tag, Instagram } from 'lucide-react';
+import { ZoomIn, MapPin, Tag, Instagram, Film, Sparkles } from 'lucide-react';
 
 interface StudioGalleryProps {
   items: GalleryItem[];
@@ -62,40 +62,77 @@ export const StudioGallery: React.FC<StudioGalleryProps> = ({
             <div
               key={item.id}
               onClick={() => setSelectedItem(item)}
-              className="group relative rounded-2xl overflow-hidden bg-slate-900 border border-slate-200 aspect-4/3 cursor-pointer shadow-xs hover:shadow-xl hover:border-amber-400 transition-all duration-300"
+              className={`group relative rounded-2xl overflow-hidden bg-slate-950 border border-slate-200 cursor-pointer shadow-xs hover:shadow-xl hover:border-amber-400 transition-all duration-300 flex flex-col justify-between ${
+                item.aspectRatio === 'aspect-[3/4]'
+                  ? 'aspect-[3/4] sm:aspect-square'
+                  : item.aspectRatio === 'aspect-square'
+                  ? 'aspect-square'
+                  : 'aspect-4/3'
+              }`}
             >
-              {/* Photo Image */}
-              <img
-                src={item.imageUrl}
-                alt={item.title}
-                loading="lazy"
-                referrerPolicy="no-referrer"
-                className={`w-full h-full object-cover ${item.objectPosition || 'object-center'} group-hover:scale-105 transition-transform duration-700 filter brightness-95`}
-              />
+              {/* Photo Image Stage with Ambient Blurred Backdrop (Ensures full photo fits in frame without cutting faces) */}
+              <div className="absolute inset-0 w-full h-full overflow-hidden flex items-center justify-center bg-slate-950">
+                <img
+                  src={item.imageUrl}
+                  alt=""
+                  aria-hidden="true"
+                  className="absolute inset-0 w-full h-full object-cover filter blur-xl opacity-35 scale-110 pointer-events-none"
+                />
+                <img
+                  src={item.imageUrl}
+                  alt={item.title}
+                  loading="lazy"
+                  referrerPolicy="no-referrer"
+                  className={`relative z-10 w-full h-full ${
+                    item.aspectRatio === 'aspect-square' ||
+                    item.aspectRatio === 'aspect-[3/4]' ||
+                    item.imageUrl.includes('ashmit') ||
+                    item.imageUrl.includes('candid_bride') ||
+                    item.imageUrl.includes('baby_birthday') ||
+                    item.imageUrl.includes('bride_groom')
+                      ? 'object-contain'
+                      : `object-cover ${item.objectPosition || 'object-center'}`
+                  } group-hover:scale-105 transition-transform duration-700 filter brightness-95`}
+                />
+              </div>
 
               {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/25 to-transparent opacity-85 group-hover:opacity-95 transition-opacity" />
+              <div className="absolute inset-0 z-20 bg-gradient-to-t from-slate-950 via-slate-950/25 to-transparent opacity-85 group-hover:opacity-95 transition-opacity pointer-events-none" />
 
               {/* Top Tag & Zoom icon */}
-              <div className="absolute top-3 inset-x-3 flex items-center justify-between pointer-events-none">
-                <div className="flex items-center gap-1.5">
+              <div className="absolute top-3 inset-x-3 z-30 flex items-center justify-between pointer-events-none">
+                <div className="flex items-center gap-1.5 flex-wrap">
                   <span className="px-2.5 py-1 rounded-md text-[10px] font-bold bg-white/95 text-slate-800 border border-slate-200 shadow-xs">
                     {item.category}
                   </span>
                   {item.instagramUrl && (
-                    <span className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-bold bg-pink-600 text-white shadow-xs">
-                      <Instagram className="w-3 h-3" />
-                      <span>Instagram</span>
+                    <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-bold text-white shadow-xs ${
+                      item.account === 'molshree' || item.instagramUrl.includes('molshreefilms')
+                        ? 'bg-gradient-to-r from-rose-600 to-amber-600'
+                        : 'bg-pink-600'
+                    }`}>
+                      {item.account === 'molshree' || item.instagramUrl.includes('molshreefilms') ? (
+                        <Film className="w-3 h-3" />
+                      ) : (
+                        <Instagram className="w-3 h-3" />
+                      )}
+                      <span>{item.account === 'molshree' || item.instagramUrl.includes('molshreefilms') ? 'Molshree Films' : 'Instagram'}</span>
+                    </span>
+                  )}
+                  {item.featured && (
+                    <span className="px-2 py-0.5 rounded-md text-[9px] font-bold bg-amber-400/90 text-slate-950 shadow-xs flex items-center gap-1">
+                      <Sparkles className="w-2.5 h-2.5" />
+                      <span>Featured</span>
                     </span>
                   )}
                 </div>
-                <div className="w-8 h-8 rounded-full bg-white/80 backdrop-blur-xs flex items-center justify-center text-slate-800 group-hover:scale-110 group-hover:bg-amber-500 group-hover:text-slate-950 transition-all shadow-xs">
+                <div className="w-8 h-8 rounded-full bg-white/80 backdrop-blur-xs flex items-center justify-center text-slate-800 group-hover:scale-110 group-hover:bg-amber-500 group-hover:text-slate-950 transition-all shadow-xs shrink-0">
                   <ZoomIn className="w-4 h-4" />
                 </div>
               </div>
 
               {/* Bottom Caption Overlay */}
-              <div className="absolute bottom-0 inset-x-0 p-4 text-left space-y-1">
+              <div className="absolute bottom-0 inset-x-0 z-30 p-4 text-left space-y-1">
                 <div className="flex items-center gap-1.5 text-[11px] text-amber-300 font-semibold">
                   <MapPin className="w-3 h-3 text-amber-400 shrink-0" />
                   <span className="truncate">{item.location}</span>

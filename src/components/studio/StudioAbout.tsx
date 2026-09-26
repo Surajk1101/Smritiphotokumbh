@@ -92,6 +92,27 @@ export const StudioAbout: React.FC<StudioAboutProps> = ({
               </div>
             </div>
 
+            {/* Official Instagram Badges */}
+            <div className="pt-2 flex flex-wrap items-center gap-3">
+              <span className="text-xs text-slate-500 font-semibold">Official Instagram:</span>
+              <a
+                href={shopInfo.instagram}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold text-pink-700 bg-pink-50 hover:bg-pink-100 border border-pink-200 transition-all shadow-xs"
+              >
+                <span>@samriddhi.photo (Photos)</span>
+              </a>
+              <a
+                href={shopInfo.instagramFilms || 'https://www.instagram.com/molshreefilms'}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-200 transition-all shadow-xs"
+              >
+                <span>@molshreefilms (Wedding Films)</span>
+              </a>
+            </div>
+
           </div>
 
         </div>

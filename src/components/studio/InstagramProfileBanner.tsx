@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Instagram, ExternalLink, Sparkles, CheckCircle2, ArrowRight, RefreshCw, Key, Image as ImageIcon } from 'lucide-react';
+import { Instagram, ExternalLink, Sparkles, CheckCircle2, ArrowRight, RefreshCw, Key, Image as ImageIcon, Film, Play, Video } from 'lucide-react';
 import { ShopInfo } from '../../types/studio';
 import { parseInstagram } from '../../utils/instagram';
 import { fetchInstagramGraphMedia, getCachedInstagramMedia, InstagramMediaItem } from '../../services/instagramService';
@@ -16,8 +16,10 @@ export const InstagramProfileBanner: React.FC<InstagramProfileBannerProps> = ({
   onOpenSettings,
 }) => {
   const insta = parseInstagram(shopInfo.instagram);
+  const filmsInsta = parseInstagram(shopInfo.instagramFilms || 'https://www.instagram.com/molshreefilms');
+  const [accountFilter, setAccountFilter] = useState<'all' | 'samriddhi' | 'molshree'>('all');
 
-  // Default verified posts from user's actual Instagram account (@samriddhi.photo)
+  // Default verified posts from user's actual Instagram accounts (@samriddhi.photo & @molshreefilms)
   const defaultPosts = [
     {
       id: 'post-candid-bride-smile',
@@ -27,8 +29,53 @@ export const InstagramProfileBanner: React.FC<InstagramProfileBannerProps> = ({
       title: 'Joyful Candid Bride & Radiant Smile',
       caption: '#candidbride #bridecandid #candidweddingphotography #bridemoments #indianbride #bridalportrait',
       badge: 'Candid Bride',
+      aspect: 'aspect-[3/4]',
+      date: 'Latest Post',
+      account: 'samriddhi' as const,
+      accountHandle: insta.handle,
+      isVideo: false,
+    },
+    {
+      id: 'post-baby-birthday-shoot',
+      image: '/images/instagram_post_baby_birthday.jpg',
+      url: 'https://www.instagram.com/p/Ddejb4hzHx3/',
+      tag: 'Baby Birthday',
+      title: 'Baby Birthday & Milestone Shoot',
+      caption: 'Birthday shoot \n....\n#birthdayvibes #photography #babyshoot #prebirthdayshoot❤️ @molshreefilms',
+      badge: 'Molshree Films',
+      aspect: 'aspect-square',
+      date: 'Birthday Shoot',
+      account: 'molshree' as const,
+      accountHandle: filmsInsta.handle,
+      isVideo: false,
+    },
+    {
+      id: 'post-ashmit-bride',
+      image: '/images/instagram_post_ashmit_bride.jpg',
+      url: 'https://www.instagram.com/p/Ddjvn01zU0r/',
+      tag: 'Bridal Moments',
+      title: 'Ashmit the Bride — Bridal Moments & Portraiture',
+      caption: 'Ashmit the bride: Sometimes it\'s just not an image!! #brideshoot #BridalMoments #weddingphotography #prewedding @molshreefilms',
+      badge: 'Molshree Films',
       aspect: 'aspect-square',
       date: 'Latest Post',
+      account: 'molshree' as const,
+      accountHandle: filmsInsta.handle,
+      isVideo: false,
+    },
+    {
+      id: 'post-bride-groom',
+      image: '/images/instagram_post_bride_groom.jpg',
+      url: 'https://www.instagram.com/p/Dc6Lvk4gcKU/',
+      tag: 'Bride & Groom',
+      title: 'Two Sides One Story — Bride & Groom Couple Session',
+      caption: '#twosidesonestory #standingwithyou #brideandgroom #weddinginspirations #realweddings #couplegoals',
+      badge: 'Couple Goals',
+      aspect: 'aspect-square',
+      date: 'Recent Post',
+      account: 'samriddhi' as const,
+      accountHandle: insta.handle,
+      isVideo: false,
     },
     {
       id: 'post-candid-bride',
@@ -40,6 +87,9 @@ export const InstagramProfileBanner: React.FC<InstagramProfileBannerProps> = ({
       badge: 'Candid Portrait',
       aspect: 'aspect-square',
       date: 'Latest Post',
+      account: 'samriddhi' as const,
+      accountHandle: insta.handle,
+      isVideo: false,
     },
     {
       id: 'post-couple-story',
@@ -51,6 +101,9 @@ export const InstagramProfileBanner: React.FC<InstagramProfileBannerProps> = ({
       badge: 'Bride & Sister',
       aspect: 'aspect-[3/2]',
       date: 'Recent Post',
+      account: 'samriddhi' as const,
+      accountHandle: insta.handle,
+      isVideo: false,
     },
     {
       id: 'post-mehndi',
@@ -62,17 +115,37 @@ export const InstagramProfileBanner: React.FC<InstagramProfileBannerProps> = ({
       badge: 'Bridal Henna',
       aspect: 'aspect-square',
       date: 'Recent Post',
+      account: 'samriddhi' as const,
+      accountHandle: insta.handle,
+      isVideo: false,
     },
     {
-      id: 'post-haldi-dance',
-      image: '/images/indian_haldi_ceremony.jpg',
-      url: 'https://www.instagram.com/p/DdOHbORAanZ/',
-      tag: 'Wedding Dance',
-      title: 'Joyful Haldi Dance & Celebration',
-      caption: '#weddingdance #weddingphotographers #indainwedding #pahadiwedding❤️ #mehndiphotoshoot',
-      badge: 'Haldi Dance',
-      aspect: 'aspect-[3/2]',
-      date: 'Recent Post',
+      id: 'post-heritage-couple',
+      image: '/images/instagram_heritage_couple.jpg',
+      url: 'https://www.instagram.com/p/DWFHOuQk-_A/',
+      tag: 'Royal Couple',
+      title: 'Royal Marriage Ceremony & Couple Portraiture',
+      caption: '#royalwedding #indianwedding #traditionalattire #heritage @samriddhi.photo',
+      badge: 'Royal Couple',
+      aspect: 'aspect-[3/4]',
+      date: 'Ceremony Shoot',
+      account: 'samriddhi' as const,
+      accountHandle: insta.handle,
+      isVideo: false,
+    },
+    {
+      id: 'post-varmala-featured',
+      image: '/images/instagram_featured_post.jpg',
+      url: 'https://www.instagram.com/p/DWFFe1sE_3F/',
+      tag: 'Sacred Varmala',
+      title: 'Sacred Varmala & Royal Marriage Ceremony',
+      caption: '#varmala #weddingrituals #sacredwedding #emotions @samriddhi.photo',
+      badge: 'Marriage Rituals',
+      aspect: 'aspect-[3/4]',
+      date: 'Ritual Ceremony',
+      account: 'samriddhi' as const,
+      accountHandle: insta.handle,
+      isVideo: false,
     },
   ];
 
@@ -129,6 +202,11 @@ export const InstagramProfileBanner: React.FC<InstagramProfileBannerProps> = ({
 
   const hasLiveFeed = liveItems && liveItems.length > 0;
 
+  const filteredPosts =
+    accountFilter === 'all'
+      ? defaultPosts
+      : defaultPosts.filter((post) => post.account === accountFilter);
+
   return (
     <section id="instagram-banner" className="relative py-14 bg-[#0B0C0E] text-white overflow-hidden border-b border-[#262A36]">
       {/* Background ambient lighting */}
@@ -137,16 +215,16 @@ export const InstagramProfileBanner: React.FC<InstagramProfileBannerProps> = ({
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Profile Header Banner */}
-        <div className="relative rounded-3xl p-6 sm:p-8 bg-[#161922] border border-[#262A36] shadow-2xl mb-8">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-            
-            {/* Profile Info Left */}
-            <div className="flex items-start sm:items-center gap-4 sm:gap-6">
-              {/* Instagram Story Gradient Ring with Verified Avatar */}
+        {/* Dual Profile Header Banner: Showcasing Both Official Accounts */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8">
+          
+          {/* Account 1: @samriddhi.photo */}
+          <div className="relative rounded-3xl p-6 bg-[#161922] border border-[#262A36] shadow-xl hover:border-pink-500/30 transition-all flex flex-col justify-between">
+            <div className="flex items-start gap-4">
+              {/* Instagram Story Gradient Ring */}
               <div className="relative p-1 rounded-full bg-gradient-to-tr from-[#E5A93C] via-rose-500 to-purple-600 shrink-0 shadow-lg shadow-pink-500/20">
                 <div className="p-0.5 rounded-full bg-[#0B0C0E]">
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden bg-[#161922] flex items-center justify-center border border-white/20">
+                  <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden bg-[#161922] flex items-center justify-center border border-white/20">
                     <img
                       src="/images/logo.png"
                       alt={shopInfo.name}
@@ -158,116 +236,167 @@ export const InstagramProfileBanner: React.FC<InstagramProfileBannerProps> = ({
                   </div>
                 </div>
                 <div className="absolute bottom-0 right-0 bg-gradient-to-r from-pink-500 to-rose-500 p-1.5 rounded-full border-2 border-[#0B0C0E] shadow-md">
-                  <Instagram className="w-3.5 h-3.5 text-white" />
+                  <Instagram className="w-3 h-3 text-white" />
                 </div>
               </div>
 
-              {/* Identity & Bio */}
-              <div className="space-y-1.5 text-left">
+              {/* Bio & Details */}
+              <div className="space-y-1 text-left flex-1">
                 <div className="flex flex-wrap items-center gap-2">
-                  <h3 className="text-xl sm:text-2xl font-black text-white font-['Outfit'] tracking-tight">
+                  <h3 className="text-lg sm:text-xl font-black text-white font-['Outfit'] tracking-tight">
                     {shopInfo.name}
                   </h3>
-                  <span className="inline-flex items-center gap-1 text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-pink-500/20 text-pink-300 border border-pink-500/30">
-                    <Sparkles className="w-3 h-3 text-pink-400" />
-                    <span>Official Instagram</span>
-                  </span>
-                  {hasLiveFeed ? (
-                    <span className="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                      <span>Live Graph API Connected ({liveItems.length} posts)</span>
-                    </span>
-                  ) : (
-                    <span className="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#E5A93C]/20 text-[#E5A93C] border border-[#E5A93C]/30">
-                      <span>Verified Feed</span>
-                    </span>
-                  )}
-                </div>
-
-                <div className="flex items-center gap-2">
-                  <span className="text-sm font-bold text-pink-400">
-                    {insta.handle}
-                  </span>
-                  <span className="text-[#8E95A5]">•</span>
-                  <span className="text-xs text-[#8E95A5] font-medium">
-                    {shopInfo.city} Photography &amp; Cinematography
+                  <span className="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-pink-500/20 text-pink-300 border border-pink-500/30">
+                    <Sparkles className="w-2.5 h-2.5 text-pink-400" />
+                    <span>Photography</span>
                   </span>
                 </div>
 
-                <p className="text-xs sm:text-sm text-[#C5CAD6] max-w-xl">
-                  Curated moments and visual vignettes from {insta.handle} — celebrating grand unions, intimate bridal rituals, and timeless portraiture.
+                <a
+                  href={insta.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-sm font-bold text-pink-400 hover:text-pink-300 transition-colors inline-flex items-center gap-1"
+                >
+                  <span>{insta.handle}</span>
+                  <ExternalLink className="w-3 h-3 opacity-70" />
+                </a>
+
+                <p className="text-xs text-[#C5CAD6] line-clamp-2">
+                  Grand wedding rituals, candid bridal emotions, pre-wedding shoots &amp; timeless fine-art portraiture.
                 </p>
               </div>
             </div>
 
-            {/* Actions Right */}
-            <div className="flex flex-wrap items-center gap-3 shrink-0">
-              {shopInfo.instagramAccessToken && (
-                <button
-                  onClick={handleManualRefresh}
-                  disabled={isLoadingLive}
-                  title="Refresh Instagram Feed from Meta API"
-                  className="p-2.5 rounded-xl bg-[#1B1F2A] hover:bg-[#262A36] text-[#C5CAD6] hover:text-white border border-[#262A36] transition-colors disabled:opacity-50 cursor-pointer"
-                >
-                  <RefreshCw className={`w-4 h-4 ${isLoadingLive ? 'animate-spin text-pink-400' : ''}`} />
-                </button>
-              )}
-
-              {onOpenSettings && (
-                <button
-                  onClick={onOpenSettings}
-                  className="px-3 py-2.5 rounded-xl font-bold text-xs text-[#C5CAD6] bg-[#1B1F2A] hover:bg-[#262A36] border border-[#262A36] flex items-center gap-1.5 cursor-pointer hover:text-white"
-                  title="Configure Instagram Access Token"
-                >
-                  <Key className="w-3.5 h-3.5 text-pink-400" />
-                  <span>{shopInfo.instagramAccessToken ? 'API Connected' : 'Connect Meta API'}</span>
-                </button>
-              )}
-
+            <div className="mt-4 pt-3 border-t border-[#262A36] flex items-center justify-between gap-3">
+              <span className="text-[11px] text-[#8E95A5] font-medium">Official Photography Account</span>
               <a
                 href={insta.url}
                 target="_blank"
                 rel="noreferrer"
-                id="btn-instagram-banner-follow"
-                className="px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-white bg-gradient-to-r from-pink-600 via-rose-600 to-purple-600 hover:from-pink-500 hover:to-purple-500 shadow-lg shadow-pink-600/30 hover:scale-[1.02] transition-all flex items-center gap-2"
+                id="btn-instagram-follow-samriddhi"
+                className="px-3.5 py-1.5 rounded-xl font-bold text-xs text-white bg-gradient-to-r from-pink-600 via-rose-600 to-purple-600 hover:from-pink-500 hover:to-purple-500 shadow-md shadow-pink-600/20 flex items-center gap-1.5"
               >
-                <Instagram className="w-4 h-4" />
+                <Instagram className="w-3.5 h-3.5" />
                 <span>Follow {insta.handle}</span>
-                <ExternalLink className="w-3.5 h-3.5 opacity-70" />
               </a>
+            </div>
+          </div>
 
-              <button
-                onClick={onBookClick}
-                className="px-4 py-2.5 rounded-xl font-black text-xs sm:text-sm text-[#0B0C0E] bg-gradient-to-r from-[#E5A93C] to-[#F3BA54] hover:brightness-110 shadow-md shadow-[#E5A93C]/20 hover:scale-[1.02] transition-all cursor-pointer"
-              >
-                <span>Commission Session</span>
-              </button>
+          {/* Account 2: @molshreefilms */}
+          <div className="relative rounded-3xl p-6 bg-[#161922] border border-[#262A36] shadow-xl hover:border-rose-500/30 transition-all flex flex-col justify-between">
+            <div className="flex items-start gap-4">
+              {/* Instagram Story Gradient Ring */}
+              <div className="relative p-1 rounded-full bg-gradient-to-tr from-rose-500 via-pink-600 to-amber-500 shrink-0 shadow-lg shadow-rose-500/20">
+                <div className="p-0.5 rounded-full bg-[#0B0C0E]">
+                  <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden bg-[#161922] flex items-center justify-center border border-white/20">
+                    <img
+                      src="/images/instagram_post_ashmit_bride.jpg"
+                      alt="Molshree Films"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+                <div className="absolute bottom-0 right-0 bg-gradient-to-r from-rose-600 to-amber-500 p-1.5 rounded-full border-2 border-[#0B0C0E] shadow-md">
+                  <Film className="w-3 h-3 text-white" />
+                </div>
+              </div>
+
+              {/* Bio & Details */}
+              <div className="space-y-1 text-left flex-1">
+                <div className="flex flex-wrap items-center gap-2">
+                  <h3 className="text-lg sm:text-xl font-black text-white font-['Outfit'] tracking-tight">
+                    Molshree Films
+                  </h3>
+                  <span className="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30">
+                    <Film className="w-2.5 h-2.5 text-rose-400" />
+                    <span>Wedding Films &amp; Cinema</span>
+                  </span>
+                </div>
+
+                <a
+                  href={filmsInsta.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-sm font-bold text-rose-400 hover:text-rose-300 transition-colors inline-flex items-center gap-1"
+                >
+                  <span>{filmsInsta.handle}</span>
+                  <ExternalLink className="w-3 h-3 opacity-70" />
+                </a>
+
+                <p className="text-xs text-[#C5CAD6] line-clamp-2">
+                  4K cinematic wedding teasers, drone aerial cinematography, couple song films &amp; behind-the-scenes.
+                </p>
+              </div>
             </div>
 
+            <div className="mt-4 pt-3 border-t border-[#262A36] flex items-center justify-between gap-3">
+              <span className="text-[11px] text-[#8E95A5] font-medium">Official Cinematography Account</span>
+              <a
+                href={filmsInsta.url}
+                target="_blank"
+                rel="noreferrer"
+                id="btn-instagram-follow-molshree"
+                className="px-3.5 py-1.5 rounded-xl font-bold text-xs text-white bg-gradient-to-r from-rose-600 via-pink-600 to-amber-500 hover:from-rose-500 hover:to-amber-400 shadow-md shadow-rose-600/20 flex items-center gap-1.5"
+              >
+                <Instagram className="w-3.5 h-3.5" />
+                <span>Follow {filmsInsta.handle}</span>
+              </a>
+            </div>
           </div>
+
         </div>
 
-        {/* Section Heading */}
-        <div className="flex items-center justify-between mb-6 text-left">
+        {/* Section Heading & Filter Tabs */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 text-left">
           <div className="space-y-1">
             <div className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-pink-400">
               <Sparkles className="w-3.5 h-3.5" />
-              <span>{hasLiveFeed ? 'Live Instagram Graph API Feed' : 'Verified Instagram Posts'}</span>
+              <span>{hasLiveFeed ? 'Live Instagram Graph API Feed' : 'Verified Instagram Portfolio'}</span>
             </div>
-            <h4 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white font-['Outfit'] tracking-tight">
-              Featured Uploads from <span className="bg-gradient-to-r from-pink-400 to-rose-400 bg-clip-text text-transparent">{insta.handle}</span>
+            <h4 className="text-2xl sm:text-3xl font-black text-white font-['Outfit'] tracking-tight">
+              Featured Highlights &amp; Cinema Feeds
             </h4>
           </div>
 
-          <a
-            href={insta.url}
-            target="_blank"
-            rel="noreferrer"
-            className="hidden sm:inline-flex items-center gap-1.5 text-xs font-bold text-pink-400 hover:text-pink-300 transition-colors"
-          >
-            <span>View all posts on Instagram</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </a>
+          {/* Interactive Account Filter Pills */}
+          <div className="flex flex-wrap items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setAccountFilter('all')}
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                accountFilter === 'all'
+                  ? 'bg-gradient-to-r from-amber-500 to-[#F3BA54] text-slate-950 shadow-sm'
+                  : 'bg-[#161922] text-[#C5CAD6] hover:bg-[#262A36] border border-[#262A36]'
+              }`}
+            >
+              All Highlights ({defaultPosts.length})
+            </button>
+            <button
+              type="button"
+              onClick={() => setAccountFilter('samriddhi')}
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                accountFilter === 'samriddhi'
+                  ? 'bg-gradient-to-r from-pink-600 to-rose-600 text-white shadow-sm'
+                  : 'bg-[#161922] text-[#C5CAD6] hover:bg-[#262A36] border border-[#262A36]'
+              }`}
+            >
+              <Instagram className="w-3.5 h-3.5 text-pink-400" />
+              <span>{insta.handle} (Photos)</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setAccountFilter('molshree')}
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                accountFilter === 'molshree'
+                  ? 'bg-gradient-to-r from-rose-600 to-amber-500 text-white shadow-sm'
+                  : 'bg-[#161922] text-[#C5CAD6] hover:bg-[#262A36] border border-[#262A36]'
+              }`}
+            >
+              <Film className="w-3.5 h-3.5 text-amber-400" />
+              <span>{filmsInsta.handle} (Films)</span>
+            </button>
+          </div>
         </div>
 
         {/* Real Posts Grid */}
@@ -279,7 +408,6 @@ export const InstagramProfileBanner: React.FC<InstagramProfileBannerProps> = ({
               const cleanCaption = media.caption || 'Photo shoot by @samriddhi.photo';
               const dateStr = media.timestamp ? new Date(media.timestamp).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : '';
               
-              // Extract title and hashtags
               const lines = cleanCaption.split('\n').filter(Boolean);
               const postTitle = lines[0] || 'Instagram Upload';
 
@@ -343,9 +471,9 @@ export const InstagramProfileBanner: React.FC<InstagramProfileBannerProps> = ({
             })}
           </div>
         ) : (
-          /* Default Verified Feed from @samriddhi.photo */
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-            {defaultPosts.map((post) => (
+          /* Default Verified Feed from @samriddhi.photo & @molshreefilms */
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+            {filteredPosts.map((post) => (
               <div
                 key={post.id}
                 className="bg-[#161922] rounded-3xl border border-[#262A36] overflow-hidden flex flex-col justify-between shadow-xl hover:border-pink-500/40 transition-all duration-300 text-left group"
@@ -363,19 +491,34 @@ export const InstagramProfileBanner: React.FC<InstagramProfileBannerProps> = ({
                     alt={post.title}
                     className="relative z-10 w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute top-3 left-3 z-20">
-                    <span className="bg-pink-600/95 text-white text-[11px] font-bold px-2.5 py-0.5 rounded-md flex items-center gap-1 shadow-md">
-                      <Instagram className="w-3 h-3" />
+                  <div className="absolute top-3 left-3 z-20 flex items-center gap-1.5">
+                    <span
+                      className={`text-white text-[11px] font-bold px-2.5 py-0.5 rounded-md flex items-center gap-1 shadow-md ${
+                        post.account === 'molshree'
+                          ? 'bg-gradient-to-r from-rose-600 to-amber-600'
+                          : 'bg-pink-600/95'
+                      }`}
+                    >
+                      {post.isVideo ? <Film className="w-3 h-3" /> : <Instagram className="w-3 h-3" />}
                       <span>{post.badge}</span>
                     </span>
                   </div>
+                  {post.isVideo && (
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                      <div className="w-12 h-12 rounded-full bg-black/60 backdrop-blur-xs border border-white/40 flex items-center justify-center text-white group-hover:scale-110 group-hover:bg-amber-500 group-hover:text-slate-950 transition-all shadow-lg">
+                        <Play className="w-5 h-5 ml-0.5 fill-current" />
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 {/* Card Details */}
                 <div className="p-5 flex-1 flex flex-col justify-between space-y-3.5">
                   <div className="space-y-2">
                     <div className="flex items-center justify-between gap-2">
-                      <span className="text-xs font-bold text-pink-400">{insta.handle}</span>
+                      <span className={`text-xs font-bold ${post.account === 'molshree' ? 'text-rose-400' : 'text-pink-400'}`}>
+                        {post.accountHandle}
+                      </span>
                       <span className="text-[10px] font-semibold text-[#E5A93C] bg-[#E5A93C]/10 px-2 py-0.5 rounded-full border border-[#E5A93C]/20">
                         {post.tag}
                       </span>
@@ -395,75 +538,20 @@ export const InstagramProfileBanner: React.FC<InstagramProfileBannerProps> = ({
                       href={post.url}
                       target="_blank"
                       rel="noreferrer"
-                      className="w-full py-2 px-3.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-500 hover:to-purple-500 shadow-md shadow-pink-600/20 flex items-center justify-center gap-2 transition-all"
+                      className={`w-full py-2 px-3.5 rounded-xl text-xs font-bold text-white shadow-md flex items-center justify-center gap-2 transition-all ${
+                        post.account === 'molshree'
+                          ? 'bg-gradient-to-r from-rose-600 via-pink-600 to-amber-500 hover:opacity-95 shadow-rose-600/20'
+                          : 'bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-500 hover:to-purple-500 shadow-pink-600/20'
+                      }`}
                     >
                       <Instagram className="w-3.5 h-3.5" />
-                      <span>View Post on Instagram</span>
+                      <span>{post.isVideo ? 'Watch Reel on Instagram' : 'View Post on Instagram'}</span>
                       <ExternalLink className="w-3 h-3 opacity-70" />
                     </a>
                   </div>
                 </div>
               </div>
             ))}
-
-            {/* Third Card: Connect card */}
-            <div className="bg-[#161922] rounded-3xl border border-[#262A36] p-6 flex flex-col justify-between text-left shadow-xl">
-              <div className="space-y-3">
-                <div className="inline-flex items-center gap-1.5 text-xs font-bold text-pink-400 uppercase tracking-wider">
-                  <Sparkles className="w-3.5 h-3.5" />
-                  <span>Meta Graph API Live Ready</span>
-                </div>
-                <h4 className="text-xl font-black text-white font-['Outfit']">
-                  Auto-Sync Your Instagram
-                </h4>
-                <p className="text-xs text-[#C5CAD6] leading-relaxed">
-                  Connecting your Meta Instagram Graph API token enables your newest studio photographs and original captions to auto-display in real time without manual updates.
-                </p>
-
-                <div className="p-4 rounded-2xl bg-[#12141A] border border-[#262A36] space-y-2 mt-2">
-                  <div className="flex items-center gap-2 text-xs font-semibold text-[#C5CAD6]">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                    <span>Real-time photo fetching</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-xs font-semibold text-[#C5CAD6]">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                    <span>Original captions &amp; hashtags display</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-xs font-semibold text-[#C5CAD6]">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                    <span>Direct Instagram post permalinks</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="space-y-2 pt-4 border-t border-[#262A36]">
-                {onOpenSettings ? (
-                  <button
-                    onClick={onOpenSettings}
-                    className="w-full py-2.5 px-4 rounded-xl font-bold text-xs text-white bg-gradient-to-r from-pink-600 via-rose-600 to-purple-600 hover:from-pink-500 hover:to-purple-500 shadow-md shadow-pink-600/30 flex items-center justify-between transition-all cursor-pointer"
-                  >
-                    <div className="flex items-center gap-2">
-                      <Key className="w-4 h-4" />
-                      <span>Setup Instagram API Token</span>
-                    </div>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
-                ) : (
-                  <a
-                    href={insta.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="w-full py-2.5 px-4 rounded-xl font-bold text-xs text-white bg-gradient-to-r from-pink-600 via-rose-600 to-purple-600 hover:from-pink-500 hover:to-purple-500 shadow-md shadow-pink-600/30 flex items-center justify-between transition-all"
-                  >
-                    <div className="flex items-center gap-2">
-                      <Instagram className="w-4 h-4" />
-                      <span>Visit {insta.handle}</span>
-                    </div>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </a>
-                )}
-              </div>
-            </div>
           </div>
         )}
 
