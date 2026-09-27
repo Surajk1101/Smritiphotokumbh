@@ -89,6 +89,8 @@ export const StudioGallery: React.FC<StudioGalleryProps> = ({
                     item.imageUrl.includes('ashmit') ||
                     item.imageUrl.includes('candid_bride') ||
                     item.imageUrl.includes('baby_birthday') ||
+                    item.imageUrl.includes('birthday') ||
+                    item.imageUrl.includes('pooja_haldi') ||
                     item.imageUrl.includes('bride_groom')
                       ? 'object-contain'
                       : `object-cover ${item.objectPosition || 'object-center'}`

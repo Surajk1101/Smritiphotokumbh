@@ -118,18 +118,20 @@ export const StudioPackages: React.FC<StudioPackagesProps> = ({
         </div>
 
         {/* Custom Booking Note */}
-        <div className="mt-12 text-center text-xs text-slate-600 max-w-xl mx-auto">
-          Need a customized package for multi-day events or specific requirements?{' '}
-          <a
-            href={`https://wa.me/${shopInfo.whatsapp.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(
-              'Hello! I would like to inquire about booking custom photography and video coverage.'
-            )}`}
-            target="_blank"
-            rel="noreferrer"
-            className="text-amber-700 underline font-bold hover:text-amber-800"
-          >
-            Chat with us directly on WhatsApp
-          </a>.
+        <div className="mt-12 text-center max-w-xl mx-auto space-y-4">
+          <p className="text-xs text-slate-600">
+            Need a customized package for multi-day events or specific requirements?{' '}
+            <a
+              href={`https://wa.me/${shopInfo.whatsapp.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(
+                'Hello! I would like to inquire about booking custom photography and video coverage.'
+              )}`}
+              target="_blank"
+              rel="noreferrer"
+              className="text-amber-700 underline font-bold hover:text-amber-800"
+            >
+              Chat with us directly on WhatsApp
+            </a>.
+          </p>
         </div>
 
       </div>

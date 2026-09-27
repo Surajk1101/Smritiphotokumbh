@@ -19,6 +19,7 @@ export interface ShopInfo {
   instagramSyncEnabled?: boolean;
   establishedYear: string;
   fontPair?: string;
+  googleScriptUrl?: string;
 }
 
 export interface YouTubeVideoItem {

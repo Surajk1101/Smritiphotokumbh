@@ -184,8 +184,32 @@ export const StudioFooter: React.FC<StudioFooterProps> = ({
 
         </div>
 
+        {/* Areas We Cover Banner */}
+        <div className="mt-12 pt-8 border-t border-slate-200 text-left">
+          <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+            <div className="space-y-1.5">
+              <span className="text-[11px] font-bold text-amber-700 uppercase tracking-wider flex items-center gap-1.5">
+                <MapPin className="w-3.5 h-3.5 text-amber-600" />
+                <span>Locations We Cover</span>
+              </span>
+              <p className="text-xs text-slate-700 font-medium leading-relaxed">
+                <strong className="text-slate-900">Delhi NCR &amp; Local:</strong> Ghaziabad • Khora Colony (Studio) • Noida (Sector 62, 18 &amp; all sectors) • Indirapuram • Vaishali • Vasundhara • Greater Noida &amp; Noida Extension • Delhi NCR
+              </p>
+              <p className="text-xs text-slate-700 font-medium leading-relaxed">
+                <strong className="text-rose-700">🏔️ Uttarakhand Destination Weddings:</strong> Rishikesh • Jim Corbett • Mussoorie • Triyuginarayan Temple • Haridwar &amp; Dehradun (Pan-India Travel Available)
+              </p>
+            </div>
+            <a
+              href="#contact"
+              className="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs shrink-0 self-start lg:self-center transition-all shadow-xs"
+            >
+              Book For Your Location
+            </a>
+          </div>
+        </div>
+
         {/* Bottom copyright */}
-        <div className="mt-12 pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-8 pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-slate-500">
             © {new Date().getFullYear()} {shopInfo.name}. All rights reserved.
           </p>

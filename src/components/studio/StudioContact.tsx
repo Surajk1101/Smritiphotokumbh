@@ -10,14 +10,16 @@ interface StudioContactProps {
 
 export const StudioContact: React.FC<StudioContactProps> = ({
   shopInfo,
-  initialService = 'Cinematic Wedding & Pre-Wedding Film',
+  initialService = 'Wedding Photography & Video',
 }) => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [service, setService] = useState(initialService);
+  const [location, setLocation] = useState('Ghaziabad & Khora Colony');
   const [date, setDate] = useState('');
-  const [message, setMessage] = useState('');
+  const [requirements, setRequirements] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const insta = parseInstagram(shopInfo.instagram);
   const filmsInsta = parseInstagram(shopInfo.instagramFilms || 'https://www.instagram.com/molshreefilms');
@@ -32,40 +34,77 @@ export const StudioContact: React.FC<StudioContactProps> = ({
   const cleanWhatsapp = shopInfo.whatsapp.replace(/[^0-9]/g, '');
   const cleanPhone = shopInfo.phone.replace(/[^0-9+]/g, '');
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!name.trim() || !phone.trim()) return;
+  const handleBookingSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+
+    // 1. Image ke according saare input values capture karein
+    const fullName = (document.getElementById('fullName') as HTMLInputElement)?.value || (document.getElementById('name') as HTMLInputElement)?.value || name;
+    const phoneVal = (document.getElementById('phone') as HTMLInputElement)?.value || phone;
+    const serviceVal = (document.getElementById('service') as HTMLSelectElement)?.value || service;
+    const locationVal = (document.getElementById('location') as HTMLSelectElement)?.value || location;
+    const dateVal = (document.getElementById('date') as HTMLInputElement)?.value || date;
+    const requirementsVal = (document.getElementById('requirements') as HTMLTextAreaElement)?.value || requirements;
+
+    if (!fullName.trim() || !phoneVal.trim()) return;
+
+    setIsSubmitting(true);
+
+    const scriptURL = (shopInfo.googleScriptUrl && shopInfo.googleScriptUrl.trim()) || "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE"; // Yahan step 2 ka URL dalein
+
+    // 2. Google Sheet mai data bhejein
+    try {
+      if (scriptURL && scriptURL !== "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE" && scriptURL.startsWith('http')) {
+        await fetch(scriptURL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            fullName,
+            phone: phoneVal,
+            service: serviceVal,
+            location: locationVal,
+            date: dateVal,
+            requirements: requirementsVal
+          })
+        });
+      }
+    } catch (error) {
+      console.error('Sheet Save Error:', error);
+    }
 
     // Save lead to local storage
-    const newInquiry = {
-      id: Date.now().toString(),
-      name,
-      phone,
-      service,
-      date,
-      message,
-      createdAt: new Date().toLocaleString(),
-    };
-
     try {
+      const newInquiry = {
+        id: Date.now().toString(),
+        name: fullName,
+        fullName,
+        phone: phoneVal,
+        service: serviceVal,
+        location: locationVal,
+        date: dateVal,
+        message: requirementsVal,
+        requirements: requirementsVal,
+        createdAt: new Date().toLocaleString(),
+      };
       const existing = JSON.parse(localStorage.getItem('smriti_inquiries') || '[]');
       localStorage.setItem('smriti_inquiries', JSON.stringify([newInquiry, ...existing]));
     } catch {
       // Ignore localStorage write error
     }
 
-    // Prepare WhatsApp Message
-    const formattedText = `*New Booking Request for Smriti Photo Kumbh*\n\n` +
-      `*Name:* ${name}\n` +
-      `*Phone:* ${phone}\n` +
-      `*Service Required:* ${service}\n` +
-      `*Date of Visit:* ${date || 'Flexible'}\n` +
-      `*Details:* ${message || 'Looking for package details and photographer availability.'}`;
+    // 3. WhatsApp Redirection karein
+    const whatsappNumber = cleanWhatsapp || "919718282455"; // Apna WhatsApp Business Number country code ke sath dalein
+    const message = `*New Booking Request*%0A%0A` +
+                    `*Name:* ${encodeURIComponent(fullName)}%0A` +
+                    `*Phone:* ${encodeURIComponent(phoneVal)}%0A` +
+                    `*Service:* ${encodeURIComponent(serviceVal)}%0A` +
+                    `*Location:* ${encodeURIComponent(locationVal)}%0A` +
+                    `*Date:* ${encodeURIComponent(dateVal || 'Flexible')}%0A` +
+                    `*Requirements:* ${encodeURIComponent(requirementsVal || 'General Booking Inquiry')}`;
 
-    // Open WhatsApp
-    const waUrl = `https://wa.me/${cleanWhatsapp}?text=${encodeURIComponent(formattedText)}`;
-    window.open(waUrl, '_blank');
+    window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
 
+    setIsSubmitting(false);
     setSubmitted(true);
   };
 
@@ -74,7 +113,7 @@ export const StudioContact: React.FC<StudioContactProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3.5">
+        <div className="text-center max-w-4xl mx-auto mb-14 space-y-3.5">
           <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-amber-50 border border-amber-200 text-amber-800 text-xs font-bold uppercase tracking-wider shadow-xs">
             <span>Bookings &amp; Inquiries</span>
           </div>
@@ -82,8 +121,19 @@ export const StudioContact: React.FC<StudioContactProps> = ({
             Get In Touch With {shopInfo.name}
           </h2>
           <p className="text-base sm:text-lg font-medium text-slate-600 max-w-2xl mx-auto leading-relaxed">
-            Planning a wedding, need studio portraits, or want custom photo frames? Contact us directly or fill out the quick form below.
+            Planning a wedding, need studio portraits, or want custom photo frames? Contact us directly or choose your location and fill out the booking form below.
           </p>
+
+          {/* Locations Quick Strip */}
+          <div className="inline-flex flex-wrap items-center justify-center gap-2 px-4 py-2.5 rounded-2xl bg-white border border-slate-200 text-slate-800 text-xs font-medium shadow-xs mt-2">
+            <span className="font-bold text-amber-700 flex items-center gap-1">
+              <MapPin className="w-3.5 h-3.5 text-amber-600" />
+              We Cover:
+            </span>
+            <span>Ghaziabad • Noida • Indirapuram • Vaishali • Vasundhara • Greater Noida • Delhi NCR</span>
+            <span className="text-slate-300">•</span>
+            <span className="font-bold text-rose-700">🏔️ Destination Weddings: Rishikesh • Jim Corbett • Mussoorie • Triyuginarayan • Haridwar</span>
+          </div>
         </div>
 
         {/* 2-Column Layout */}
@@ -242,17 +292,77 @@ export const StudioContact: React.FC<StudioContactProps> = ({
               </div>
             </div>
 
-            {/* Studio Visit & Outdoor Shoot Note */}
-            <div className="p-6 rounded-3xl bg-amber-50 border border-amber-200 text-left space-y-2">
-              <span className="text-xs font-bold text-amber-800 uppercase tracking-wider">
-                Studio Visit &amp; Outdoor Bookings
-              </span>
-              <h4 className="text-sm font-bold text-slate-900">
-                Visiting our Ghaziabad Studio or Booking On-Location?
-              </h4>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Walk in to our studio in Khora Colony, Ghaziabad for studio portraits, passport prints, and handcrafted framing. For outdoor weddings, celebrations, and events, our photography crew travels directly to your venue with professional gear.
-              </p>
+            {/* Areas & Shoot Locations We Cover Card */}
+            <div className="p-6 rounded-3xl bg-white border border-slate-200 text-left space-y-4 shadow-sm">
+              <div className="border-b border-slate-100 pb-3">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center shrink-0 border border-amber-200">
+                    <MapPin className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-bold text-amber-700 uppercase tracking-wider block">
+                      Service Locations &amp; Shoot Coverage
+                    </span>
+                    <h4 className="text-sm font-bold text-slate-900">
+                      Locations We Cover
+                    </h4>
+                  </div>
+                </div>
+              </div>
+
+              {/* Delhi NCR Coverage */}
+              <div className="space-y-2">
+                <div className="text-xs font-bold text-slate-800 flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-amber-500"></span>
+                  <span>Delhi NCR &amp; Local Cities (Studio &amp; Venue Shoots):</span>
+                </div>
+                <div className="flex flex-wrap gap-1.5">
+                  {[
+                    'Ghaziabad',
+                    'Khora Colony (Studio)',
+                    'Noida (Sector 62 & All Sectors)',
+                    'Indirapuram',
+                    'Vaishali',
+                    'Vasundhara',
+                    'Greater Noida',
+                    'Noida Extension',
+                    'Delhi NCR',
+                  ].map((loc) => (
+                    <span key={loc} className="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-800 text-[11px] font-semibold border border-slate-200/90">
+                      📍 {loc}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Uttarakhand Destination Weddings */}
+              <div className="space-y-2 pt-2 border-t border-slate-100">
+                <div className="text-xs font-bold text-slate-800 flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-rose-500"></span>
+                  <span>Uttarakhand Destination Weddings (Full Crew Travel):</span>
+                </div>
+                <div className="flex flex-wrap gap-1.5">
+                  {[
+                    'Rishikesh (Riverside & Beach)',
+                    'Jim Corbett (Jungle Resorts)',
+                    'Mussoorie (Hilltop Weddings)',
+                    'Triyuginarayan Temple (Sacred Fire)',
+                    'Haridwar & Dehradun',
+                  ].map((loc) => (
+                    <span key={loc} className="px-2.5 py-1 rounded-lg bg-rose-50 text-rose-900 text-[11px] font-semibold border border-rose-200">
+                      🏔️ {loc}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Pan-India & Travel Note */}
+              <div className="p-3.5 rounded-2xl bg-amber-50 border border-amber-200/80 text-[11px] text-slate-700 leading-relaxed">
+                <p className="font-semibold text-slate-900 mb-1">
+                  ✈️ Studio Visits &amp; Travel Across India:
+                </p>
+                Walk in to our studio in Khora Colony, Ghaziabad for studio portraits, passport prints, and handcrafted framing. For weddings, celebrations, and outdoor shoots across Delhi NCR, Uttarakhand, or anywhere in India, our crew travels directly to your venue with 4K cameras and drone units.
+              </div>
             </div>
           </div>
 
@@ -279,7 +389,7 @@ export const StudioContact: React.FC<StudioContactProps> = ({
                   </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-5">
+                <form onSubmit={handleBookingSubmit} className="space-y-5">
                   <div>
                     <h3 className="text-2xl font-bold text-slate-900 font-['Outfit']">
                       Book a Shoot or Request Custom Framing
@@ -298,6 +408,8 @@ export const StudioContact: React.FC<StudioContactProps> = ({
                       </label>
                       <input
                         type="text"
+                        id="fullName"
+                        name="fullName"
                         required
                         value={name}
                         onChange={(e) => setName(e.target.value)}
@@ -313,6 +425,8 @@ export const StudioContact: React.FC<StudioContactProps> = ({
                       </label>
                       <input
                         type="tel"
+                        id="phone"
+                        name="phone"
                         required
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
@@ -322,26 +436,69 @@ export const StudioContact: React.FC<StudioContactProps> = ({
                     </div>
                   </div>
 
-                  {/* Service Selection & Date */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="space-y-1.5">
-                      <label className="text-xs font-semibold text-slate-700 flex items-center gap-1.5">
-                        <FileText className="w-3.5 h-3.5 text-amber-600" />
-                        <span>Service Required</span>
-                      </label>
-                      <select
-                        value={service}
-                        onChange={(e) => setService(e.target.value)}
-                        className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-sm focus:border-amber-500 focus:bg-white focus:outline-hidden cursor-pointer"
-                      >
-                        <option value="Cinematic Wedding & Pre-Wedding Film">Wedding &amp; Pre-Wedding Photography</option>
-                        <option value="Traditional Studio & Family Portrait">Family &amp; Studio Portraits</option>
+                  {/* Service Selection */}
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-semibold text-slate-700 flex items-center gap-1.5">
+                      <FileText className="w-3.5 h-3.5 text-amber-600" />
+                      <span>Service Required *</span>
+                    </label>
+                    <select
+                      id="service"
+                      name="service"
+                      value={service}
+                      onChange={(e) => setService(e.target.value)}
+                      className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-sm focus:border-amber-500 focus:bg-white focus:outline-hidden cursor-pointer"
+                    >
+                      <optgroup label="💍 Weddings & Romance">
+                        <option value="Wedding Photography & Video">Wedding Photography</option>
+                        <option value="Pre-Wedding Photography & Film">Pre-Wedding Photography</option>
+                        <option value="Engagement Photography">Engagement Photography</option>
+                        <option value="Wedding Reception Photography">Wedding Reception Photography</option>
+                        <option value="Anniversary Photo Shoots">Anniversary Photo Shoots</option>
+                      </optgroup>
+                      <optgroup label="📷 Studio & Custom Services">
+                        <option value="Family & Studio Portraits">Family &amp; Studio Portraits</option>
+                        <option value="Baby, Maternity & Event Shoots">Baby, Maternity &amp; Event Shoots</option>
                         <option value="4K Drone Aerial Videography">4K Drone Aerial Video</option>
                         <option value="Handcrafted Framing & Canvas Order">Handcrafted Photo Framing</option>
                         <option value="Old Ancestral Photo Restoration">Old Photo Repair &amp; Restoration</option>
-                        <option value="Maternity, Baby & Event Shoots">Baby, Maternity &amp; Event Shoots</option>
-                        <option value="Grand Event & Celebration Documentary Package">Family Event &amp; Celebration Package</option>
-                        <option value="Royal Heritage Wedding Package">Complete Wedding Package</option>
+                        <option value="Complete Grand Wedding Package">Complete Grand Wedding Package</option>
+                      </optgroup>
+                    </select>
+                  </div>
+
+                  {/* Shoot Location & Approximate Date */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-semibold text-slate-700 flex items-center gap-1.5">
+                        <MapPin className="w-3.5 h-3.5 text-amber-600" />
+                        <span>Event / Shoot Location *</span>
+                      </label>
+                      <select
+                        id="location"
+                        name="location"
+                        value={location}
+                        onChange={(e) => setLocation(e.target.value)}
+                        className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-sm focus:border-amber-500 focus:bg-white focus:outline-hidden cursor-pointer"
+                      >
+                        <optgroup label="📍 Delhi NCR & Local Cities">
+                          <option value="Ghaziabad (City & Khora Colony Studio)">Ghaziabad (Khora Colony Studio & City)</option>
+                          <option value="Noida (Sector 62, 18 & All Sectors)">Noida (Sec-62, 18 & All Sectors)</option>
+                          <option value="Indirapuram, Vaishali & Vasundhara">Indirapuram, Vaishali &amp; Vasundhara</option>
+                          <option value="Greater Noida & Noida Extension">Greater Noida &amp; Noida Extension</option>
+                          <option value="Delhi NCR (East, South, Central & NCR)">Delhi NCR (East, South &amp; Central)</option>
+                        </optgroup>
+                        <optgroup label="🏔️ Uttarakhand Destination Weddings">
+                          <option value="Rishikesh (Riverside & Resort Weddings)">Rishikesh, Uttarakhand (Riverside &amp; Beach)</option>
+                          <option value="Jim Corbett (Resort & Jungle Weddings)">Jim Corbett, Uttarakhand (Resort Weddings)</option>
+                          <option value="Mussoorie (Hilltop & Mountain Weddings)">Mussoorie, Uttarakhand (Hilltop Weddings)</option>
+                          <option value="Triyuginarayan Temple (Sacred Vedic Wedding)">Triyuginarayan Temple (Sacred Vedic Wedding)</option>
+                          <option value="Haridwar & Dehradun, Uttarakhand">Haridwar &amp; Dehradun, Uttarakhand</option>
+                        </optgroup>
+                        <optgroup label="📷 Studio & Custom Travel">
+                          <option value="In-Studio Visit (Khora Colony, Ghaziabad)">In-Studio Visit (Khora Colony, Ghaziabad)</option>
+                          <option value="Other Destination in India (Custom Travel)">Other Destination in India (Custom Travel)</option>
+                        </optgroup>
                       </select>
                     </div>
 
@@ -352,6 +509,8 @@ export const StudioContact: React.FC<StudioContactProps> = ({
                       </label>
                       <input
                         type="date"
+                        id="date"
+                        name="date"
                         value={date}
                         onChange={(e) => setDate(e.target.value)}
                         className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-sm focus:border-amber-500 focus:bg-white focus:outline-hidden"
@@ -365,9 +524,11 @@ export const StudioContact: React.FC<StudioContactProps> = ({
                       Special Requirements / Event &amp; Venue details:
                     </label>
                     <textarea
+                      id="requirements"
+                      name="requirements"
                       rows={3}
-                      value={message}
-                      onChange={(e) => setMessage(e.target.value)}
+                      value={requirements}
+                      onChange={(e) => setRequirements(e.target.value)}
                       placeholder="e.g. Wedding celebration, need 2 photographers and drone video, plus framed albums."
                       className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 placeholder:text-slate-400 text-sm focus:border-amber-500 focus:bg-white focus:outline-hidden resize-none"
                     />
@@ -377,10 +538,11 @@ export const StudioContact: React.FC<StudioContactProps> = ({
                   <button
                     type="submit"
                     id="btn-submit-booking-form"
-                    className="w-full py-4 rounded-xl font-black text-sm text-slate-950 bg-amber-500 hover:bg-amber-400 shadow-md shadow-amber-500/20 hover:scale-[1.005] transition-all cursor-pointer flex items-center justify-center gap-2"
+                    disabled={isSubmitting}
+                    className="w-full py-4 rounded-xl font-black text-sm text-slate-950 bg-amber-500 hover:bg-amber-400 shadow-md shadow-amber-500/20 hover:scale-[1.005] transition-all cursor-pointer flex items-center justify-center gap-2 disabled:opacity-75 disabled:cursor-not-allowed"
                   >
                     <MessageCircle className="w-4 h-4 text-slate-950" />
-                    <span>Send Booking Request on WhatsApp</span>
+                    <span>{isSubmitting ? 'Sending Booking Request...' : 'Send Booking Request on WhatsApp'}</span>
                   </button>
                   <p className="text-[11px] text-center text-slate-500">
                     We will reply within 15–30 minutes with slot confirmation and local directions.

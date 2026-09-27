@@ -357,6 +357,26 @@ export const ShopSettingsModal: React.FC<ShopSettingsModalProps> = ({
                 />
               </div>
 
+              {/* Google Apps Script Web App URL for Custom Quotes */}
+              <div className="space-y-1 p-3.5 rounded-2xl bg-[#0B0C0E] border border-amber-500/30">
+                <div className="flex items-center justify-between">
+                  <label className="font-bold text-amber-400 flex items-center gap-1.5 text-xs">
+                    <span>🎁 Google Apps Script Web App URL (Quote Form)</span>
+                  </label>
+                  <span className="text-[10px] text-[#8E95A5]">Sheets / Webhook</span>
+                </div>
+                <input
+                  type="url"
+                  value={formData.googleScriptUrl || ''}
+                  onChange={(e) => setFormData({ ...formData, googleScriptUrl: e.target.value })}
+                  placeholder="https://script.google.com/macros/s/AKfycb.../exec"
+                  className="w-full px-3 py-2 rounded-lg bg-[#161922] border border-[#262A36] text-white text-xs focus:border-amber-500 focus:outline-hidden font-mono"
+                />
+                <p className="text-[10px] text-[#8E95A5]">
+                  Paste your Google Apps Script Web App URL to receive quotes automatically in Google Sheets.
+                </p>
+              </div>
+
             </form>
           ) : activeTab === 'instagram' ? (
             <div className="space-y-5">

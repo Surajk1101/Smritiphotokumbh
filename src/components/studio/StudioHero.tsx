@@ -65,6 +65,28 @@ export const StudioHero: React.FC<StudioHeroProps> = ({
       aspectClass: 'aspect-square',
     },
     {
+      src: '/images/instagram_post_birthday_dxcb.jpg',
+      label: 'Ayansh Birthday Celebration',
+      shortLabel: 'Ayansh Birthday',
+      title: 'Ayansh Birthday Celebration Shoot — Molshree Films',
+      desc: 'Authentic birthday celebration photoshoot from Molshree Films (@molshreefilms) — "Ayansh birthday celebration #birthdayboy #birthdayphotoshoot #photographer", capturing joyous childhood smiles and festive balloon decor.',
+      postUrl: 'https://www.instagram.com/p/DXCbShbkycz/',
+      isInstagramBest: true,
+      account: 'molshree' as const,
+      aspectClass: 'aspect-square',
+    },
+    {
+      src: '/images/instagram_post_pooja_haldi.jpg',
+      label: 'Haldi of Pooja Ceremony',
+      shortLabel: 'Haldi Pooja',
+      title: 'Haldi of Pooja — Bride Shoot & Haldi Ceremony',
+      desc: 'Authentic haldi ceremony photoshoot from Molshree Films (@molshreefilms) — "Haldi of Pooja #brideshoot #haldiceremony #weddingshoot", capturing golden turmeric rituals, radiant smiles, and festive family joy.',
+      postUrl: 'https://www.instagram.com/p/DXMm3_hE3wx/',
+      isInstagramBest: true,
+      account: 'molshree' as const,
+      aspectClass: 'aspect-square',
+    },
+    {
       src: '/images/instagram_post_ddoe7ip.jpg',
       label: 'Bride & Sister',
       shortLabel: 'Bride Sister',
@@ -231,7 +253,7 @@ export const StudioHero: React.FC<StudioHeroProps> = ({
                   ))}
                 </div>
                 <span className="font-bold text-slate-900">4.9 / 5 Rating</span>
-                <span>(500+ Happy Customers)</span>
+                <span>(1000+ Happy Customers)</span>
               </div>
 
               <a

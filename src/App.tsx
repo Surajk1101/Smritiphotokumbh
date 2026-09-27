@@ -93,7 +93,7 @@ export default function App() {
   });
 
   const [settingsOpen, setSettingsOpen] = useState(false);
-  const [selectedInquiryService, setSelectedInquiryService] = useState('Cinematic Wedding & Pre-Wedding Film');
+  const [selectedInquiryService, setSelectedInquiryService] = useState('Wedding Photography');
 
   // Persist shop details changes
   useEffect(() => {

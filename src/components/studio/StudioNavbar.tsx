@@ -164,7 +164,7 @@ export const StudioNavbar: React.FC<StudioNavbarProps> = ({
               target="_blank"
               rel="noreferrer"
               id="btn-nav-whatsapp"
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 transition-colors whitespace-nowrap"
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 transition-colors whitespace-nowrap"
             >
               <MessageCircle className="w-4 h-4 text-emerald-600" />
               <span>WhatsApp Us</span>
