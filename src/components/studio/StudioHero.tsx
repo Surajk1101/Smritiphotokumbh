@@ -32,17 +32,6 @@ export const StudioHero: React.FC<StudioHeroProps> = ({
       aspectClass: 'aspect-[3/4]',
     },
     {
-      src: '/images/instagram_post_bride_groom.jpg',
-      label: 'Bride & Groom Story',
-      shortLabel: 'Bride & Groom',
-      title: 'Two Sides One Story — Bride & Groom Couple Session',
-      desc: 'Authentic wedding photoshoot from our Instagram post (@samriddhi.photo) — bride and groom portrait, wedding inspirations, and timeless couple goals.',
-      postUrl: 'https://www.instagram.com/p/Dc6Lvk4gcKU/',
-      isInstagramBest: true,
-      account: 'samriddhi' as const,
-      aspectClass: 'aspect-square',
-    },
-    {
       src: '/images/instagram_post_ashmit_bride.jpg',
       label: 'Bridal Moments Session',
       shortLabel: 'Ashmit Bride',
@@ -140,6 +129,17 @@ export const StudioHero: React.FC<StudioHeroProps> = ({
       isInstagramBest: true,
       account: 'samriddhi' as const,
       aspectClass: 'aspect-[3/4]',
+    },
+    {
+      src: '/images/instagram_post_bride_groom.jpg',
+      label: 'Bride & Groom Story',
+      shortLabel: 'Bride & Groom',
+      title: 'Two Sides One Story — Bride & Groom Couple Session',
+      desc: 'Authentic wedding photoshoot from our Instagram post (@samriddhi.photo) — bride and groom portrait, wedding inspirations, and timeless couple goals.',
+      postUrl: 'https://www.instagram.com/p/Dc6Lvk4gcKU/',
+      isInstagramBest: true,
+      account: 'samriddhi' as const,
+      aspectClass: 'aspect-square',
     },
   ];
 
