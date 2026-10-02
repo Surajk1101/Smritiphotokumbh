@@ -54,6 +54,17 @@ export const StudioHero: React.FC<StudioHeroProps> = ({
       aspectClass: 'aspect-square',
     },
     {
+      src: '/images/instagram_post_maternity.jpg',
+      label: 'Maternity Shoot — Molshree Films',
+      shortLabel: 'Maternity Shoot',
+      title: 'Maternity Shoot — "I Can\'t Wait to Meet You"',
+      desc: 'Authentic maternity photoshoot from Molshree Films (@molshreefilms) — "I can\'t wait to meet you. Meternity shoot #mternityshoot #motherhoodjourney #babyinmybelly", capturing the radiant beauty, grace, and emotion of motherhood.',
+      postUrl: 'https://www.instagram.com/p/Dd4X99ITwaE/',
+      isInstagramBest: true,
+      account: 'molshree' as const,
+      aspectClass: 'aspect-square',
+    },
+    {
       src: '/images/instagram_post_baby_birthday.jpg',
       label: 'Baby Birthday Shoot',
       shortLabel: 'Baby Birthday',

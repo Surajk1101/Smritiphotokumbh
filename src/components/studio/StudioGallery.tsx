@@ -91,7 +91,8 @@ export const StudioGallery: React.FC<StudioGalleryProps> = ({
                     item.imageUrl.includes('baby_birthday') ||
                     item.imageUrl.includes('birthday') ||
                     item.imageUrl.includes('pooja_haldi') ||
-                    item.imageUrl.includes('bride_groom')
+                    item.imageUrl.includes('bride_groom') ||
+                    item.imageUrl.includes('maternity')
                       ? 'object-contain'
                       : `object-cover ${item.objectPosition || 'object-center'}`
                   } group-hover:scale-105 transition-transform duration-700 filter brightness-95`}

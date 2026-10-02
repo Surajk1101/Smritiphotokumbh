@@ -456,9 +456,10 @@ export const StudioContact: React.FC<StudioContactProps> = ({
                         <option value="Wedding Reception Photography">Wedding Reception Photography</option>
                         <option value="Anniversary Photo Shoots">Anniversary Photo Shoots</option>
                       </optgroup>
-                      <optgroup label="📷 Studio & Custom Services">
+                      <optgroup label="📷 Studio & Milestone Services">
+                        <option value="Maternity Photo Shoot">Maternity Photo Shoot</option>
+                        <option value="Baby, Kids & Milestone Shoots">Baby, Kids &amp; Milestone Shoots</option>
                         <option value="Family & Studio Portraits">Family &amp; Studio Portraits</option>
-                        <option value="Baby, Maternity & Event Shoots">Baby, Maternity &amp; Event Shoots</option>
                         <option value="4K Drone Aerial Videography">4K Drone Aerial Video</option>
                         <option value="Handcrafted Framing & Canvas Order">Handcrafted Photo Framing</option>
                         <option value="Old Ancestral Photo Restoration">Old Photo Repair &amp; Restoration</option>

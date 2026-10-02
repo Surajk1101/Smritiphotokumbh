@@ -133,20 +133,46 @@ export const studioServices: StudioService[] = [
     icon: 'Sparkles',
   },
   {
-    id: 'events-milestones',
-    title: 'Baby, Maternity & Birthday Shoots',
-    description: 'Comfortable and gentle photo sessions for mothers-to-be, newborn babies, birthdays, and anniversaries.',
+    id: 'maternity-photography',
+    title: 'Maternity Photography & Motherhood Shoots',
+    description: 'Celebrate the sacred journey of motherhood with peaceful, elegant maternity photoshoots ("I can\'t wait to meet you"). Comfortable studio setting and scenic outdoor themes.',
     highlights: [
-      'Clean, comfortable, and private studio space',
-      'Gentle poses and natural candid smiles',
-      'Quick delivery of digital photo files',
-      'Custom albums and framed keepsakes available',
+      'Private, serene studio environment with dedicated caring female crew',
+      'Artistic belly bump poses, candid mother-to-be glow & couple moments',
+      'Soft cinematic studio lighting, elegant draping & backdrop choices',
+      'High-res edited photos, framed canvas keepsake & digital gallery delivery',
+    ],
+    icon: 'Sparkles',
+    popular: true,
+  },
+  {
+    id: 'events-milestones',
+    title: 'Baby & Kids Birthday Milestone Shoots',
+    description: 'Comfortable and gentle photo sessions for newborn babies, toddlers, 1st birthdays, and family milestones.',
+    highlights: [
+      'Clean, comfortable, and child-safe private studio space',
+      'Playful props, gentle themes, and natural candid smiles',
+      'Quick delivery of digital photo files & WhatsApp shareable links',
+      'Custom milestone albums and framed keepsakes available',
     ],
     icon: 'Camera',
   },
 ];
 
 export const galleryItems: GalleryItem[] = [
+  {
+    id: 'g-maternity-shoot-featured',
+    title: 'Maternity Shoot — "I Can\'t Wait to Meet You"',
+    category: 'Maternity Shoot',
+    imageUrl: '/images/instagram_post_maternity.jpg',
+    location: 'Molshree Films (@molshreefilms)',
+    description: 'Authentic maternity photoshoot from Molshree Films (@molshreefilms) — "I can\'t wait to meet you. Meternity shoot #mternityshoot #motherhoodjourney #babyinmybelly #photography #emotion", capturing the tender beauty and quiet grace of expectant motherhood.',
+    featured: true,
+    instagramUrl: 'https://www.instagram.com/p/Dd4X99ITwaE/',
+    aspectRatio: 'aspect-square',
+    account: 'molshree',
+    objectPosition: 'object-center',
+  },
   {
     id: 'g-candid-bridal-portrait',
     title: 'Radiant Bridal Candid & Makeup Portrait',
@@ -290,20 +316,21 @@ export const galleryItems: GalleryItem[] = [
 export const studioPackages: StudioPackage[] = [
   {
     id: 'pkg-portrait',
-    name: 'Studio & Family Photo Session',
-    tagline: 'Great for individual portraits, couples, and family photos',
+    name: 'Studio, Maternity & Family Session',
+    tagline: 'Ideal for maternity shoots, baby milestones, couples, and family portraits',
     popular: false,
-    badge: 'STUDIO SPECIAL',
+    badge: 'STUDIO & MATERNITY',
     features: [
-      'Studio shoot with professional lighting',
-      'Different backdrops and outfit changes',
-      'Instant photo preview on screen',
+      'Gentle & private studio shoot with comfortable seating & rest',
+      'Artistic belly bump & mother-to-be portraits with couple/family',
+      'Different backdrops, elegant draping & outfit changes',
+      'Instant photo preview on screen during session',
       '50+ High-resolution edited photos',
       'Fast delivery on WhatsApp & Google Drive',
     ],
     deliverables: [
       '1 Free Framed Photo (10x15 inches)',
-      'Free passport photo sets included',
+      'Free digital album link & high-res files',
     ],
   },
   {

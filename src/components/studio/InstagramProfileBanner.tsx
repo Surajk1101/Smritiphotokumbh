@@ -22,6 +22,20 @@ export const InstagramProfileBanner: React.FC<InstagramProfileBannerProps> = ({
   // Default verified posts from user's actual Instagram accounts (@samriddhi.photo & @molshreefilms)
   const defaultPosts = [
     {
+      id: 'post-maternity-shoot',
+      image: '/images/instagram_post_maternity.jpg',
+      url: 'https://www.instagram.com/p/Dd4X99ITwaE/',
+      tag: 'Maternity Shoot',
+      title: 'Maternity Shoot — "I Can\'t Wait to Meet You"',
+      caption: "I can't wait to meet you. \nMeternity shoot\n#mternityshoot #motherhoodjourney #babyinmybelly #photography #emotion @molshreefilms",
+      badge: 'Maternity Shoot',
+      aspect: 'aspect-square',
+      date: 'Maternity Shoot',
+      account: 'molshree' as const,
+      accountHandle: filmsInsta.handle,
+      isVideo: false,
+    },
+    {
       id: 'post-candid-bride-smile',
       image: '/images/instagram_candid_bride_smile.jpg',
       url: 'https://www.instagram.com/p/Ddd_90CAStm/',
